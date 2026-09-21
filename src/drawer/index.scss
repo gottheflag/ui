@@ -1,0 +1,255 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer reset {
+	@scope (.ui-drawer[popover]) {
+		:scope {
+			margin: 0;
+		}
+	}
+}
+
+@layer base {
+	@scope (.ui-drawer[popover]) {
+		:scope {
+			box-sizing: border-box;
+			position: fixed;
+			display: none;
+			flex-direction: column;
+			gap: var(--ui-drawer-gap, 0.75rem);
+			padding: var(--ui-drawer-padding, 1rem);
+
+			overflow: hidden;
+			overscroll-behavior: contain;
+		}
+
+		:scope:popover-open {
+			display: flex;
+		}
+
+		:scope:not(.ui-top, .ui-right, .ui-bottom, .ui-left, .ui-start, .ui-end),
+		:scope:is(.ui-left, .ui-right, .ui-start, .ui-end) {
+			inline-size: min(
+				var(--ui-drawer-width, 20rem),
+				calc(100dvi - var(--ui-drawer-viewport-offset, 1rem))
+			);
+			block-size: 100dvb;
+			max-block-size: none;
+		}
+
+		:scope:not(.ui-top, .ui-right, .ui-bottom, .ui-left, .ui-start, .ui-end),
+		:scope.ui-left {
+			inset: 0 auto 0 0;
+		}
+
+		:scope.ui-right {
+			inset: 0 0 0 auto;
+		}
+
+		:scope.ui-start {
+			inset-block: 0;
+			inset-inline: 0 auto;
+		}
+
+		:scope.ui-end {
+			inset-block: 0;
+			inset-inline: auto 0;
+		}
+
+		:scope.ui-top {
+			inset: 0 0 auto;
+			inline-size: 100dvi;
+			max-inline-size: none;
+			block-size: min(
+				var(--ui-drawer-height, 18rem),
+				calc(100dvb - var(--ui-drawer-viewport-offset, 1rem))
+			);
+		}
+
+		:scope.ui-bottom {
+			inset: auto 0 0;
+			inline-size: 100dvi;
+			max-inline-size: none;
+			block-size: min(
+				var(--ui-drawer-height, 18rem),
+				calc(100dvb - var(--ui-drawer-viewport-offset, 1rem))
+			);
+		}
+
+		:scope > header,
+		:scope > footer {
+			display: flex;
+			flex: 0 0 auto;
+			align-items: center;
+			justify-content: space-between;
+			gap: var(--ui-drawer-gap, 0.75rem);
+		}
+
+		:scope > section {
+			flex: 1 1 auto;
+			min-inline-size: 0;
+			min-block-size: 0;
+			overflow: auto;
+			overscroll-behavior: contain;
+		}
+	}
+}
+
+@layer components {
+	@scope (.ui-drawer[popover]) {
+		:scope {
+			border: 0;
+			border-radius: 0;
+			background: var(--ui-drawer-bg, Canvas);
+			color: var(--ui-drawer-fg, CanvasText);
+			box-shadow: var(--ui-drawer-shadow, none);
+
+			opacity: 0;
+			transition:
+				opacity var(--ui-drawer-motion-speed, 200ms)
+					var(--ui-drawer-motion-easing, ease),
+				translate var(--ui-drawer-motion-speed, 200ms)
+					var(--ui-drawer-motion-easing, ease),
+				display var(--ui-drawer-motion-speed, 200ms)
+					var(--ui-drawer-motion-easing, ease) allow-discrete,
+				overlay var(--ui-drawer-motion-speed, 200ms)
+					var(--ui-drawer-motion-easing, ease) allow-discrete;
+		}
+
+		:scope:not(.ui-top, .ui-right, .ui-bottom, .ui-left, .ui-start, .ui-end),
+		:scope.ui-left {
+			border-right: var(--ui-drawer-border-width, 0.0625rem) solid
+				var(--ui-drawer-border, ButtonBorder);
+			border-top-right-radius: var(--ui-drawer-radius, 0);
+			border-bottom-right-radius: var(--ui-drawer-radius, 0);
+			translate: -100% 0;
+		}
+
+		:scope.ui-right {
+			border-left: var(--ui-drawer-border-width, 0.0625rem) solid
+				var(--ui-drawer-border, ButtonBorder);
+			border-top-left-radius: var(--ui-drawer-radius, 0);
+			border-bottom-left-radius: var(--ui-drawer-radius, 0);
+			translate: 100% 0;
+		}
+
+		:scope.ui-start {
+			border-inline-end: var(--ui-drawer-border-width, 0.0625rem) solid
+				var(--ui-drawer-border, ButtonBorder);
+			border-start-end-radius: var(--ui-drawer-radius, 0);
+			border-end-end-radius: var(--ui-drawer-radius, 0);
+		}
+
+		:scope.ui-start:where(:dir(ltr)),
+		:scope.ui-end:where(:dir(rtl)) {
+			translate: -100% 0;
+		}
+
+		:scope.ui-start:where(:dir(rtl)),
+		:scope.ui-end:where(:dir(ltr)) {
+			translate: 100% 0;
+		}
+
+		:scope.ui-end {
+			border-inline-start: var(--ui-drawer-border-width, 0.0625rem) solid
+				var(--ui-drawer-border, ButtonBorder);
+			border-start-start-radius: var(--ui-drawer-radius, 0);
+			border-end-start-radius: var(--ui-drawer-radius, 0);
+		}
+
+		:scope.ui-top {
+			border-block-end: var(--ui-drawer-border-width, 0.0625rem) solid
+				var(--ui-drawer-border, ButtonBorder);
+			border-end-start-radius: var(--ui-drawer-radius, 0);
+			border-end-end-radius: var(--ui-drawer-radius, 0);
+			translate: 0 -100%;
+		}
+
+		:scope.ui-bottom {
+			border-block-start: var(--ui-drawer-border-width, 0.0625rem) solid
+				var(--ui-drawer-border, ButtonBorder);
+			border-start-start-radius: var(--ui-drawer-radius, 0);
+			border-start-end-radius: var(--ui-drawer-radius, 0);
+			translate: 0 100%;
+		}
+
+		:scope:popover-open {
+			opacity: 1;
+			translate: 0 0;
+		}
+
+		:scope::backdrop {
+			background: transparent;
+			transition:
+				background-color var(--ui-drawer-motion-speed, 200ms)
+					var(--ui-drawer-motion-easing, ease),
+				display var(--ui-drawer-motion-speed, 200ms)
+					var(--ui-drawer-motion-easing, ease) allow-discrete,
+				overlay var(--ui-drawer-motion-speed, 200ms)
+					var(--ui-drawer-motion-easing, ease) allow-discrete;
+		}
+
+		:scope:popover-open::backdrop {
+			background: var(--ui-drawer-backdrop, rgb(0 0 0 / 40%));
+		}
+	}
+
+	@starting-style {
+		.ui-drawer[popover]:not(.ui-top, .ui-right, .ui-bottom, .ui-left, .ui-start, .ui-end):popover-open,
+		.ui-drawer[popover].ui-left:popover-open {
+			opacity: 0;
+			translate: -100% 0;
+		}
+
+		.ui-drawer[popover].ui-right:popover-open {
+			opacity: 0;
+			translate: 100% 0;
+		}
+
+		.ui-drawer[popover].ui-start:where(:dir(ltr)):popover-open,
+		.ui-drawer[popover].ui-end:where(:dir(rtl)):popover-open {
+			opacity: 0;
+			translate: -100% 0;
+		}
+
+		.ui-drawer[popover].ui-start:where(:dir(rtl)):popover-open,
+		.ui-drawer[popover].ui-end:where(:dir(ltr)):popover-open {
+			opacity: 0;
+			translate: 100% 0;
+		}
+
+		.ui-drawer[popover].ui-top:popover-open {
+			opacity: 0;
+			translate: 0 -100%;
+		}
+
+		.ui-drawer[popover].ui-bottom:popover-open {
+			opacity: 0;
+			translate: 0 100%;
+		}
+
+		.ui-drawer[popover]:popover-open::backdrop {
+			background: transparent;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ui-drawer[popover],
+		.ui-drawer[popover]::backdrop {
+			transition: none;
+		}
+	}
+
+	@include ui.reduced-transparency {
+		.ui-drawer[popover]:popover-open::backdrop {
+			background: color-mix(
+				in oklch,
+				var(--ui-drawer-backdrop, CanvasText) 70%,
+				Canvas
+			);
+		}
+	}
+}

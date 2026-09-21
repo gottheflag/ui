@@ -1,0 +1,31 @@
+// <color>
+@property --ui-datetime-arrow {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-datetime-separator {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-datetime-arrow-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-datetime-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}

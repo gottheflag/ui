@@ -1,0 +1,77 @@
+@layer base {
+	:root {
+		--ui-button-base-fg: var(--ui-fg, ButtonText);
+		--ui-button-fg: var(--ui-button-base-fg);
+
+		--ui-button-base-bg: color-mix(
+			in oklch,
+			var(--ui-bg, Canvas) 92.5%,
+			color-mix(
+				in oklch,
+				ButtonFace 50%,
+				var(--ui-button-fg, ButtonText) 50%
+			) 7.5%
+		);
+		--ui-button-bg: var(--ui-button-base-bg);
+
+		--ui-button-base-border: color-mix(
+			in oklch,
+			ButtonBorder 10%,
+			var(--ui-bg, Canvas)
+		);
+		--ui-button-border: var(--ui-button-base-border);
+		--ui-button-border-width: var(--ui-border-width, 0.0625rem);
+
+		--ui-button-radius: max(
+			0px,
+			calc(var(--ui-radius, 0.375rem) - 0.125rem)
+		);
+		--ui-button-cursor: pointer;
+		--ui-button-gap: 0.5rem;
+		--ui-button-font-weight: 500;
+
+		--ui-button-ring: var(--ui-ring, Highlight);
+		--ui-button-base-ring: var(--ui-button-ring);
+		--ui-button-ring-width: var(--ui-ring-width, 0.125rem);
+		--ui-button-ring-offset: var(--ui-ring-offset, 0.0625rem);
+
+		--ui-button-disabled-fg: var(--ui-disabled-fg, GrayText);
+		--ui-button-disabled-bg: var(
+			--ui-disabled-bg,
+			color-mix(
+				in oklch,
+				GrayText 20%,
+				var(--ui-bg, Canvas)
+			)
+		);
+		--ui-button-disabled-border: var(
+			--ui-disabled-border,
+			color-mix(
+				in oklch,
+				GrayText 35%,
+				var(--ui-bg, Canvas)
+			)
+		);
+		--ui-button-disabled-cursor: var(--ui-disabled-cursor, not-allowed);
+
+		--ui-button-xs-block-size: 1.75rem;
+		--ui-button-xs-padding-inline: 0.5rem;
+		--ui-button-xs-font-size: 0.75rem;
+		--ui-button-xs-line-height: 1rem;
+
+		--ui-button-sm-block-size: 2.25rem;
+		--ui-button-sm-padding-inline: 0.75rem;
+		--ui-button-sm-font-size: 0.875rem;
+		--ui-button-sm-line-height: 1.25rem;
+
+		--ui-button-md-block-size: 2.5rem;
+		--ui-button-md-padding-inline: 1rem;
+		--ui-button-md-font-size: 0.875rem;
+		--ui-button-md-line-height: 1.25rem;
+
+		--ui-button-lg-block-size: 2.75rem;
+		--ui-button-lg-padding-inline: 1.5rem;
+		--ui-button-lg-font-size: 0.9375rem;
+		--ui-button-lg-line-height: 1.375rem;
+	}
+}

@@ -1,0 +1,148 @@
+// *
+@property --ui-checkbox-disabled-cursor {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-card-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-card-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-card-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-checkbox-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-checkbox-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-checkbox-checked-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-checkbox-disabled-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-checkbox-disabled-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-checkbox-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-checkbox-ring {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-card-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-card-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-checkbox-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-checkbox-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-checkbox-icon-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-checkbox-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-checkbox-ring-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-checkbox-ring-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-checkbox-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-card-padding {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <number>
+@property --ui-checkbox-disabled-opacity {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+// none | <image>
+@property --ui-checkbox-check-icon {
+	syntax: "none | <image>";
+	inherits: true;
+	initial-value: none;
+}
+
+@property --ui-checkbox-indeterminate-icon {
+	syntax: "none | <image>";
+	inherits: true;
+	initial-value: none;
+}

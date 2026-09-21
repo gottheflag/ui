@@ -1,0 +1,64 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer base {
+	@scope (.ui-breadcrumb) {
+		:scope {
+			display: flex;
+			align-items: center;
+			justify-content: start;
+			flex-flow: row nowrap;
+			gap: var(--ui-breadcrumb-gap, 0.5rem);
+			min-inline-size: 0;
+			max-inline-size: 100%;
+			overflow-x: auto;
+			overflow-y: hidden;
+			overscroll-behavior-inline: contain;
+			scrollbar-width: none;
+			user-select: none;
+		}
+
+		:scope::-webkit-scrollbar {
+			display: none;
+		}
+
+		:scope > * {
+			display: inline-flex;
+			flex: 0 0 auto;
+			align-items: center;
+			min-inline-size: 0;
+			white-space: nowrap;
+		}
+	}
+}
+
+@layer components {
+	@scope (.ui-breadcrumb) {
+		:scope > :not(:last-child)::after {
+			content: "";
+			display: block;
+			flex: 0 0 auto;
+			inline-size: var(--ui-breadcrumb-separator-size, 0.625rem);
+			block-size: var(--ui-breadcrumb-separator-size, 0.625rem);
+			margin-inline-start: var(--ui-breadcrumb-gap, 0.5rem);
+			background-color: var(--ui-breadcrumb-separator, CanvasText);
+			pointer-events: none;
+
+			mask-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='a' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M18.21,4.84c1.25-1.18,3.22-1.11,4.4.14l23.33,24.89c1.12,1.2,1.12,3.06,0,4.26l-23.33,24.89c-1.18,1.25-3.14,1.32-4.4.14-1.25-1.18-1.32-3.14-.14-4.4l21.34-22.76L18.06,9.24c-1.18-1.25-1.11-3.22.14-4.4Z' style='fill-rule:evenodd;'/%3E%3C/svg%3E");
+			mask-position: center;
+			mask-repeat: no-repeat;
+			mask-size: var(--ui-breadcrumb-separator-size, 0.625rem);
+
+			-webkit-mask-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='a' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M18.21,4.84c1.25-1.18,3.22-1.11,4.4.14l23.33,24.89c1.12,1.2,1.12,3.06,0,4.26l-23.33,24.89c-1.18,1.25-3.14,1.32-4.4.14-1.25-1.18-1.32-3.14-.14-4.4l21.34-22.76L18.06,9.24c-1.18-1.25-1.11-3.22.14-4.4Z' style='fill-rule:evenodd;'/%3E%3C/svg%3E");
+			-webkit-mask-position: center;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-size: var(--ui-breadcrumb-separator-size, 0.625rem);
+		}
+
+		:scope:dir(rtl) > :not(:last-child)::after {
+			scale: -1 1;
+		}
+	}
+}

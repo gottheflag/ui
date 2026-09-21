@@ -1,0 +1,56 @@
+// *
+@property --ui-code-font-family {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-code-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-code-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-code-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-code-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-code-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-code-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-code-padding-block {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-code-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}

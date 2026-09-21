@@ -1,0 +1,36 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer base {
+    a {
+        color: var(--ui-link, LinkText);
+        text-decoration-thickness: var(--ui-link-line-width, 0.0625rem);
+        text-underline-offset: var(--ui-link-line-offset, 0.125rem);
+
+        @include ui.focus-ring(
+            var(--ui-link-ring, Highlight),
+            var(--ui-link-ring-width, 0.125rem),
+            var(--ui-link-ring-offset, 0.0625rem)
+        );
+
+        @include ui.hover {
+            text-decoration: underline;
+            text-decoration-color: var(
+                --ui-link-hover-line,
+                currentColor
+            );
+            text-decoration-thickness: var(
+                --ui-link-line-width,
+                0.0625rem
+            );
+            text-underline-offset: var(--ui-link-line-offset, 0.125rem);
+        }
+
+        &:visited {
+            color: var(--ui-link-visited, VisitedText);
+        }
+    }
+}

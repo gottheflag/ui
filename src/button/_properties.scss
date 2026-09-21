@@ -1,0 +1,213 @@
+// *
+@property --ui-button-cursor {
+	syntax: "*";
+	inherits: true;
+}
+
+@property --ui-button-disabled-cursor {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-button-base-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-base-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-base-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-base-ring {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-disabled-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-disabled-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-disabled-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-button-ring {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-button-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-lg-block-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-lg-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-md-block-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-md-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-ring-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-ring-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-sm-block-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-sm-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-xs-block-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-xs-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-button-lg-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-md-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-sm-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-button-xs-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// normal | <number> | <length-percentage>
+@property --ui-button-lg-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+@property --ui-button-md-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+@property --ui-button-sm-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+@property --ui-button-xs-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+// normal | bold | <number>
+@property --ui-button-font-weight {
+	syntax: "normal | bold | <number>";
+	inherits: true;
+	initial-value: 400;
+}

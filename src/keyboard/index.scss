@@ -1,0 +1,35 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer base {
+	kbd {
+		box-sizing: border-box;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--ui-keyboard-gap, 0.25rem);
+
+		min-inline-size: var(--ui-keyboard-block-size, 1.25rem);
+		inline-size: fit-content;
+		block-size: var(--ui-keyboard-block-size, 1.25rem);
+		padding: var(--ui-keyboard-padding, 0.25rem);
+
+		font-size: var(--ui-keyboard-font-size, 0.75rem);
+		text-align: center;
+		white-space: nowrap;
+		user-select: none;
+	}
+}
+
+@layer components {
+	kbd {
+		border: var(--ui-keyboard-border-width, 0.0625rem) solid
+			var(--ui-keyboard-border, ButtonBorder);
+		border-radius: var(--ui-keyboard-radius, 0.25rem);
+		background-color: var(--ui-keyboard-bg, Canvas);
+		color: var(--ui-keyboard-fg, CanvasText);
+		font-weight: 500;
+	}
+}

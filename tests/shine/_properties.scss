@@ -1,0 +1,44 @@
+// *
+@property --ui-shine-easing {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-shine-color {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-shine-from {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-shine-to {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <time>
+@property --ui-shine-auto-duration {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}
+
+@property --ui-shine-delay {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}
+
+@property --ui-shine-speed {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}

@@ -1,0 +1,62 @@
+// <color>
+@property --ui-table-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-table-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-table-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-table-head-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-table-hover-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-table-muted {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-table-stripe-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-table-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-table-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-table-padding {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}

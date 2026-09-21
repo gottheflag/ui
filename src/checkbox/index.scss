@@ -1,0 +1,164 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer reset {
+	input[type="checkbox" i] {
+		appearance: none;
+		outline: none;
+	}
+}
+
+@layer base {
+	input[type="checkbox" i] {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--ui-checkbox-gap, 0.5rem);
+		min-block-size: var(--ui-checkbox-size, 1rem);
+
+		color: var(--ui-checkbox-fg, CanvasText);
+		cursor: pointer;
+
+		&::before {
+			content: "";
+			display: inline-block;
+			flex: 0 0 auto;
+
+			box-sizing: border-box;
+			inline-size: var(--ui-checkbox-size, 1rem);
+			block-size: var(--ui-checkbox-size, 1rem);
+		}
+
+		&[data-label]::after {
+			content: attr(data-label);
+		}
+	}
+
+	@scope (label:has(> input[type="checkbox" i])) {
+		:scope:not(.ui-card),
+		:scope:not(.ui-card) > input[type="checkbox" i] + * {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--ui-checkbox-gap, 0.5rem);
+
+			user-select: none;
+			cursor: pointer;
+		}
+	}
+
+	@scope (label.ui-card:has(> input[type="checkbox" i])) {
+		:scope {
+			box-sizing: border-box;
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: start;
+			column-gap: 0.75rem;
+			row-gap: 0.25rem;
+
+			padding: var(--ui-card-padding, 1rem);
+			border-radius: var(--ui-card-radius, var(--ui-radius, 0.375rem));
+
+			text-align: start;
+			user-select: none;
+			cursor: pointer;
+		}
+
+		:scope > input[type="checkbox" i] {
+			grid-column: 1;
+			grid-row: 1;
+			align-self: start;
+			margin-block-start: 0.125rem;
+		}
+
+		:scope > :not(input[type="checkbox" i]) {
+			grid-column: 2;
+			min-inline-size: 0;
+		}
+	}
+}
+
+@layer components {
+	input[type="checkbox" i] {
+		&::before {
+			border: var(--ui-checkbox-border-width, 0.0625rem) solid
+				var(--ui-checkbox-border, ButtonBorder);
+			border-radius: var(--ui-checkbox-radius, 0.375rem);
+			background-color: var(--ui-checkbox-bg, Canvas);
+		}
+
+		&:checked::before,
+		&:indeterminate::before {
+			background-color: var(--ui-checkbox-checked-bg, SelectedItem);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: var(--ui-checkbox-icon-size, 0.625rem);
+		}
+
+		&:checked::before {
+			background-image: var(--ui-checkbox-check-icon);
+		}
+
+		&:indeterminate::before {
+			background-image: var(--ui-checkbox-indeterminate-icon);
+		}
+
+		&:focus-visible::before {
+			outline: var(--ui-checkbox-ring-width, 0.125rem) solid
+				var(--ui-checkbox-ring, Highlight);
+			outline-offset: var(--ui-checkbox-ring-offset, 0.0625rem);
+		}
+
+		&:disabled {
+			color: var(--ui-checkbox-disabled-fg, GrayText);
+			cursor: var(--ui-checkbox-disabled-cursor, not-allowed);
+
+			&::before {
+				border-color: var(--ui-checkbox-disabled-border, GrayText);
+				opacity: var(--ui-checkbox-disabled-opacity, 0.35);
+			}
+		}
+	}
+
+	@scope (label:has(> input[type="checkbox" i])) {
+		:scope:has(> input[type="checkbox" i]:disabled) {
+			color: var(--ui-checkbox-disabled-fg, GrayText);
+			cursor: var(--ui-checkbox-disabled-cursor, not-allowed);
+		}
+	}
+
+	@scope (label.ui-card:has(> input[type="checkbox" i])) {
+		:scope {
+			border: var(--ui-card-border-width, var(--ui-border-width, 0.0625rem))
+				solid var(--ui-card-border, var(--ui-border, ButtonBorder));
+			background: var(--ui-card-bg, var(--ui-surface, Canvas));
+			color: var(--ui-card-fg, var(--ui-fg, CanvasText));
+
+			transition:
+				border-color var(--ui-animation-speed, 150ms)
+					var(--ui-animation-easing, ease),
+				background-color var(--ui-animation-speed, 150ms)
+					var(--ui-animation-easing, ease);
+		}
+
+		:scope:has(> input[type="checkbox" i]:checked) {
+			border-color: color-mix(
+				in oklch,
+				var(--ui-accent, Highlight) 55%,
+				var(--ui-card-border, var(--ui-border, ButtonBorder))
+			);
+			background: color-mix(
+				in oklch,
+				var(--ui-accent, Highlight) 5%,
+				var(--ui-card-bg, var(--ui-surface, Canvas))
+			);
+		}
+
+		:scope:has(> input[type="checkbox" i]:disabled) {
+			color: var(--ui-checkbox-disabled-fg, GrayText);
+			cursor: var(--ui-checkbox-disabled-cursor, not-allowed);
+		}
+	}
+
+}

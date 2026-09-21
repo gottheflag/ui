@@ -1,0 +1,29 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer base {
+    * {
+        scrollbar-color: var(--ui-scrollbar-thumb, AccentColor)
+            var(--ui-scrollbar-track, Canvas);
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--ui-scrollbar-track, Canvas);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--ui-scrollbar-thumb, AccentColor);
+    }
+}
+
+@layer utilities {
+    .ui-scrollbar-hide {
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

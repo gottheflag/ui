@@ -1,0 +1,20 @@
+@layer base {
+	:root {
+		--ui-drawer-bg: var(--ui-surface, Canvas);
+		--ui-drawer-fg: var(--ui-fg, CanvasText);
+		--ui-drawer-border: var(--ui-border, ButtonBorder);
+		--ui-drawer-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-drawer-radius: 0;
+		--ui-drawer-shadow: var(--ui-shadow, 0 1rem 3rem rgb(0 0 0 / 18%));
+		--ui-drawer-backdrop: rgb(0 0 0 / 40%);
+
+		--ui-drawer-width: 20rem;
+		--ui-drawer-height: 18rem;
+		--ui-drawer-viewport-offset: 1rem;
+		--ui-drawer-padding: 1rem;
+		--ui-drawer-gap: 0.75rem;
+
+		--ui-drawer-motion-speed: var(--ui-animation-speed, 200ms);
+		--ui-drawer-motion-easing: var(--ui-animation-easing, ease);
+	}
+}

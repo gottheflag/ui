@@ -1,0 +1,277 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+$sizes: (
+	xs: var(--ui-avatar-xs, 1rem),
+	sm: var(--ui-avatar-sm, 2rem),
+	md: var(--ui-avatar-md, 2.25rem),
+	lg: var(--ui-avatar-lg, 2.5rem),
+	xl: var(--ui-avatar-xl, 4rem),
+);
+
+
+@layer base {
+	.ui-avatar {
+		position: relative;
+		box-sizing: border-box;
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+
+		inline-size: var(--ui-avatar-size, 2rem);
+		block-size: var(--ui-avatar-size, 2rem);
+
+		object-fit: cover;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: calc(var(--ui-avatar-size, 2rem) / 2);
+
+		user-select: none;
+		-webkit-user-drag: none;
+	}
+
+	@scope (.ui-avatar-group) {
+		:scope {
+			/*
+			 * data-avatar-offset controls the unified step between avatar starts.
+			 * 0 fully stacks avatars; avatar-size removes overlap.
+			 */
+			--_ui-avatar-group-offset: attr(
+				data-avatar-offset type(<length>),
+				var(
+					--ui-avatar-group-offset,
+					calc(var(--ui-avatar-size, 2rem) - 0.5rem)
+				)
+			);
+
+			display: inline-flex;
+			align-items: center;
+			min-inline-size: 0;
+			isolation: isolate;
+		}
+
+		/*
+		 * The attribute is optional. If present without a usable integer,
+		 * the group limit intentionally defaults to one visible avatar.
+		 */
+		:scope[data-group-limit] {
+			--_ui-avatar-group-requested-limit: max(
+				1,
+				attr(data-group-limit type(<integer>), 1)
+			);
+		}
+
+		:scope > .ui-avatar {
+			flex: 0 0 auto;
+			box-shadow:
+				0 0 0
+					var(--ui-avatar-group-separator-width, 0.125rem)
+					var(--ui-avatar-group-separator-color, Canvas);
+		}
+
+		:scope > .ui-avatar + .ui-avatar {
+			margin-inline-start: calc(
+				var(--_ui-avatar-group-offset) -
+					var(--ui-avatar-size, 2rem)
+			);
+		}
+
+		@each $name, $value in $sizes {
+			:scope.ui-#{$name} {
+				--ui-avatar-size: #{$value};
+			}
+		}
+	}
+}
+
+@layer components {
+	.ui-avatar {
+		border-radius: var(--ui-avatar-radius, 0.375rem);
+		background-color: var(--ui-avatar-bg, Canvas);
+
+		&:not(:empty) {
+			background-color: var(--ui-avatar-bg, Canvas);
+		}
+
+		&.ui-circle {
+			border-radius: 50%;
+		}
+
+		&.ui-ring {
+			outline: var(--ui-avatar-ring-width, 0.125rem) solid
+				var(--ui-avatar-ring-color, Canvas);
+			outline-offset: var(--ui-avatar-ring-offset, 0.0625rem);
+		}
+
+		@each $name, $value in $sizes {
+			&.ui-#{$name} {
+				--ui-avatar-size: #{$value};
+			}
+		}
+	}
+
+	/*
+	 * Tree-counting is progressive enhancement. Without sibling functions,
+	 * Avatar Group remains a normal overlapping group and ignores the limit.
+	 */
+	@supports (z-index: sibling-index()) {
+		@scope (.ui-avatar-group) {
+			:scope.ui-interactive
+				> .ui-avatar:is(:hover, :focus-visible, :focus-within) {
+				z-index: calc(sibling-count() + 1);
+			}
+		}
+	}
+
+	@supports (z-index: sibling-index()) and
+		(content: if(style(--_ui-avatar-group-is-overflow-avatar: 1): "x"; else: normal)) {
+		@scope (.ui-avatar-group) {
+			:scope > .ui-avatar {
+				--_ui-avatar-group-index: sibling-index();
+				--_ui-avatar-group-count: sibling-count();
+
+				/*
+				 * No data-group-limit -> show every rendered avatar.
+				 * data-group-limit="" -> one visible avatar.
+				 */
+				--_ui-avatar-group-limit: min(
+					var(
+						--_ui-avatar-group-requested-limit,
+						var(--_ui-avatar-group-count)
+					),
+					var(--_ui-avatar-group-count)
+				);
+
+				--_ui-avatar-group-visible: clamp(
+					0,
+					calc(
+						var(--_ui-avatar-group-limit) -
+							var(--_ui-avatar-group-index) +
+							1
+					),
+					1
+				);
+
+				--_ui-avatar-group-overflow: max(
+					0,
+					calc(
+						var(--_ui-avatar-group-count) -
+							var(--_ui-avatar-group-limit)
+					)
+				);
+
+				--_ui-avatar-group-has-overflow: clamp(
+					0,
+					var(--_ui-avatar-group-overflow),
+					1
+				);
+
+				/*
+				 * The first hidden element becomes the generated +N avatar.
+				 * Unlike ::after, content replacement also works for <img>.
+				 */
+				--_ui-avatar-group-is-overflow-avatar: calc(
+					var(--_ui-avatar-group-has-overflow) *
+						clamp(
+							0,
+							calc(
+								1 -
+									abs(
+										var(--_ui-avatar-group-index) -
+											var(--_ui-avatar-group-limit) -
+											1
+									)
+							),
+							1
+						)
+				);
+
+				--_ui-avatar-group-rendered: max(
+					var(--_ui-avatar-group-visible),
+					var(--_ui-avatar-group-is-overflow-avatar)
+				);
+
+				z-index: var(--_ui-avatar-group-index);
+
+				inline-size: calc(
+					var(--ui-avatar-size, 2rem) *
+						var(--_ui-avatar-group-rendered)
+				);
+				block-size: calc(
+					var(--ui-avatar-size, 2rem) *
+						var(--_ui-avatar-group-rendered)
+				);
+
+				margin-inline-start: calc(
+					(
+							var(--_ui-avatar-group-offset) -
+								var(--ui-avatar-size, 2rem)
+						) *
+						clamp(
+							0,
+							calc(var(--_ui-avatar-group-index) - 1),
+							1
+						) *
+						var(--_ui-avatar-group-rendered)
+				);
+
+				opacity: var(--_ui-avatar-group-rendered);
+
+				font-size: calc(
+					var(--ui-avatar-size, 2rem) *
+						(
+							0.5 * var(--_ui-avatar-group-visible) +
+								0.36 *
+									var(--_ui-avatar-group-is-overflow-avatar)
+						)
+				);
+
+				box-shadow:
+					0 0 0
+						calc(
+							var(
+									--ui-avatar-group-separator-width,
+									0.125rem
+								) *
+								var(--_ui-avatar-group-rendered)
+						)
+						var(--ui-avatar-group-separator-color, Canvas);
+
+				overflow: hidden;
+
+				counter-reset: ui-avatar-group-more
+					var(--_ui-avatar-group-overflow);
+
+				content: if(
+					style(--_ui-avatar-group-is-overflow-avatar: 1):
+						"+" counter(ui-avatar-group-more);
+					else: normal
+				);
+
+				background: if(
+					style(--_ui-avatar-group-is-overflow-avatar: 1):
+						var(
+							--ui-avatar-group-more-bg,
+							var(--ui-secondary, ButtonFace)
+						);
+					else: var(--ui-avatar-bg, Canvas)
+				);
+
+				color: if(
+					style(--_ui-avatar-group-is-overflow-avatar: 1):
+						var(--ui-avatar-group-more-fg, CanvasText);
+					else: inherit
+				);
+
+				pointer-events: if(
+					style(--_ui-avatar-group-is-overflow-avatar: 1): none;
+					else: revert-layer
+				);
+			}
+
+		}
+	}
+}

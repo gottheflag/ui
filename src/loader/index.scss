@@ -1,0 +1,199 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+@forward "animations";
+
+@layer base {
+	@scope (.ui-loader) {
+		:scope {
+			box-sizing: border-box;
+			display: inline-block;
+			flex: 0 0 auto;
+		}
+	}
+}
+
+@layer components {
+	@scope (.ui-loader) {
+		:scope:is(.ui-ring, .ui-dual, .ui-breath) {
+			border-radius: 50%;
+		}
+
+		:scope.ui-ring {
+			inline-size: var(
+				--ui-loader-size,
+				var(--ui-loader-ring-size, 1.25rem)
+			);
+			block-size: var(
+				--ui-loader-size,
+				var(--ui-loader-ring-size, 1.25rem)
+			);
+
+			border: var(--ui-loader-width, 0.125rem) solid
+				var(--ui-loader-secondary, GrayText);
+			border-block-start-color: var(
+				--ui-loader-primary,
+				CanvasText
+			);
+
+			animation: ui-loader-ring var(--ui-loader-speed, 1s) linear
+				infinite;
+		}
+
+		:scope:is(.ui-breath, .ui-dual) {
+			inline-size: var(
+				--ui-loader-size,
+				var(--ui-loader-shape-size, 1.5rem)
+			);
+			block-size: var(
+				--ui-loader-size,
+				var(--ui-loader-shape-size, 1.5rem)
+			);
+		}
+
+		:scope.ui-breath {
+			border: var(--ui-loader-width, 0.125rem) solid
+				var(--ui-loader-primary, CanvasText);
+			animation: ui-loader-breath var(--ui-loader-speed, 1s)
+				ease-in-out infinite;
+		}
+
+		:scope.ui-dual {
+			border: var(--ui-loader-width, 0.125rem) solid transparent;
+			border-block-start-color: var(
+				--ui-loader-primary,
+				CanvasText
+			);
+			border-block-end-color: var(
+				--ui-loader-secondary,
+				GrayText
+			);
+			animation: ui-loader-dual var(--ui-loader-speed, 1s) ease
+				infinite;
+		}
+
+		:scope.ui-bar {
+			position: relative;
+
+			min-inline-size: var(--ui-loader-bar-size, 3.125rem);
+			block-size: var(--ui-loader-width, 0.125rem);
+			border-radius: var(--ui-loader-radius, 0.375rem);
+			background-color: var(--ui-loader-secondary, GrayText);
+		}
+
+		:scope.ui-bar::before {
+			content: "";
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline-start: 0;
+
+			inline-size: 0;
+			block-size: 100%;
+
+			border-radius: inherit;
+			background: var(--ui-loader-primary, CanvasText);
+			animation: ui-loader-bar var(--ui-loader-speed, 1s)
+				ease-in-out infinite;
+		}
+
+		:scope.ui-dots {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--ui-loader-dots-gap, 0.4375rem);
+
+			direction: ltr;
+		}
+
+		:scope.ui-dots > span {
+			display: block;
+			inline-size: var(--ui-loader-dots-size, 0.4375rem);
+			block-size: var(--ui-loader-dots-size, 0.4375rem);
+			border-radius: 50%;
+			background: var(--ui-loader-dots-color, currentColor);
+			animation: ui-loader-dots var(--ui-loader-speed, 1s)
+				ease-in-out infinite;
+		}
+
+		:scope.ui-dots > span:nth-child(2) {
+			animation-delay: var(--ui-loader-dots-delay, 140ms);
+		}
+
+		:scope.ui-dots > span:nth-child(3) {
+			animation-delay: calc(
+				var(--ui-loader-dots-delay, 140ms) +
+				var(--ui-loader-dots-delay, 140ms)
+			);
+		}
+	}
+
+	@include ui.reduced-motion {
+		@scope (.ui-loader) {
+			/*
+			 * Keep every loader clearly active, but reduce speed, travel,
+			 * scaling amplitude, and abrupt motion.
+			 */
+			:scope.ui-ring {
+				animation-duration: calc(
+					var(--ui-loader-speed, 1s) * 1.35
+				);
+			}
+
+			:scope.ui-dual {
+				animation-name: ui-loader-dual-reduced-motion;
+				animation-duration: calc(
+					var(--ui-loader-speed, 1s) * 1.35
+				);
+				animation-timing-function: linear;
+			}
+
+			:scope.ui-breath {
+				--ui-loader-breath-scale: 0.93;
+				--ui-loader-breath-opacity: 0.78;
+
+				animation-duration: calc(
+					var(--ui-loader-speed, 1s) * 1.35
+				);
+			}
+
+			:scope.ui-bar::before {
+				animation-name: ui-loader-bar-reduced-motion;
+				animation-duration: calc(
+					var(--ui-loader-speed, 1s) * 1.35
+				);
+				animation-timing-function: ease-in-out;
+				animation-direction: alternate;
+			}
+
+			:scope.ui-dots {
+				--ui-loader-dots-jump: 0.125rem;
+				--ui-loader-dots-opacity: 0.65;
+			}
+
+			:scope.ui-dots > span {
+				animation-duration: calc(
+					var(--ui-loader-speed, 1s) * 1.35
+				);
+			}
+		}
+	}
+
+	@include ui.reduced-transparency {
+		@scope (.ui-loader) {
+			/*
+			 * Increase the minimum opacity without flattening the animation.
+			 * These same normal component knobs also compose naturally with
+			 * reduced motion when both preferences are enabled.
+			 */
+			:scope.ui-breath {
+				--ui-loader-breath-opacity: 0.9;
+			}
+
+			:scope.ui-dots {
+				--ui-loader-dots-opacity: 0.8;
+			}
+		}
+	}
+
+}

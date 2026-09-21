@@ -1,0 +1,181 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer base {
+	select {
+		box-sizing: border-box;
+		padding-block: var(--ui-select-padding-block, 0.5rem);
+		padding-inline: var(--ui-select-padding-inline, 0.875rem);
+
+		font-family: inherit;
+		font-size: var(--ui-select-font-size, 0.875rem);
+		line-height: var(--ui-select-line-height, 1.25rem);
+
+		border: var(--ui-select-border-width, 0.0625rem) solid
+			var(--ui-select-border, ButtonBorder);
+		border-radius: var(--ui-select-radius, 0.375rem);
+
+		background-color: var(--ui-select-bg, Field);
+		color: var(--ui-select-fg, FieldText);
+		cursor: pointer;
+
+		@include ui.focus-ring(
+			var(--ui-select-ring, Highlight),
+			var(--ui-select-ring-width, 0.125rem),
+			var(--ui-select-ring-offset, 0.0625rem)
+		);
+
+		@include ui.hover {
+			&:not(:disabled) {
+				background-color: var(
+					--ui-select-hover-bg,
+					var(--ui-select-bg, Field)
+				);
+			}
+		}
+
+		&:disabled {
+			border-color: var(--ui-select-disabled-border, GrayText);
+			background-color: var(--ui-select-disabled-bg, Canvas);
+			color: var(--ui-select-disabled-fg, GrayText);
+			cursor: var(--ui-select-disabled-cursor, not-allowed);
+		}
+
+		&:not([multiple]):not([size]) {
+			min-block-size: var(--ui-select-block-size, 2.5rem);
+		}
+	}
+
+	@scope (select) {
+		optgroup {
+			color: var(--ui-muted, GrayText);
+			font-size: 0.75rem;
+			font-weight: 600;
+			line-height: var(--ui-select-line-height, 1.25rem);
+		}
+
+		option {
+			color: var(--ui-select-fg, FieldText);
+			font-size: var(--ui-select-font-size, 0.875rem);
+			font-weight: 400;
+			line-height: var(--ui-select-line-height, 1.25rem);
+		}
+	}
+}
+
+@layer components {
+	select {
+		&.ui-outline,
+		&.ui-dashed {
+			background-color: transparent;
+		}
+
+		&.ui-dashed {
+			border-style: dashed;
+		}
+
+		&.ui-ghost {
+			border-color: transparent;
+			background-color: transparent;
+		}
+
+		&.ui-subtle {
+			border-color: transparent;
+			background-color: color-mix(
+				in oklch,
+				var(--ui-select-fg, FieldText) 5%,
+				var(--ui-bg, Canvas)
+			);
+		}
+
+
+		&:disabled {
+			border-color: var(--ui-select-disabled-border, GrayText);
+			background-color: var(--ui-select-disabled-bg, Canvas);
+			color: var(--ui-select-disabled-fg, GrayText);
+		}
+	}
+
+	@supports (appearance: base-select) {
+		select,
+		::picker(select) {
+			appearance: base-select;
+		}
+
+		select::picker-icon {
+			color: var(--ui-select-arrow, FieldText);
+		}
+
+		::picker(select) {
+			padding: var(--ui-select-option-padding, 0.375rem);
+
+			border: var(--ui-select-border-width, 0.0625rem) solid
+				var(--ui-select-border, ButtonBorder);
+			border-radius: var(--ui-select-radius, 0.375rem);
+
+			background-color: var(--ui-select-bg, Field);
+			color: var(--ui-select-fg, FieldText);
+			box-shadow: var(--ui-select-option-shadow, none);
+		}
+
+		@scope (select) {
+			optgroup {
+				padding-block: 0.25rem;
+			}
+
+			optgroup + optgroup {
+				margin-block-start: 0.375rem;
+				padding-block-start: 0.5rem;
+				border-block-start: var(
+						--ui-select-border-width,
+						0.0625rem
+					)
+					solid
+					var(--ui-select-border, ButtonBorder);
+			}
+
+			optgroup > option:first-of-type {
+				margin-block-start: 0.25rem;
+			}
+
+			option {
+				display: flex;
+				justify-content: flex-start;
+				gap: var(--ui-select-item-gap, 0.5rem);
+
+				padding:
+					var(--ui-select-item-padding-block, 0.5rem)
+					var(--ui-select-item-padding-inline, 0.625rem);
+				border-radius: max(
+					0px,
+					calc(var(--ui-select-radius, 0.375rem) - 0.125rem)
+				);
+
+				@include ui.focus-ring(
+					var(--ui-select-ring, Highlight),
+					var(--ui-select-ring-width, 0.125rem),
+					var(--ui-select-ring-offset, 0.0625rem)
+				);
+			}
+
+			option:not(:last-child) {
+				margin-block-end: var(--ui-select-option-gap, 0.25rem);
+			}
+
+			option:disabled {
+				color: var(--ui-select-disabled-fg, GrayText);
+				cursor: var(--ui-select-disabled-cursor, not-allowed);
+			}
+
+			option::checkmark {
+				content: "\2713";
+				order: 1;
+				margin-inline-start: auto;
+				font-size: var(--ui-select-checkmark-size, 0.875rem);
+			}
+		}
+	}
+}

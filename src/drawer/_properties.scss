@@ -1,0 +1,86 @@
+// *
+@property --ui-drawer-motion-easing {
+	syntax: "*";
+	inherits: true;
+}
+
+@property --ui-drawer-shadow {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-drawer-backdrop {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-drawer-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-drawer-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-drawer-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-drawer-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-drawer-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-drawer-height {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-drawer-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-drawer-viewport-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-drawer-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-drawer-padding {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <time>
+@property --ui-drawer-motion-speed {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}

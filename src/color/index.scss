@@ -1,0 +1,55 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer reset {
+    input[type="color" i] {
+        appearance: none;
+    }
+}
+
+@layer base {
+    input[type="color" i] {
+        box-sizing: border-box;
+        inline-size: var(--ui-color-size, 1.5rem);
+        block-size: var(--ui-color-size, 1.5rem);
+        padding: 0;
+
+        border: 0;
+        border-radius: var(--ui-color-radius, 0.375rem);
+        cursor: var(--ui-color-cursor, pointer);
+
+        @include ui.focus-ring(
+            var(--ui-color-ring, Highlight),
+            var(--ui-color-ring-width, 0.125rem),
+            var(--ui-color-ring-offset, 0.0625rem)
+        );
+
+        &::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        &:disabled {
+            opacity: var(--ui-color-disabled-opacity, 0.35);
+            cursor: var(--ui-color-disabled-cursor, not-allowed);
+        }
+    }
+}
+
+@layer components {
+    input[type="color" i] {
+        &::-webkit-color-swatch {
+            border: var(--ui-color-border-width, 0.0625rem) solid
+                var(--ui-color-border, ButtonBorder);
+            border-radius: var(--ui-color-radius, 0.375rem);
+        }
+
+        &::-moz-color-swatch {
+            border: var(--ui-color-border-width, 0.0625rem) solid
+                var(--ui-color-border, ButtonBorder);
+            border-radius: var(--ui-color-radius, 0.375rem);
+        }
+    }
+}

@@ -1,0 +1,19 @@
+// <color>
+@property --ui-breadcrumb-separator {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-breadcrumb-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-breadcrumb-separator-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}

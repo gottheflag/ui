@@ -1,0 +1,252 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer reset {
+	@scope (menu) {
+		:scope,
+		:scope > :is(li, .ui-menu__item) {
+			list-style: none;
+		}
+	}
+}
+
+@layer base {
+	@scope (menu) {
+		:scope {
+			display: none;
+			flex-direction: column;
+			gap: var(--ui-menu-gap, 0.5rem);
+
+			margin: 0;
+			padding: var(--ui-menu-padding, 0.5rem);
+			border-radius: var(--ui-menu-radius, 0.375rem);
+
+			max-block-size: calc(
+				100dvh -
+					var(--ui-menu-viewport-offset, 0.5rem) -
+					var(--ui-menu-viewport-offset, 0.5rem)
+			);
+			overflow-y: auto;
+			overscroll-behavior: contain;
+
+			opacity: var(--ui-menu-start-opacity, 0);
+			scale: 0.97;
+
+			transition:
+				opacity var(--ui-menu-speed, 100ms)
+					var(--ui-menu-easing, ease),
+				scale var(--ui-menu-speed, 100ms)
+					var(--ui-menu-easing, ease),
+				overlay var(--ui-menu-speed, 100ms)
+					var(--ui-menu-easing, ease) allow-discrete,
+				display var(--ui-menu-speed, 100ms)
+					var(--ui-menu-easing, ease) allow-discrete;
+		}
+
+		:scope:popover-open {
+			display: flex;
+			opacity: 1;
+			scale: 1;
+		}
+
+		:scope > :is(li, .ui-menu__item) {
+			position: relative;
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: var(--ui-menu-item-gap, 0.5rem);
+
+			min-block-size: var(--ui-menu-item-block-size, 2rem);
+			padding-block: 0;
+			padding-inline: var(--ui-menu-item-padding, 0.75rem);
+
+			font-size: 0.875rem;
+			white-space: nowrap;
+			user-select: none;
+			border-radius: var(--ui-menu-item-radius, 0.25rem);
+			cursor: pointer;
+		}
+
+		:scope > :is(li, .ui-menu__item) > menu {
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline-start: calc(
+				100% + var(--ui-menu-spacing, 0.0625rem)
+			);
+			cursor: default;
+		}
+
+		:scope > :is(li, .ui-menu__item):is(:hover, :focus-within) > menu {
+			display: flex;
+			opacity: 1;
+			scale: 1;
+		}
+
+		:scope > :is(li, .ui-menu__item):is(
+			[disabled],
+			[aria-disabled="true"]
+		) {
+			cursor: var(--ui-menu-disabled-cursor, not-allowed);
+		}
+
+		:scope > :is(li, .ui-menu__item):empty {
+			display: none;
+		}
+
+		:scope > :is(li, .ui-menu__item):has(> menu)::after {
+			content: "\203A";
+			display: inline-block;
+			margin-inline-start: 0.5rem;
+			font-size: 0.875rem;
+		}
+
+		:scope > li:has(> hr:only-child) {
+			display: flex;
+			align-items: center;
+			min-block-size: 0;
+
+			margin-block: calc(
+				var(--ui-menu-divider-gap, 0.1875rem) -
+					var(--ui-menu-gap, 0.5rem)
+			);
+			padding-block: 0.125rem;
+			padding-inline: 0.375rem;
+
+			border-radius: 0;
+			cursor: default;
+			pointer-events: none;
+		}
+
+		:scope > li:has(> hr:only-child) > hr {
+			inline-size: 100%;
+			block-size: 1px;
+			margin: 0;
+			border: 0;
+			background: color-mix(
+				in oklch,
+				var(--ui-menu-fg, CanvasText) 10%,
+				var(--ui-menu-bg, Canvas)
+			);
+		}
+	}
+
+	menu[popover] {
+		margin: auto;
+	}
+
+	@supports (position-area: bottom) {
+		menu[popover] {
+			inset: auto;
+			margin: var(--ui-menu-spacing, 0.0625rem) 0 0;
+			position-area: bottom;
+			position-try-fallbacks: flip-block;
+		}
+	}
+}
+
+@layer components {
+	@scope (menu) {
+		:scope {
+			border: var(--ui-menu-border-width, 0.0625rem) solid
+				var(--ui-menu-border, ButtonBorder);
+			background: var(--ui-menu-bg, Canvas);
+			color: var(--ui-menu-item-fg, CanvasText);
+			box-shadow: var(--ui-menu-shadow, none);
+		}
+
+		:scope.ui-dashed {
+			border-style: dashed;
+		}
+
+		:scope > :is(li, .ui-menu__item):not(
+			[disabled],
+			[aria-disabled="true"]
+		) {
+			@include ui.hover {
+				background-color: var(
+					--ui-menu-item-hover,
+					var(--ui-menu-bg, Canvas)
+				);
+			}
+		}
+
+		:scope > :is(li, .ui-menu__item):is(
+			[disabled],
+			[aria-disabled="true"]
+		) {
+			background-color: transparent;
+			color: var(--ui-menu-disabled-fg, GrayText);
+		}
+
+		:scope > :is(li, .ui-menu__item):has(> menu)::after {
+			color: var(--ui-muted, GrayText);
+		}
+
+		@each $variant in success, info, warning, error {
+			:scope > :is(li, .ui-menu__item).ui-#{$variant} {
+				color: var(--ui-#{$variant}, currentColor);
+			}
+
+			:scope > :is(li, .ui-menu__item).ui-#{$variant}:not(
+				[disabled],
+				[aria-disabled="true"]
+			) {
+				@include ui.hover {
+					background-color: color-mix(
+						in oklch,
+						var(--ui-#{$variant}, currentColor) 10%,
+						var(--ui-menu-bg, Canvas)
+					);
+				}
+			}
+		}
+	}
+
+	@starting-style {
+		menu:popover-open,
+		menu > :is(li, .ui-menu__item) > menu {
+			opacity: var(--ui-menu-start-opacity, 0);
+			scale: 0.97;
+		}
+	}
+
+	@include ui.reduced-transparency {
+		@scope (menu) {
+			:scope {
+				--ui-menu-start-opacity: 0.85;
+			}
+		}
+	}
+
+	@include ui.reduced-motion {
+		@scope (menu) {
+			:scope {
+				--ui-menu-speed: 130ms;
+				--ui-menu-easing: ease-out;
+				scale: 0.99;
+			}
+
+			:scope:popover-open {
+				scale: 1;
+			}
+
+			:scope > :is(li, .ui-menu__item):is(
+				:hover,
+				:focus-within
+			) > menu {
+				scale: 1;
+			}
+		}
+
+		@starting-style {
+			menu:popover-open,
+			menu > :is(li, .ui-menu__item) > menu {
+				scale: 0.99;
+			}
+		}
+	}
+}

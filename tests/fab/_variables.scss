@@ -1,0 +1,11 @@
+:root {
+	--ui-fab-radius: 6rem;
+	--ui-fab-item-size: 2.5rem;
+
+	--ui-fab-item-stagger: 0.05;
+
+	--ui-fab-animation-speed: 300ms;
+	--ui-fab-animation-delay: 0ms;
+	--ui-fab-animation-easing:
+		cubic-bezier(0.34, 1.56, 0.64, 1);
+}

@@ -1,0 +1,59 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+// SCSS helper variables
+$s: var(--ui-pattern-size);
+$c: var(--ui-pattern-color);
+$w: var(--ui-pattern-width);
+$t: transparent;
+
+@layer base {
+	.ui-pattern {
+		background-size: $s $s;
+		background-position: center;
+		background-color: $t;
+	}
+}
+
+@layer components {
+	.ui-pattern {
+		&.ui-grid {
+			background-image:
+				linear-gradient(to right, $c $w, $t $w),
+				linear-gradient(to bottom, $c $w, $t $w);
+		}
+
+		&.ui-dot {
+			background-image: radial-gradient($c $w, $t $w);
+		}
+
+		&.ui-tile {
+			background-image:
+				repeating-linear-gradient(
+					45deg,
+					$t 0 calc($s - $w),
+					$c calc($s - $w) $s
+				),
+				repeating-linear-gradient(
+					-45deg,
+					$t 0 calc($s - $w),
+					$c calc($s - $w) $s
+				);
+			background-size: auto;
+		}
+
+		&.ui-loom {
+			$c_s: calc($w * 10);
+			background:
+				linear-gradient(45deg, $t 71%, $c 0 79%, $t 0)
+					calc($c_s / -2) calc($c_s / 2) /
+					calc(2 * $c_s) calc(2 * $c_s),
+				linear-gradient(135deg, $t 71%, $c 0 79%, $t 0)
+					calc($c_s / 2) calc($c_s / 2) /
+					calc(2 * $c_s) calc(2 * $c_s),
+				radial-gradient($c 35%, $t 37%) 0 0 / $c_s $c_s;
+		}
+	}
+}

@@ -1,0 +1,57 @@
+// *
+@property --ui-fab-animation-easing {
+	syntax: "*";
+	inherits: true;
+}
+
+// <angle>
+@property --ui-fab-item-angle {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 0deg;
+}
+
+// <length-percentage>
+@property --ui-fab-item-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-fab-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <number>
+@property --ui-fab-item-progress {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --ui-fab-item-stagger {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --ui-fab-progress {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+// <time>
+@property --ui-fab-animation-delay {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}
+
+@property --ui-fab-animation-speed {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}

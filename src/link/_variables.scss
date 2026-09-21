@@ -1,0 +1,16 @@
+@layer base {
+	:root {
+		--ui-link: LinkText;
+		--ui-link-visited: VisitedText;
+
+		--ui-link-line-width: 0.0625rem;
+		--ui-link-line-offset: 0.125rem;
+		--ui-link-hover-line: color-mix(in oklch,
+				var(--ui-link, LinkText) 35%,
+				transparent);
+
+		--ui-link-ring: var(--ui-ring, Highlight);
+		--ui-link-ring-width: var(--ui-ring-width, 0.125rem);
+		--ui-link-ring-offset: var(--ui-ring-offset, 0.0625rem);
+	}
+}

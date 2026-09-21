@@ -1,0 +1,331 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer reset {
+	@scope (.ui-dock) {
+		:scope > [data-dock-separator] {
+			margin-inline: 0;
+			border: 0;
+		}
+
+		:scope > [data-dock-separator]::before,
+		:scope > [data-dock-separator]::after {
+			content: none;
+			display: none;
+		}
+	}
+}
+
+@layer base {
+	@scope (.ui-dock) {
+		:scope {
+			--ui-dock-active-scale: 1.5;
+			--ui-dock-near-scale: 1.25;
+			--ui-dock-far-scale: 1.1;
+
+			--ui-dock-push-before-x: -0.35rem;
+			--ui-dock-push-before-y: 0;
+			--ui-dock-push-after-x: 0.35rem;
+			--ui-dock-push-after-y: 0;
+
+			--ui-dock-push-before-far-x: -0.15rem;
+			--ui-dock-push-before-far-y: 0;
+			--ui-dock-push-after-far-x: 0.15rem;
+			--ui-dock-push-after-far-y: 0;
+
+			--ui-dock-origin-x: 50%;
+			--ui-dock-origin-y: 100%;
+
+			--ui-dock-indicator-area: block-end center;
+			--ui-dock-indicator-margin-block-start:
+				var(--ui-dock-indicator-offset);
+			--ui-dock-indicator-margin-block-end: 0;
+			--ui-dock-indicator-margin-inline-start: 0;
+			--ui-dock-indicator-margin-inline-end: 0;
+
+			position: relative;
+			display: inline-flex;
+			align-items: end;
+
+			gap: var(--ui-dock-gap);
+			padding: var(--ui-dock-padding);
+
+			anchor-scope: --ui-dock-current;
+		}
+
+		:scope:dir(rtl) {
+			--ui-dock-push-before-x: 0.35rem;
+			--ui-dock-push-after-x: -0.35rem;
+			--ui-dock-push-before-far-x: 0.15rem;
+			--ui-dock-push-after-far-x: -0.15rem;
+		}
+
+		:scope.ui-dock-top {
+			align-items: start;
+			--ui-dock-origin-y: 0%;
+			--ui-dock-indicator-area: block-start center;
+			--ui-dock-indicator-margin-block-start: 0;
+			--ui-dock-indicator-margin-block-end:
+				var(--ui-dock-indicator-offset);
+		}
+
+		:scope:is(.ui-dock-start, .ui-dock-end) {
+			flex-direction: column;
+
+			--ui-dock-push-before-x: 0;
+			--ui-dock-push-before-y: -0.35rem;
+			--ui-dock-push-after-x: 0;
+			--ui-dock-push-after-y: 0.35rem;
+
+			--ui-dock-push-before-far-x: 0;
+			--ui-dock-push-before-far-y: -0.15rem;
+			--ui-dock-push-after-far-x: 0;
+			--ui-dock-push-after-far-y: 0.15rem;
+
+			--ui-dock-origin-y: 50%;
+
+			--ui-dock-indicator-margin-block-start: 0;
+			--ui-dock-indicator-margin-block-end: 0;
+		}
+
+		:scope.ui-dock-start {
+			align-items: start;
+			--ui-dock-origin-x: 0%;
+			--ui-dock-indicator-area: center inline-start;
+			--ui-dock-indicator-margin-inline-end:
+				var(--ui-dock-indicator-offset);
+		}
+
+		:scope.ui-dock-start:dir(rtl) {
+			--ui-dock-origin-x: 100%;
+		}
+
+		:scope.ui-dock-end {
+			align-items: end;
+			--ui-dock-origin-x: 100%;
+			--ui-dock-indicator-area: center inline-end;
+			--ui-dock-indicator-margin-inline-start:
+				var(--ui-dock-indicator-offset);
+		}
+
+		:scope.ui-dock-end:dir(rtl) {
+			--ui-dock-origin-x: 0%;
+		}
+
+		:scope > [data-dock-separator] {
+			flex: 0 0 var(--ui-dock-separator-size);
+			align-self: stretch;
+			inline-size: var(--ui-dock-separator-size);
+			margin-block: var(--ui-dock-separator-margin);
+			pointer-events: none;
+		}
+
+		:scope:is(.ui-dock-start, .ui-dock-end) >
+			[data-dock-separator] {
+			inline-size: auto;
+			block-size: var(--ui-dock-separator-size);
+			margin-block: 0;
+			margin-inline: var(--ui-dock-separator-margin);
+		}
+
+		:scope > :not([data-dock-separator]) {
+			position: relative;
+
+			inline-size: var(--ui-dock-item-size);
+			block-size: var(--ui-dock-item-size);
+			min-inline-size: var(--ui-dock-item-size);
+			min-block-size: var(--ui-dock-item-size);
+			max-inline-size: none;
+			max-block-size: none;
+
+			flex: none;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+
+			transform-origin:
+				var(--ui-dock-origin-x)
+				var(--ui-dock-origin-y);
+
+			scale: var(--ui-dock-scale, 1);
+			translate:
+				var(--ui-dock-translate-x, 0)
+				var(--ui-dock-translate-y, 0);
+
+			&[aria-current]:not([aria-current="false"]) {
+				anchor-name: --ui-dock-current;
+			}
+		}
+
+		@media (hover: hover) and (pointer: fine) {
+			:scope > :not([data-dock-separator]):hover {
+				--ui-dock-scale: var(--ui-dock-active-scale);
+			}
+
+			:scope > :not([data-dock-separator]):has(
+				+ :not([data-dock-separator]):hover
+			) {
+				--ui-dock-scale: var(--ui-dock-near-scale);
+				--ui-dock-translate-x: var(--ui-dock-push-before-x);
+				--ui-dock-translate-y: var(--ui-dock-push-before-y);
+			}
+
+			:scope > :not([data-dock-separator]):hover
+				+ :not([data-dock-separator]) {
+				--ui-dock-scale: var(--ui-dock-near-scale);
+				--ui-dock-translate-x: var(--ui-dock-push-after-x);
+				--ui-dock-translate-y: var(--ui-dock-push-after-y);
+			}
+
+			:scope > :not([data-dock-separator]):has(
+				+ :not([data-dock-separator])
+				+ :not([data-dock-separator]):hover
+			) {
+				--ui-dock-scale: var(--ui-dock-far-scale);
+				--ui-dock-translate-x: var(--ui-dock-push-before-far-x);
+				--ui-dock-translate-y: var(--ui-dock-push-before-far-y);
+			}
+
+			:scope > :not([data-dock-separator]):hover
+				+ :not([data-dock-separator])
+				+ :not([data-dock-separator]) {
+				--ui-dock-scale: var(--ui-dock-far-scale);
+				--ui-dock-translate-x: var(--ui-dock-push-after-far-x);
+				--ui-dock-translate-y: var(--ui-dock-push-after-far-y);
+			}
+		}
+
+		:scope > :not([data-dock-separator]):focus-visible {
+			--ui-dock-scale: var(--ui-dock-active-scale);
+		}
+
+		:scope > :not([data-dock-separator]):has(
+			+ :not([data-dock-separator]):focus-visible
+		) {
+			--ui-dock-scale: var(--ui-dock-near-scale);
+			--ui-dock-translate-x: var(--ui-dock-push-before-x);
+			--ui-dock-translate-y: var(--ui-dock-push-before-y);
+		}
+
+		:scope > :not([data-dock-separator]):focus-visible
+			+ :not([data-dock-separator]) {
+			--ui-dock-scale: var(--ui-dock-near-scale);
+			--ui-dock-translate-x: var(--ui-dock-push-after-x);
+			--ui-dock-translate-y: var(--ui-dock-push-after-y);
+		}
+
+		:scope > :not([data-dock-separator]):has(
+			+ :not([data-dock-separator])
+			+ :not([data-dock-separator]):focus-visible
+		) {
+			--ui-dock-scale: var(--ui-dock-far-scale);
+			--ui-dock-translate-x: var(--ui-dock-push-before-far-x);
+			--ui-dock-translate-y: var(--ui-dock-push-before-far-y);
+		}
+
+		:scope > :not([data-dock-separator]):focus-visible
+			+ :not([data-dock-separator])
+			+ :not([data-dock-separator]) {
+			--ui-dock-scale: var(--ui-dock-far-scale);
+			--ui-dock-translate-x: var(--ui-dock-push-after-far-x);
+			--ui-dock-translate-y: var(--ui-dock-push-after-far-y);
+		}
+	}
+}
+
+@layer components {
+	@scope (.ui-dock) {
+		:scope {
+			border: var(--ui-dock-border-width) solid
+				var(--ui-dock-border);
+			border-radius: var(--ui-dock-radius);
+			background: var(--ui-dock-bg);
+			color: var(--ui-dock-fg);
+		}
+
+		:scope > [data-dock-separator] {
+			background: var(--ui-dock-separator-bg);
+		}
+
+		:scope > :not([data-dock-separator]) {
+			border-radius: var(--ui-dock-item-radius);
+
+			transition:
+				scale
+					var(--ui-dock-animation-speed)
+					var(--ui-dock-animation-easing)
+					var(--ui-dock-animation-delay),
+				translate
+					var(--ui-dock-animation-speed)
+					var(--ui-dock-animation-easing)
+					var(--ui-dock-animation-delay);
+		}
+
+	}
+
+
+	@supports
+		(position-anchor: --ui-dock-current) and
+		(position-area: block-end center)
+	{
+		@scope (.ui-dock) {
+		:scope:has(
+			> :not([data-dock-separator])[aria-current]:not(
+				[aria-current="false"]
+			)
+		)::after {
+			content: "";
+
+			position: absolute;
+			position-anchor: --ui-dock-current;
+			position-area: var(--ui-dock-indicator-area);
+
+			inline-size: var(--ui-dock-indicator-size);
+			block-size: var(--ui-dock-indicator-size);
+
+			margin-block-start:
+				var(--ui-dock-indicator-margin-block-start);
+			margin-block-end:
+				var(--ui-dock-indicator-margin-block-end);
+			margin-inline-start:
+				var(--ui-dock-indicator-margin-inline-start);
+			margin-inline-end:
+				var(--ui-dock-indicator-margin-inline-end);
+
+			border-radius: 50%;
+			background: currentColor;
+			pointer-events: none;
+		}
+		}
+	}
+
+	@include ui.reduced-motion {
+		@scope (.ui-dock) {
+			:scope {
+				/*
+				 * Keep the Dock responsive without the large 1.5x spring.
+				 * Neighbor translation is removed and magnification becomes
+				 * a small, non-bouncy scale cue.
+				 */
+				--ui-dock-active-scale: 1.12;
+				--ui-dock-near-scale: 1.05;
+				--ui-dock-far-scale: 1.02;
+
+				--ui-dock-push-before-x: 0;
+				--ui-dock-push-before-y: 0;
+				--ui-dock-push-after-x: 0;
+				--ui-dock-push-after-y: 0;
+				--ui-dock-push-before-far-x: 0;
+				--ui-dock-push-before-far-y: 0;
+				--ui-dock-push-after-far-x: 0;
+				--ui-dock-push-after-far-y: 0;
+
+				--ui-dock-animation-speed: 180ms;
+				--ui-dock-animation-easing: ease-out;
+			}
+		}
+	}
+}

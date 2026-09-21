@@ -1,0 +1,32 @@
+// <color>
+@property --ui-text-primary {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-text-secondary {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-text-wipe-edge {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-text-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <time>
+@property --ui-text-speed {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}

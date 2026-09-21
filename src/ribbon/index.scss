@@ -1,0 +1,209 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer base {
+	.ui-ribbon {
+		--ui-ribbon-active-offset: 0rem;
+		--ui-ribbon-active-bg: var(--ui-ribbon-bg);
+		--ui-ribbon-active-fg: var(--ui-ribbon-fg);
+		--ui-ribbon-active-fold-size: var(--ui-ribbon-fold-size);
+		--ui-ribbon-active-font-size: var(--ui-ribbon-font-size);
+		--ui-ribbon-active-fold-bg: var(--ui-ribbon-active-bg);
+		--ui-ribbon-edge-offset: var(--ui-border-width, 0px);
+
+		/*
+		Corner offset:
+
+		= 1 - cos(45deg)
+		= 1 - 0.7071067811865476
+		= 0.2928932188134524
+
+		70.7107% + 29.2893%
+		= 100%
+		*/
+		--ui-ribbon-translate-x: 29.28932188134524%;
+		--ui-ribbon-rotation: 45deg;
+		--ui-ribbon-transform-origin: bottom left;
+
+		position: relative;
+
+		&::before {
+			content: attr(data-ribbon);
+
+			position: absolute;
+			box-sizing: border-box;
+
+			inset-block-start:
+				calc(
+					-1 *
+						(
+							var(--ui-ribbon-edge-offset) +
+							var(--ui-ribbon-active-offset)
+						)
+				);
+			inset-inline-end:
+				calc(
+					-1 *
+						(
+							var(--ui-ribbon-edge-offset) +
+							var(--ui-ribbon-active-offset)
+						)
+				);
+
+			padding:
+				var(--ui-ribbon-padding-block)
+				var(--ui-ribbon-padding-inline);
+
+			border-block-end:
+				var(--ui-ribbon-active-fold-size)
+				solid
+				var(--ui-ribbon-active-fold-bg);
+
+			transform:
+				translate(
+					var(--ui-ribbon-translate-x),
+					-100%
+				)
+				rotate(var(--ui-ribbon-rotation));
+
+			transform-origin:
+				var(--ui-ribbon-transform-origin);
+
+			/*
+			 * Classic folded corner-ribbon geometry:
+			 * the first six points create the folded bottom edge;
+			 * the final two create the 45deg corner cuts.
+			 */
+			clip-path:
+				polygon(
+					100%
+						calc(
+							100% -
+								var(--ui-ribbon-active-fold-size)
+						),
+					100% 100%,
+					calc(
+						100% -
+							var(--ui-ribbon-active-fold-size)
+					)
+						calc(
+							100% -
+								var(--ui-ribbon-active-fold-size)
+						),
+					var(--ui-ribbon-active-fold-size)
+						calc(
+							100% -
+								var(--ui-ribbon-active-fold-size)
+						),
+					0 100%,
+					0
+						calc(
+							100% -
+								var(--ui-ribbon-active-fold-size)
+						),
+					999px
+						calc(
+							100% -
+								var(--ui-ribbon-active-fold-size) -
+								999px
+						),
+					calc(100% - 999px)
+						calc(
+							100% -
+								var(--ui-ribbon-active-fold-size) -
+								999px
+						)
+				);
+
+			background: var(--ui-ribbon-active-bg);
+			color: var(--ui-ribbon-active-fg);
+
+			font-size: var(--ui-ribbon-active-font-size);
+			line-height: 1;
+			text-align: center;
+			white-space: nowrap;
+
+			pointer-events: none;
+			user-select: none;
+		}
+
+		&.ui-ribbon-start {
+			--ui-ribbon-translate-x: -29.29%;
+			--ui-ribbon-rotation: -45deg;
+			--ui-ribbon-transform-origin: bottom right;
+
+			&::before {
+				inset-inline-start:
+					calc(
+						-1 *
+							(
+								var(--ui-ribbon-edge-offset) +
+								var(--ui-ribbon-active-offset)
+							)
+					);
+				inset-inline-end: auto;
+			}
+		}
+
+		&:dir(rtl) {
+			--ui-ribbon-translate-x: -29.29%;
+			--ui-ribbon-rotation: -45deg;
+			--ui-ribbon-transform-origin: bottom right;
+		}
+
+		&.ui-ribbon-start:dir(rtl) {
+			--ui-ribbon-translate-x: 29.29%;
+			--ui-ribbon-rotation: 45deg;
+			--ui-ribbon-transform-origin: bottom left;
+		}
+	}
+}
+
+@supports
+	(width: attr(data-ribbon-offset type(<length>))) and
+	(color: attr(data-ribbon-fg type(<color>)))
+{
+	@layer base {
+		.ui-ribbon {
+			--ui-ribbon-active-offset: attr(
+				data-ribbon-offset type(<length>),
+				0rem
+			);
+
+			--ui-ribbon-active-bg: attr(
+				data-ribbon-bg type(<color>),
+				var(--ui-ribbon-bg)
+			);
+
+			--ui-ribbon-active-fg: attr(
+				data-ribbon-fg type(<color>),
+				var(--ui-ribbon-fg)
+			);
+
+			--ui-ribbon-active-fold-size: attr(
+				data-ribbon-fold-size type(<length>),
+				var(--ui-ribbon-fold-size)
+			);
+
+			--ui-ribbon-active-font-size: attr(
+				data-ribbon-font-size type(<length>),
+				var(--ui-ribbon-font-size)
+			);
+		}
+	}
+}
+
+@supports (color: oklch(from white l c h)) {
+	@layer components {
+		.ui-ribbon {
+			--ui-ribbon-active-fold-bg: oklch(
+				from var(--ui-ribbon-active-bg)
+				calc(l * 0.7)
+				c
+				h
+			);
+		}
+	}
+}

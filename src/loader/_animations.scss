@@ -1,0 +1,70 @@
+@keyframes ui-loader-bar {
+	50% {
+		inline-size: 100%;
+	}
+
+	100% {
+		inset-inline-start: auto;
+		inset-inline-end: 0;
+		inline-size: 0;
+	}
+}
+
+@keyframes ui-loader-dual {
+	50% {
+		border-block-start-color: var(--ui-loader-secondary, GrayText);
+		border-block-end-color: var(--ui-loader-primary, CanvasText);
+		rotate: 180deg;
+	}
+}
+
+@keyframes ui-loader-breath {
+	50% {
+		border-color: var(--ui-loader-secondary, GrayText);
+		scale: var(--ui-loader-breath-scale, 0.85);
+		opacity: var(--ui-loader-breath-opacity, 0.5);
+	}
+}
+
+@keyframes ui-loader-ring {
+	to {
+		rotate: 360deg;
+	}
+}
+
+@keyframes ui-loader-dots {
+	0%,
+	100% {
+		transform: translateY(0);
+		opacity: var(--ui-loader-dots-opacity, 0.3);
+	}
+
+	50% {
+		transform: translateY(
+			calc(var(--ui-loader-dots-jump, 0.3125rem) * -1)
+		);
+		opacity: 1;
+	}
+}
+
+/*
+ * Reduced-motion alternatives change the motion style itself where merely
+ * changing the normal component knobs is not enough.
+ */
+@keyframes ui-loader-dual-reduced-motion {
+	to {
+		rotate: 360deg;
+	}
+}
+
+@keyframes ui-loader-bar-reduced-motion {
+	from {
+		inset-inline-start: 0;
+		inline-size: 40%;
+	}
+
+	to {
+		inset-inline-start: 60%;
+		inline-size: 40%;
+	}
+}

@@ -1,0 +1,12 @@
+// <color>
+@property --ui-scrollbar-thumb {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-scrollbar-track {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}

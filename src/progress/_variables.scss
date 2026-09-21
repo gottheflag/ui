@@ -1,0 +1,16 @@
+@layer base {
+	:root {
+		--ui-progress-radius: var(--ui-radius, 0.375rem);
+		--ui-progress-bg: var(--ui-surface, Canvas);
+		--ui-progress-value: var(--ui-fg, CanvasText);
+
+		--ui-progress-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-progress-border: var(--ui-border, ButtonBorder);
+
+		--ui-progress-height: 0.75rem;
+		--ui-progress-xs-height: 0.1875rem;
+		--ui-progress-sm-height: 0.3125rem;
+		--ui-progress-md-height: 0.4375rem;
+		--ui-progress-lg-height: 0.5625rem;
+	}
+}

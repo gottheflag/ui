@@ -1,0 +1,88 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer base {
+	@scope (table) {
+		:scope {
+			box-sizing: border-box;
+			overflow: hidden;
+
+			table-layout: auto;
+			border-spacing: 0;
+			border-collapse: separate;
+			border-radius: var(--ui-table-radius, 0.375rem);
+
+			border: var(--ui-table-border-width, 0.0625rem) solid
+				var(--ui-table-border, ButtonBorder);
+			background-color: var(--ui-table-bg, Canvas);
+			color: var(--ui-table-fg, CanvasText);
+			font-size: 0.875rem;
+		}
+
+		:is(th, td) {
+			position: relative;
+			overflow: hidden;
+
+			text-align: start;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+}
+
+@layer components {
+	@scope (table) {
+		:scope > thead {
+			background: var(--ui-table-head-bg, Canvas);
+			user-select: none;
+		}
+
+		:scope > thead > tr:last-child > :is(th, td) {
+			border-block-end: var(--ui-table-border-width, 0.0625rem)
+				solid var(--ui-table-border, ButtonBorder);
+		}
+
+		th {
+			padding-block: calc(var(--ui-table-padding, 1.75rem) / 2);
+			padding-inline: var(--ui-table-padding, 1.75rem);
+		}
+
+		td {
+			padding-block: calc(var(--ui-table-padding, 1.75rem) / 3.5);
+			padding-inline: var(--ui-table-padding, 1.75rem);
+		}
+
+		@media (hover: hover) and (pointer: fine) {
+			:scope > tbody > tr:hover {
+				background: var(--ui-table-hover-bg, Canvas);
+			}
+		}
+
+		:scope.ui-strip > tbody > tr:nth-child(even) {
+			background: var(--ui-table-stripe-bg, Canvas);
+		}
+
+		:scope[data-align="center"] :is(th, td) {
+			text-align: center;
+		}
+
+		:scope[data-align="end"] :is(th, td) {
+			text-align: end;
+		}
+
+		:scope > tbody:empty {
+			display: table-caption;
+			caption-side: bottom;
+		}
+
+		:scope > tbody:empty::after {
+			content: attr(data-no-data);
+			display: block;
+			padding: var(--ui-table-padding, 1.75rem);
+			color: var(--ui-table-muted, GrayText);
+			text-align: center;
+		}
+	}
+}

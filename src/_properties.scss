@@ -1,0 +1,199 @@
+// *
+@property --ui-animation-easing {
+	syntax: "*";
+	inherits: true;
+}
+
+@property --ui-disabled-cursor {
+	syntax: "*";
+	inherits: true;
+}
+
+@property --ui-shadow {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-accent {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-disabled-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-disabled-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-disabled-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-error {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-info {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-muted {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-primary {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-ring {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-secondary {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-semantic-subtle-contrast {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-selection-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-selection-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-shadow-color {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-success {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-surface {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-warning {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-ring-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-ring-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <percentage>
+@property --ui-semantic-subtle-active-strength {
+	syntax: "<percentage>";
+	inherits: true;
+	initial-value: 0%;
+}
+
+@property --ui-semantic-subtle-bg-strength {
+	syntax: "<percentage>";
+	inherits: true;
+	initial-value: 0%;
+}
+
+@property --ui-semantic-subtle-border-strength {
+	syntax: "<percentage>";
+	inherits: true;
+	initial-value: 0%;
+}
+
+@property --ui-semantic-subtle-fg-strength {
+	syntax: "<percentage>";
+	inherits: true;
+	initial-value: 0%;
+}
+
+@property --ui-semantic-subtle-hover-strength {
+	syntax: "<percentage>";
+	inherits: true;
+	initial-value: 0%;
+}
+
+// <time>
+@property --ui-animation-speed {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}

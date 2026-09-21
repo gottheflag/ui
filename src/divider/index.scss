@@ -1,0 +1,260 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@keyframes ui-divider-dash {
+	to {
+		background-position: var(--ui-divider-gap, 0.5rem) 0;
+	}
+}
+
+@keyframes ui-divider-dash-vertical {
+	to {
+		background-position: 0 var(--ui-divider-gap, 0.5rem);
+	}
+}
+
+
+@keyframes ui-divider-dash-reduced-motion {
+	to {
+		background-position:
+			var(--ui-divider-reduced-motion-distance, 0.25rem) 0;
+	}
+}
+
+@keyframes ui-divider-dash-vertical-reduced-motion {
+	to {
+		background-position:
+			0 var(--ui-divider-reduced-motion-distance, 0.25rem);
+	}
+}
+
+@layer base {
+	:is(.ui-divider, hr) {
+		display: flex;
+		align-self: stretch;
+		align-items: center;
+		gap: var(--ui-divider-spacing, 0.125rem);
+		min-block-size: var(--ui-divider-width, 0.0625rem);
+
+		border: none;
+		color: var(--ui-divider-label, CanvasText);
+		font-size: 0.875rem;
+		user-select: none;
+
+		&::before,
+		&::after {
+			content: "";
+			flex: 1;
+			block-size: var(--ui-divider-width, 0.0625rem);
+		}
+
+		&:empty {
+			&::before {
+				flex: none;
+				inline-size: 100%;
+			}
+
+			&::after {
+				display: none;
+			}
+		}
+	}
+}
+
+@layer components {
+	:is(.ui-divider, hr) {
+		&::before,
+		&::after {
+			background: currentColor;
+			color: var(--ui-divider-line, GrayText);
+		}
+
+		&.ui-dashed {
+			&::before,
+			&::after {
+				background: repeating-linear-gradient(
+					to right,
+					currentColor 0,
+					currentColor var(--ui-divider-dash-size, 0.25rem),
+					transparent var(--ui-divider-dash-size, 0.25rem),
+					transparent var(--ui-divider-gap, 0.5rem)
+				);
+				background-size: var(--ui-divider-gap, 0.5rem) 100%;
+			}
+		}
+
+		&.ui-fade {
+			&::before {
+				background: linear-gradient(
+					to right,
+					transparent,
+					currentColor
+				);
+			}
+
+			&::after {
+				background: linear-gradient(
+					to right,
+					currentColor,
+					transparent
+				);
+			}
+
+			&:empty::before {
+				background: linear-gradient(
+					to right,
+					transparent,
+					currentColor 25% 75%,
+					transparent
+				);
+			}
+		}
+
+		&.ui-animate {
+			&::before,
+			&::after {
+				animation: ui-divider-dash
+					var(--ui-divider-animation-speed, 1.2s) linear infinite;
+			}
+		}
+
+		&.ui-start {
+			justify-content: flex-start;
+
+			&::before {
+				flex: 0 1 auto;
+				inline-size: 0;
+			}
+
+			&::after {
+				flex: 1;
+			}
+		}
+
+		&.ui-center {
+			justify-content: center;
+
+			&::before,
+			&::after {
+				flex: 1;
+			}
+		}
+
+		&.ui-end {
+			justify-content: flex-end;
+
+			&::before {
+				flex: 1;
+			}
+
+			&::after {
+				flex: 0 1 auto;
+				inline-size: 0;
+			}
+		}
+
+		&:is(.ui-start, .ui-center, .ui-end):not(:empty) {
+			&::before,
+			&::after {
+				min-inline-size: var(
+					--ui-divider-label-min-size,
+					0.75rem
+				);
+			}
+		}
+
+		&.ui-vertical {
+			flex-direction: column;
+			inline-size: var(--ui-divider-width, 0.0625rem);
+			min-inline-size: var(--ui-divider-width, 0.0625rem);
+			block-size: 100%;
+			min-block-size: var(--ui-divider-vertical-min-size, 3em);
+
+			&::before,
+			&::after {
+				flex: 1;
+				inline-size: 100%;
+				block-size: auto;
+				background: currentColor;
+			}
+
+			&.ui-dashed::before,
+			&.ui-dashed::after {
+				background: repeating-linear-gradient(
+					to bottom,
+					currentColor 0,
+					currentColor var(--ui-divider-dash-size, 0.25rem),
+					transparent var(--ui-divider-dash-size, 0.25rem),
+					transparent var(--ui-divider-gap, 0.5rem)
+				);
+				background-size: 100% var(--ui-divider-gap, 0.5rem);
+			}
+
+			&.ui-fade::before {
+				background: linear-gradient(
+					to bottom,
+					transparent,
+					currentColor
+				);
+			}
+
+			&.ui-fade::after {
+				background: linear-gradient(
+					to bottom,
+					currentColor,
+					transparent
+				);
+			}
+
+			&.ui-fade:empty::before {
+				background: linear-gradient(
+					to bottom,
+					transparent,
+					currentColor 25% 75%,
+					transparent
+				);
+			}
+
+			&.ui-animate::before,
+			&.ui-animate::after {
+				animation-name: ui-divider-dash-vertical;
+			}
+
+			&.ui-start {
+				align-items: flex-start;
+			}
+
+			&.ui-center {
+				align-items: center;
+			}
+
+			&.ui-end {
+				align-items: flex-end;
+			}
+
+			> * {
+				writing-mode: vertical-lr;
+			}
+		}
+	}
+
+	@include ui.reduced-motion {
+		:is(.ui-divider, hr).ui-animate::before,
+		:is(.ui-divider, hr).ui-animate::after {
+			animation-name: ui-divider-dash-reduced-motion;
+			animation-duration:
+				var(--ui-divider-reduced-motion-speed, 1.6s);
+			animation-timing-function: ease-in-out;
+			animation-direction: alternate;
+		}
+
+		:is(.ui-divider, hr).ui-vertical.ui-animate::before,
+		:is(.ui-divider, hr).ui-vertical.ui-animate::after {
+			animation-name:
+				ui-divider-dash-vertical-reduced-motion;
+		}
+	}
+}

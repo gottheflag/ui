@@ -1,0 +1,207 @@
+// *
+@property --ui-input-disabled-cursor {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-input-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-disabled-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-disabled-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-disabled-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-placeholder {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-input-ring {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-input-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-lg-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-md-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-ring-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-ring-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-sm-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-xl-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-xs-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-input-lg-padding-block {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-lg-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-md-padding-block {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-md-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-sm-padding-block {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-sm-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-xl-padding-block {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-xl-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-xs-padding-block {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-input-xs-padding-inline {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// normal | <number> | <length-percentage>
+@property --ui-input-lg-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+@property --ui-input-md-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+@property --ui-input-sm-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+@property --ui-input-xl-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}
+
+@property --ui-input-xs-line-height {
+	syntax: "normal | <number> | <length-percentage>";
+	inherits: true;
+	initial-value: normal;
+}

@@ -1,0 +1,19 @@
+// <color>
+@property --ui-input-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-number-arrow {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-number-arrow-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}

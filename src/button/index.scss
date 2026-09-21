@@ -1,0 +1,314 @@
+@use "properties";
+
+@use "../layers";
+@use "sass:map";
+@use "../mixins" as ui;
+@forward "variables";
+
+$sizes: (
+	xs: (
+		block-size: var(--ui-button-xs-block-size, 1.75rem),
+		padding-inline: var(--ui-button-xs-padding-inline, 0.5rem),
+		font-size: var(--ui-button-xs-font-size, 0.75rem),
+		line-height: var(--ui-button-xs-line-height, 1rem)
+	),
+	sm: (
+		block-size: var(--ui-button-sm-block-size, 2.25rem),
+		padding-inline: var(--ui-button-sm-padding-inline, 0.75rem),
+		font-size: var(--ui-button-sm-font-size, 0.875rem),
+		line-height: var(--ui-button-sm-line-height, 1.25rem)
+	),
+	md: (
+		block-size: var(--ui-button-md-block-size, 2.5rem),
+		padding-inline: var(--ui-button-md-padding-inline, 1rem),
+		font-size: var(--ui-button-md-font-size, 0.875rem),
+		line-height: var(--ui-button-md-line-height, 1.25rem)
+	),
+	lg: (
+		block-size: var(--ui-button-lg-block-size, 2.75rem),
+		padding-inline: var(--ui-button-lg-padding-inline, 1.5rem),
+		font-size: var(--ui-button-lg-font-size, 0.9375rem),
+		line-height: var(--ui-button-lg-line-height, 1.375rem)
+	)
+);
+
+$default-size: md;
+$placements: (start, center, end);
+$variants: (success, info, warning, error);
+
+@layer reset {
+	button {
+		appearance: none;
+		font: inherit;
+	}
+}
+
+@layer base {
+	:where(button, a.ui-btn) {
+		box-sizing: border-box;
+		display: inline-flex;
+		align-items: center;
+		gap: var(--ui-button-gap, 0.5rem);
+
+		vertical-align: middle;
+		text-align: center;
+		user-select: none;
+		white-space: nowrap;
+		cursor: var(--ui-button-cursor, pointer);
+
+		@include ui.focus-ring(
+			var(--ui-button-ring, Highlight),
+			var(--ui-button-ring-width, 0.125rem),
+			var(--ui-button-ring-offset, 0.0625rem)
+		);
+	}
+}
+
+@layer components {
+	a.ui-btn {
+		color: var(--ui-button-fg, ButtonText);
+		text-decoration: none;
+		-webkit-user-drag: none;
+
+		&:visited {
+			color: var(--ui-button-fg, ButtonText);
+		}
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	:where(button, a.ui-btn) {
+		block-size: map.get($sizes, $default-size, block-size);
+		padding-block: 0;
+		padding-inline: map.get($sizes, $default-size, padding-inline);
+
+		font-size: map.get($sizes, $default-size, font-size);
+		line-height: map.get($sizes, $default-size, line-height);
+		font-weight: var(--ui-button-font-weight, 500);
+
+		border: var(--ui-button-border-width, 0.0625rem) solid
+			var(--ui-button-border, ButtonBorder);
+		border-radius: var(--ui-button-radius, 0.25rem);
+
+		background-color: var(--ui-button-bg, ButtonFace);
+		color: var(--ui-button-fg, ButtonText);
+
+		transition:
+			background-color
+				var(--ui-animation-speed, 150ms)
+				var(--ui-animation-easing, ease),
+			border-color
+				var(--ui-animation-speed, 150ms)
+				var(--ui-animation-easing, ease),
+			color
+				var(--ui-animation-speed, 150ms)
+				var(--ui-animation-easing, ease);
+
+		@each $variant in $variants {
+			&.ui-#{$variant}:not(:disabled):not([aria-disabled="true"]) {
+				--ui-button-bg: var(
+					--ui-#{$variant},
+					var(--ui-button-base-bg, ButtonFace)
+				);
+				--ui-button-border: var(
+					--ui-#{$variant},
+					var(--ui-button-base-border, ButtonBorder)
+				);
+				--ui-button-ring: var(
+					--ui-#{$variant},
+					var(--ui-button-base-ring, Highlight)
+				);
+
+				&:is(.ui-outline, .ui-dashed, .ui-ghost, .ui-subtle) {
+					--ui-button-fg: var(
+						--ui-#{$variant},
+						var(--ui-button-base-fg, ButtonText)
+					);
+				}
+			}
+		}
+
+		&.ui-outline {
+			background-color: transparent;
+		}
+
+		&.ui-dashed {
+			background-color: transparent;
+			border-style: dashed;
+		}
+
+		&.ui-ghost {
+			background-color: transparent;
+			border-color: transparent;
+		}
+
+		&.ui-subtle {
+			background-color: color-mix(
+				in oklch,
+				var(--ui-button-fg, ButtonText) 5%,
+				var(--ui-bg, Canvas)
+			);
+			border-color: color-mix(
+				in oklch,
+				var(--ui-button-fg, ButtonText) 7.5%,
+				var(--ui-bg, Canvas)
+			);
+		}
+
+		@each $variant in $variants {
+			&.ui-#{$variant}.ui-subtle:not(:disabled):not([aria-disabled="true"]) {
+				--ui-button-fg: color-mix(
+					in oklch,
+					var(--ui-#{$variant})
+						var(--ui-semantic-subtle-fg-strength, 65%),
+					var(--ui-semantic-subtle-contrast, CanvasText)
+				);
+
+				background-color: color-mix(
+					in oklch,
+					var(--ui-#{$variant})
+						var(--ui-semantic-subtle-bg-strength, 16%),
+					transparent
+				);
+				border-color: color-mix(
+					in oklch,
+					var(--ui-#{$variant})
+						var(--ui-semantic-subtle-border-strength, 38%),
+					transparent
+				);
+			}
+		}
+
+		@each $name, $props in $sizes {
+			&.ui-#{$name} {
+				block-size: map.get($props, block-size);
+				padding-inline: map.get($props, padding-inline);
+				font-size: map.get($props, font-size);
+				line-height: map.get($props, line-height);
+			}
+		}
+
+		&.ui-block {
+			inline-size: 100%;
+		}
+
+		@each $placement in $placements {
+			&.ui-#{$placement} {
+				justify-content: #{$placement};
+			}
+		}
+	}
+
+	button:disabled,
+	a.ui-btn[aria-disabled="true"] {
+		--ui-button-fg: var(--ui-button-disabled-fg, GrayText);
+		--ui-button-bg: var(--ui-button-disabled-bg, Canvas);
+		--ui-button-border: var(--ui-button-disabled-border, GrayText);
+
+		cursor: var(--ui-button-disabled-cursor, not-allowed);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		button:not(:disabled):not(:active):not([aria-pressed="true"]):hover,
+		a.ui-btn:not([aria-disabled="true"]):not(:active):not([aria-pressed="true"]):hover {
+			background-color: color-mix(
+				in oklch,
+				var(--ui-button-bg, ButtonFace) 97.5%,
+				var(--ui-button-fg, ButtonText) 2.5%
+			);
+		}
+
+		:is(button:not(:disabled):not(:active):not([aria-pressed="true"]), a.ui-btn:not([aria-disabled="true"]):not(:active):not([aria-pressed="true"])):is(.ui-outline, .ui-dashed, .ui-ghost):hover {
+			background-color: color-mix(
+				in oklch,
+				var(--ui-button-fg, ButtonText) 5%,
+				var(--ui-bg, Canvas)
+			);
+		}
+
+		:is(button:not(:disabled):not(:active):not([aria-pressed="true"]), a.ui-btn:not([aria-disabled="true"]):not(:active):not([aria-pressed="true"])).ui-subtle:hover {
+			background-color: color-mix(
+				in oklch,
+				var(--ui-button-fg, ButtonText) 7.5%,
+				var(--ui-bg, Canvas)
+			);
+		}
+
+		@each $variant in $variants {
+			:is(button:not(:disabled):not(:active):not([aria-pressed="true"]), a.ui-btn:not([aria-disabled="true"]):not(:active):not([aria-pressed="true"])).ui-#{$variant}.ui-subtle:hover {
+				background-color: color-mix(
+					in oklch,
+					var(--ui-#{$variant})
+						var(--ui-semantic-subtle-hover-strength, 22%),
+					transparent
+				);
+			}
+		}
+
+		@each $variant in $variants {
+			button.ui-#{$variant}:not(:disabled):not(:active):not([aria-pressed="true"]):not(.ui-outline):not(.ui-dashed):not(.ui-ghost):not(.ui-subtle):hover,
+			a.ui-btn.ui-#{$variant}:not([aria-disabled="true"]):not(:active):not([aria-pressed="true"]):not(.ui-outline):not(.ui-dashed):not(.ui-ghost):not(.ui-subtle):hover {
+				background-color: color-mix(
+					in oklch,
+					var(--ui-#{$variant}) 90%,
+					var(--ui-bg, Canvas) 10%
+				);
+			}
+		}
+	}
+
+	button:not(:disabled):active,
+	a.ui-btn:not([aria-disabled="true"]):active,
+	button[aria-pressed="true"]:not(:disabled),
+	a.ui-btn[aria-pressed="true"]:not([aria-disabled="true"]) {
+		background-color: color-mix(
+			in oklch,
+			var(--ui-button-bg, ButtonFace) 95%,
+			var(--ui-button-fg, ButtonText) 5%
+		);
+	}
+
+	:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])):is(.ui-outline, .ui-dashed, .ui-ghost):active,
+	:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])):is(.ui-outline, .ui-dashed, .ui-ghost)[aria-pressed="true"] {
+		background-color: color-mix(
+			in oklch,
+			var(--ui-button-fg, ButtonText) 10%,
+			var(--ui-bg, Canvas)
+		);
+	}
+
+	:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])).ui-subtle:active,
+	:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])).ui-subtle[aria-pressed="true"] {
+		background-color: color-mix(
+			in oklch,
+			var(--ui-button-fg, ButtonText) 10%,
+			var(--ui-bg, Canvas)
+		);
+	}
+
+	@each $variant in $variants {
+		:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])).ui-#{$variant}.ui-subtle:active,
+		:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])).ui-#{$variant}.ui-subtle[aria-pressed="true"] {
+			background-color: color-mix(
+				in oklch,
+				var(--ui-#{$variant})
+					var(--ui-semantic-subtle-active-strength, 28%),
+				transparent
+			);
+		}
+	}
+
+	@each $variant in $variants {
+		:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])).ui-#{$variant}:not(.ui-outline):not(.ui-dashed):not(.ui-ghost):not(.ui-subtle):active,
+		:is(button:not(:disabled), a.ui-btn:not([aria-disabled="true"])).ui-#{$variant}[aria-pressed="true"]:not(.ui-outline):not(.ui-dashed):not(.ui-ghost):not(.ui-subtle) {
+			background-color: color-mix(
+				in oklch,
+				var(--ui-#{$variant}) 85%,
+				var(--ui-bg, Canvas) 15%
+			);
+		}
+	}
+
+}

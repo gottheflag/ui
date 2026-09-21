@@ -1,0 +1,20 @@
+@layer base {
+	:root {
+		--ui-table-bg: var(--ui-surface, Canvas);
+		--ui-table-fg: var(--ui-fg, CanvasText);
+		--ui-table-muted: var(--ui-muted, GrayText);
+
+		--ui-table-border: var(--ui-border, ButtonBorder);
+		--ui-table-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-table-radius: var(--ui-radius, 0.375rem);
+
+		--ui-table-padding: 1.75rem;
+		--ui-table-head-bg: color-mix(in oklch,
+				var(--ui-table-bg, Canvas),
+				var(--ui-table-fg, CanvasText) 1%);
+		--ui-table-hover-bg: var(--ui-table-head-bg);
+		--ui-table-stripe-bg: color-mix(in oklch,
+				var(--ui-table-bg, Canvas),
+				var(--ui-table-fg, CanvasText) 3%);
+	}
+}

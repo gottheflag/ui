@@ -1,0 +1,30 @@
+@mixin focus-ring(
+	$color: var(--ui-ring, Highlight),
+	$width: var(--ui-ring-width, 0.125rem),
+	$offset: var(--ui-ring-offset, 0.0625rem)
+) {
+	&:focus-visible {
+		outline: $width solid $color;
+		outline-offset: $offset;
+	}
+}
+
+@mixin hover {
+	@media (hover: hover) and (pointer: fine) {
+		&:hover {
+			@content;
+		}
+	}
+}
+
+@mixin reduced-motion {
+	@media (prefers-reduced-motion: reduce) {
+		@content;
+	}
+}
+
+@mixin reduced-transparency {
+	@media (prefers-reduced-transparency: reduce) {
+		@content;
+	}
+}

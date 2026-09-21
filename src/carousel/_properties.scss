@@ -1,0 +1,93 @@
+// *
+@property --ui-carousel-active-viewport-shadow {
+	syntax: "*";
+	inherits: true;
+}
+
+@property --ui-carousel-viewport-shadow {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-carousel-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-carousel-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-carousel-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-carousel-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-carousel-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-carousel-item-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-carousel-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-carousel-slot-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-carousel-track-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-carousel-padding {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <number>
+@property --ui-carousel-visible-count {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+// <time>
+@property --ui-carousel-active-duration {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}
+
+@property --ui-carousel-duration {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}

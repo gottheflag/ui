@@ -1,0 +1,162 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer base {
+	@scope (.ui-carousel) {
+		:scope {
+			--ui-carousel-active-duration: attr(
+				data-duration ms,
+				var(--ui-carousel-duration)
+			);
+
+			--ui-carousel-active-viewport-shadow: none;
+
+			position: relative;
+			display: flex;
+			overflow-x: auto;
+			overflow-y: hidden;
+
+			gap: var(--ui-carousel-gap);
+			padding: var(--ui-carousel-padding);
+		}
+
+		:scope > * {
+			flex: 0 0 auto;
+		}
+	}
+
+	@supports
+		(width: calc(100% / sibling-count())) and
+		(animation-delay: calc(1ms * sibling-index())) and
+		(offset-path: shape(from 0 0, hline by 1px))
+	{
+		@scope (.ui-carousel) {
+			:scope {
+				--ui-carousel-active-viewport-shadow:
+					var(--ui-carousel-viewport-shadow, none);
+
+				overflow: hidden;
+				gap: 0;
+			}
+
+			:scope:dir(rtl) > * {
+				animation-direction: reverse;
+			}
+
+			:scope > * {
+				--ui-carousel-visible-count: calc(
+					sibling-count() - 1
+				);
+
+				--ui-carousel-slot-size: calc(
+					(100% + var(--ui-carousel-gap)) /
+					var(--ui-carousel-visible-count)
+				);
+
+				--ui-carousel-item-size: calc(
+					var(--ui-carousel-slot-size) -
+					var(--ui-carousel-gap)
+				);
+
+				--ui-carousel-track-size: calc(
+					sibling-count() *
+					var(--ui-carousel-slot-size)
+				);
+
+				flex: 0 0 var(--ui-carousel-item-size);
+
+				offset-path: shape(
+					from calc(var(--ui-carousel-item-size) / -2) 50%,
+					hline by var(--ui-carousel-track-size)
+				);
+
+				offset-rotate: 0deg;
+
+				animation:
+					ui-carousel-slide
+					var(--ui-carousel-active-duration)
+					linear
+					infinite;
+
+				animation-delay: calc(
+					-1 * sibling-index() *
+					var(--ui-carousel-active-duration) /
+					sibling-count()
+				);
+			}
+
+			:scope:not(:has(> :nth-child(2))) > * {
+				flex: 1 1 auto;
+				offset-path: none;
+				animation: none;
+			}
+
+			@media (hover: hover) {
+				:scope[data-pause~="hover" i]:hover > * {
+					animation-play-state: paused;
+				}
+			}
+
+			:scope[data-pause~="focus" i]:focus-within > * {
+				animation-play-state: paused;
+			}
+		}
+	}
+
+	@include ui.reduced-motion {
+		@scope (.ui-carousel) {
+			/*
+			 * Large, continuous viewport motion is the exception to the
+			 * "preserve gentle motion" rule. Reduced motion makes the
+			 * carousel user-driven instead of slowing the conveyor down.
+			 */
+			:scope {
+				--ui-carousel-active-viewport-shadow: none;
+
+				overflow-x: auto;
+				overflow-y: hidden;
+				gap: var(--ui-carousel-gap);
+				scroll-snap-type: inline proximity;
+			}
+
+			:scope > * {
+				flex: 0 0 auto;
+				offset-path: none;
+				animation: none;
+				scroll-snap-align: start;
+			}
+		}
+	}
+}
+
+@layer components {
+	@scope (.ui-carousel) {
+		:scope {
+			border: var(--ui-carousel-border-width) solid
+				var(--ui-carousel-border);
+			border-radius: var(--ui-carousel-radius);
+
+			background: var(--ui-carousel-bg);
+			color: var(--ui-carousel-fg);
+		}
+
+		:scope::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+
+			pointer-events: none;
+			border-radius: inherit;
+			box-shadow: var(--ui-carousel-active-viewport-shadow);
+		}
+	}
+}
+
+@keyframes ui-carousel-slide {
+	to {
+		offset-distance: 100%;
+	}
+}

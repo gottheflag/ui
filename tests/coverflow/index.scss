@@ -1,0 +1,137 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer reset {
+	.ui-coverflow {
+		margin: 0;
+		padding: 0;
+
+		list-style: none;
+	}
+}
+
+@layer base {
+	.ui-coverflow {
+		display: flex;
+
+		gap: var(--ui-coverflow-gap);
+
+		overflow-x: auto;
+		overflow-y: hidden;
+
+		padding-block: var(--ui-coverflow-padding);
+
+		padding-inline: max(
+			var(--ui-coverflow-padding),
+			calc(
+				50% -
+					(var(--ui-coverflow-item-size) / 2)
+			)
+		);
+
+		scroll-snap-type: inline mandatory;
+		scroll-behavior: smooth;
+
+		overscroll-behavior-inline: contain;
+
+		perspective: var(--ui-coverflow-perspective);
+		transform-style: preserve-3d;
+
+		& > * {
+			inline-size: var(--ui-coverflow-item-size);
+			min-inline-size: var(--ui-coverflow-item-size);
+
+			flex: none;
+
+			scroll-snap-align: center;
+			scroll-snap-stop: always;
+
+			transform-origin: center;
+			backface-visibility: hidden;
+		}
+	}
+
+	@supports (animation-timeline: view(inline)) {
+		.ui-coverflow > * {
+			animation:
+				ui-coverflow-item
+				linear
+				both;
+
+			animation-timeline: view(inline);
+			animation-range: cover;
+		}
+	}
+
+	@supports (-webkit-box-reflect: below) {
+		.ui-coverflow-reflect {
+			padding-block-end: calc(
+				var(--ui-coverflow-padding) +
+					var(--ui-coverflow-reflection-space)
+			);
+
+			& > * {
+				-webkit-box-reflect:
+					below
+					var(--ui-coverflow-reflection-gap)
+					linear-gradient(
+						to bottom,
+						rgb(
+							255 255 255 /
+								var(--ui-coverflow-reflection-opacity)
+						),
+						transparent
+							var(--ui-coverflow-reflection-space)
+					);
+			}
+		}
+	}
+
+	@keyframes ui-coverflow-item {
+		0% {
+			transform:
+				translateX(var(--ui-coverflow-overlap))
+				translateZ(var(--ui-coverflow-depth))
+				rotateY(calc(-1 * var(--ui-coverflow-rotation)))
+				scale(var(--ui-coverflow-side-scale));
+
+			opacity: var(--ui-coverflow-side-opacity);
+		}
+
+		50% {
+			transform:
+				translateX(0)
+				translateZ(0)
+				rotateY(0deg)
+				scale(1);
+
+			opacity: 1;
+		}
+
+		100% {
+			transform:
+				translateX(calc(-1 * var(--ui-coverflow-overlap)))
+				translateZ(var(--ui-coverflow-depth))
+				rotateY(var(--ui-coverflow-rotation))
+				scale(var(--ui-coverflow-side-scale));
+
+			opacity: var(--ui-coverflow-side-opacity);
+		}
+	}
+
+	@include ui.reduced-motion {
+		.ui-coverflow {
+			scroll-behavior: auto;
+
+			& > * {
+				animation: none;
+
+				transform: none;
+				opacity: 1;
+			}
+		}
+	}
+}

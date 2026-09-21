@@ -1,0 +1,56 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+$sizes: (
+    xs: var(--ui-progress-xs-height, 0.1875rem),
+    sm: var(--ui-progress-sm-height, 0.3125rem),
+    md: var(--ui-progress-md-height, 0.4375rem),
+    lg: var(--ui-progress-lg-height, 0.5625rem)
+);
+
+@layer reset {
+    progress {
+        appearance: none;
+    }
+}
+
+@layer base {
+    progress {
+        box-sizing: border-box;
+        display: block;
+        overflow: hidden;
+
+        inline-size: 100%;
+        block-size: var(--ui-progress-height, 0.75rem);
+
+        border: var(--ui-progress-border-width, 0.0625rem) solid
+            var(--ui-progress-border, ButtonBorder);
+        border-radius: var(--ui-progress-radius, 0.375rem);
+        background: var(--ui-progress-bg, Canvas);
+
+        &::-webkit-progress-bar {
+            border-radius: inherit;
+            background: var(--ui-progress-bg, Canvas);
+        }
+
+        &::-webkit-progress-value {
+            border-radius: inherit;
+            background-color: var(--ui-progress-value, CanvasText);
+        }
+
+        &::-moz-progress-bar {
+            border-radius: inherit;
+            background-color: var(--ui-progress-value, CanvasText);
+        }
+    }
+}
+
+@layer components {
+    @each $name, $size in $sizes {
+        progress.ui-#{$name} {
+            block-size: #{$size};
+        }
+    }
+}

@@ -1,0 +1,54 @@
+@layer base {
+	:root {
+		--ui-input-radius: var(--ui-radius, 0.375rem);
+		--ui-input-gap: 0.25rem;
+		--ui-input-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-input-border: var(--ui-border, ButtonBorder);
+		--ui-input-bg: color-mix(in oklch,
+				Field 10%,
+				var(--ui-surface, Canvas));
+		--ui-input-fg: var(--ui-fg, FieldText);
+		--ui-input-placeholder: var(--ui-muted, GrayText);
+
+		--ui-input-ring: var(--ui-ring, Highlight);
+		--ui-input-ring-width: var(--ui-ring-width, 0.125rem);
+		--ui-input-ring-offset: var(--ui-ring-offset, 0.0625rem);
+
+		--ui-input-disabled-bg: var(--ui-disabled-bg, Canvas);
+		--ui-input-disabled-fg: var(--ui-disabled-fg, GrayText);
+		--ui-input-disabled-border: var(
+			--ui-disabled-border,
+			color-mix(
+				in oklch,
+				GrayText 35%,
+				var(--ui-bg, Canvas)
+			)
+		);
+		--ui-input-disabled-cursor: var(--ui-disabled-cursor, not-allowed);
+
+		--ui-input-xs-padding-inline: 0.5rem;
+		--ui-input-xs-padding-block: 0.25rem;
+		--ui-input-xs-font-size: 0.75rem;
+		--ui-input-xs-line-height: 0.875rem;
+
+		--ui-input-sm-padding-inline: 0.75rem;
+		--ui-input-sm-padding-block: 0.375rem;
+		--ui-input-sm-font-size: 0.875rem;
+		--ui-input-sm-line-height: 1rem;
+
+		--ui-input-md-padding-inline: 1rem;
+		--ui-input-md-padding-block: 0.5rem;
+		--ui-input-md-font-size: 1rem;
+		--ui-input-md-line-height: 1.25rem;
+
+		--ui-input-lg-padding-inline: 1.25rem;
+		--ui-input-lg-padding-block: 0.625rem;
+		--ui-input-lg-font-size: 1.25rem;
+		--ui-input-lg-line-height: 1.5rem;
+
+		--ui-input-xl-padding-inline: 1.5rem;
+		--ui-input-xl-padding-block: 0.75rem;
+		--ui-input-xl-font-size: 1.5rem;
+		--ui-input-xl-line-height: 1.75rem;
+	}
+}

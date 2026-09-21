@@ -1,0 +1,156 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+
+@layer reset {
+	.ui-fab {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		inset: auto;
+
+		overflow: visible;
+	}
+}
+
+@layer base {
+	.ui-fab {
+		--ui-fab-progress: 0;
+
+		position: fixed;
+		position-anchor: auto;
+		position-area: center;
+
+		inline-size: 0;
+		block-size: 0;
+
+		pointer-events: none;
+
+		/*
+		 * One state transition drives the entire FAB.
+		 *
+		 * display keeps the closed popover rendered while
+		 * its exit transition runs.
+		 *
+		 * overlay keeps it in the top layer until that
+		 * transition has finished.
+		 */
+		transition:
+			--ui-fab-progress
+				var(--ui-fab-animation-speed)
+				var(--ui-fab-animation-easing)
+				var(--ui-fab-animation-delay),
+			display
+				var(--ui-fab-animation-speed)
+				var(--ui-fab-animation-delay)
+				allow-discrete,
+			overlay
+				var(--ui-fab-animation-speed)
+				var(--ui-fab-animation-delay)
+				allow-discrete;
+
+		&:popover-open {
+			--ui-fab-progress: 1;
+		}
+
+		& > * {
+			--ui-fab-item-angle: calc(
+				-0.25turn +
+					(
+						(sibling-index() - 1) *
+							(1turn / sibling-count())
+					)
+			);
+
+			/*
+			* Each action gets its own progress window.
+			*
+			* On opening:
+			*   first action starts first.
+			*
+			* On closing:
+			*   last action collapses first automatically.
+			*/
+			--ui-fab-item-progress: clamp(
+				0,
+				calc(
+					(
+						var(--ui-fab-progress) -
+						(
+							(sibling-index() - 1) *
+								var(--ui-fab-item-stagger)
+						)
+					) /
+					(
+						1 -
+						(
+							(sibling-count() - 1) *
+								var(--ui-fab-item-stagger)
+						)
+					)
+				),
+				1
+			);
+
+			position: absolute;
+			inset: 0 auto auto 0;
+
+			inline-size: var(--ui-fab-item-size);
+			block-size: var(--ui-fab-item-size);
+
+			translate:
+				calc(
+					-50% +
+						cos(var(--ui-fab-item-angle)) *
+							var(--ui-fab-radius) *
+							var(--ui-fab-item-progress)
+				)
+				calc(
+					-50% +
+						sin(var(--ui-fab-item-angle)) *
+							var(--ui-fab-radius) *
+							var(--ui-fab-item-progress)
+				);
+
+			scale: calc(
+				0.65 +
+					(0.35 * var(--ui-fab-item-progress))
+			);
+
+			opacity: clamp(
+				0,
+				calc(
+					(var(--ui-fab-item-progress) - 0.12) * 5
+				),
+				1
+			);
+
+			pointer-events: none;
+		}
+
+		&:popover-open > * {
+			pointer-events: auto;
+		}
+	}
+
+	/*
+	 * A popover starts from display:none, so its first
+	 * visible style update normally cannot transition.
+	 *
+	 * Explicitly provide progress:0 as its opening frame.
+	 */
+	@starting-style {
+		.ui-fab:popover-open {
+			--ui-fab-progress: 0;
+		}
+	}
+
+	@include ui.reduced-motion {
+		.ui-fab {
+			transition: none;
+		}
+	}
+}

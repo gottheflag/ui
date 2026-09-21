@@ -1,0 +1,1221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@gottheflag/ui Playground</title>
+	<link rel="stylesheet" href="./main.scss">
+	<script type="module" src="./main.ts"></script>
+</head>
+
+<body>
+	<div class="lab-shell">
+		<aside id="lab-sidebar" class="ui-sidebar ui-responsive lab-sidebar" aria-label="Component navigation">
+			<input id="lab-sidebar-toggle" class="ui-sidebar__toggle" type="checkbox"
+				aria-label="Toggle component navigation" aria-controls="lab-sidebar">
+
+			<header class="lab-sidebar-header">
+				<div class="lab-brand">
+					<span class="lab-brand-mark" aria-hidden="true">UI</span>
+					<span class="lab-brand-copy ui-sidebar__label">
+						<strong>@gottheflag/ui</strong>
+						<span>Production component lab</span>
+					</span>
+					<label class="ui-btn ui-ghost ui-sm lab-sidebar-close"
+						for="lab-sidebar-toggle" aria-label="Close component navigation">×</label>
+				</div>
+				<label class="lab-search">
+					<span class="ui-sidebar__group-label">Find component</span>
+					<input class="lab-filter" type="search" placeholder="Filter…" data-playground-filter>
+				</label>
+			</header>
+
+			<nav class="lab-nav" aria-label="Components">
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Actions</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#button" data-playground-link aria-label="Button"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Bt</span><span class="ui-sidebar__label">Button</span></a>
+				</div>
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Forms</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#checkbox" data-playground-link aria-label="Checkbox"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Ck</span><span class="ui-sidebar__label">Checkbox</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#color" data-playground-link
+						aria-label="Color"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Cl</span><span
+							class="ui-sidebar__label">Color</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#datetime" data-playground-link aria-label="Datetime"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Dt</span><span class="ui-sidebar__label">Datetime</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#fieldset" data-playground-link aria-label="Fieldset"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Fs</span><span class="ui-sidebar__label">Fieldset</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#file" data-playground-link
+						aria-label="File">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">
+							<path
+								d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+							<path d="M14 2v5a1 1 0 0 0 1 1h5" />
+						</svg>
+						<span class="ui-sidebar__label">File</span>
+					</a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#input" data-playground-link
+						aria-label="Input"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">In</span><span
+							class="ui-sidebar__label">Input</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#number" data-playground-link aria-label="Number"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Nu</span><span class="ui-sidebar__label">Number</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#radio" data-playground-link
+						aria-label="Radio"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Ra</span><span
+							class="ui-sidebar__label">Radio</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#range" data-playground-link
+						aria-label="Range"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Rg</span><span
+							class="ui-sidebar__label">Range</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#select" data-playground-link aria-label="Select"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Se</span><span class="ui-sidebar__label">Select</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#textarea" data-playground-link aria-label="Textarea"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Tx</span><span class="ui-sidebar__label">Textarea</span></a>
+				</div>
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Navigation</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#breadcrumb" data-playground-link aria-label="Breadcrumb"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Br</span><span class="ui-sidebar__label">Breadcrumb</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#dock" data-playground-link
+						aria-label="Dock"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Dk</span><span
+							class="ui-sidebar__label">Dock</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#link" data-playground-link
+						aria-label="Link"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Ln</span><span
+							class="ui-sidebar__label">Link</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#menu" data-playground-link
+						aria-label="Menu"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Mn</span><span
+							class="ui-sidebar__label">Menu</span></a>
+				</div>
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Layout</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#card" data-playground-link
+						aria-label="Card"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Cd</span><span
+							class="ui-sidebar__label">Card</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#carousel" data-playground-link aria-label="Carousel"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Cr</span><span class="ui-sidebar__label">Carousel</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#divider" data-playground-link aria-label="Divider"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Dv</span><span class="ui-sidebar__label">Divider</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#drawer" data-playground-link aria-label="Drawer"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Dr</span><span class="ui-sidebar__label">Drawer</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#sidebar" data-playground-link aria-label="Sidebar"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Sb</span><span class="ui-sidebar__label">Sidebar</span></a>
+				</div>
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Display</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#avatar" data-playground-link aria-label="Avatar"><img class="ui-sidebar__icon lab-nav-icon"
+							src="icons/faces/face-1.jpeg" alt=""><span class="ui-sidebar__label">Avatar</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#badge" data-playground-link
+						aria-label="Badge"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Bg</span><span
+							class="ui-sidebar__label">Badge</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#code" data-playground-link
+						aria-label="Code"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Co</span><span
+							class="ui-sidebar__label">Code</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#keyboard" data-playground-link aria-label="Keyboard"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Kb</span><span class="ui-sidebar__label">Keyboard</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#pattern" data-playground-link aria-label="Pattern"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Pt</span><span class="ui-sidebar__label">Pattern</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#ribbon" data-playground-link aria-label="Ribbon"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Rb</span><span class="ui-sidebar__label">Ribbon</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#text" data-playground-link
+						aria-label="Text"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Te</span><span
+							class="ui-sidebar__label">Text</span></a>
+				</div>
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Feedback</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#accordion" data-playground-link aria-label="Accordion"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Ac</span><span class="ui-sidebar__label">Accordion</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#dialog" data-playground-link aria-label="Dialog"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Dl</span><span class="ui-sidebar__label">Dialog</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#loader" data-playground-link aria-label="Loader"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Ld</span><span class="ui-sidebar__label">Loader</span></a>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#progress" data-playground-link aria-label="Progress"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Pg</span><span class="ui-sidebar__label">Progress</span></a>
+				</div>
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Data</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#table" data-playground-link
+						aria-label="Table"><span class="ui-sidebar__icon lab-nav-icon" aria-hidden="true">Tb</span><span
+							class="ui-sidebar__label">Table</span></a>
+				</div>
+				<div class="ui-sidebar__group lab-nav-group">
+					<span class="ui-sidebar__group-label">Utilities</span>
+					<a class="ui-btn ui-ghost ui-sidebar__item" href="#scrollbar" data-playground-link aria-label="Scrollbar"><span class="ui-sidebar__icon lab-nav-icon"
+							aria-hidden="true">Sc</span><span class="ui-sidebar__label">Scrollbar</span></a>
+				</div>
+			</nav>
+
+			<footer class="lab-sidebar-footer">
+				<span class="ui-badge ui-success ui-subtle ui-dot"><span class="ui-sidebar__label">Release
+						candidate</span></span>
+			</footer>
+		</aside>
+		<label class="ui-sidebar__backdrop" for="lab-sidebar-toggle" aria-hidden="true"></label>
+
+		<main class="lab-main">
+			<div class="lab-wrap">
+				<header class="lab-hero">
+					<label class="ui-btn ui-outline lab-sidebar-trigger"
+						for="lab-sidebar-toggle">☰ Components</label>
+					<span class="lab-kicker">Source-linked playground</span>
+					<h1>Component lab.</h1>
+					<p>
+						Useful from the first import, without closing off customization: tune public variables or add a
+						consumer class for an isolated, deep reskin without selector fights.
+					</p>
+				</header>
+
+				<div class="lab-toolbar">
+					<div class="lab-toolbar-group">
+						<span class="lab-toolbar-label">Theme</span>
+						<button class="ui-sm ui-outline" type="button" value="theme:system">System</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:light">Light</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:dark">Dark</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:gtf">GTF</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:ocean">Ocean</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:forest">Forest</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:violet">Violet</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:sunset">Sunset</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:sand">Sand</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:midnight">Midnight</button>
+						<button class="ui-sm ui-outline" type="button" value="theme:contrast">Contrast</button>
+					</div>
+					<div class="lab-toolbar-group">
+						<span class="lab-toolbar-label">Direction</span>
+						<button class="ui-sm ui-outline" type="button" data-playground-direction="ltr">LTR</button>
+						<button class="ui-sm ui-outline" type="button" data-playground-direction="rtl">RTL</button>
+					</div>
+				</div>
+
+				<div class="lab-theme-check" aria-label="Semantic theme colors">
+					<span class="ui-badge">Default</span>
+					<span class="ui-badge ui-success">Success</span>
+					<span class="ui-badge ui-info">Info</span>
+					<span class="ui-badge ui-warning">Warning</span>
+					<span class="ui-badge ui-error">Error</span>
+					<span class="ui-badge ui-success ui-subtle">Success subtle</span>
+					<span class="ui-badge ui-info ui-subtle">Info subtle</span>
+					<span class="ui-badge ui-warning ui-subtle">Warning subtle</span>
+					<span class="ui-badge ui-error ui-subtle">Error subtle</span>
+					<button class="ui-sm">Primary action</button>
+					<button class="ui-sm ui-outline">Outline action</button>
+				</div>
+
+				<div class="lab-sections">
+					<section id="accordion" class="lab-component" data-playground-component
+						data-playground-search="accordion details summary feedback scope">
+						<header>
+							<h2>Accordion</h2><span class="lab-contract">details / summary</span>
+						</header>
+						<div class="lab-features" aria-label="accordion features">
+							<span class="ui-badge ui-subtle ui-pill">Native details/summary</span>
+							<span class="ui-badge ui-subtle ui-pill">open</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-outline</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ghost</span>
+							<span class="ui-badge ui-subtle ui-pill">data-no-icon</span>
+							<span class="ui-badge ui-subtle ui-pill">keyboard</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<details open>
+								<summary>What is UI?</summary>
+								<p>A CSS-first visual layer built on native HTML.</p>
+							</details>
+							<details class="ui-outline">
+								<summary>Outline</summary>
+								<p>Second disclosure.</p>
+							</details>
+							<details class="ui-ghost">
+								<summary>Ghost</summary>
+								<p>Third disclosure.</p>
+							</details>
+						</div>
+					</section>
+
+					<section id="avatar" class="lab-component" data-playground-component
+						data-playground-search="avatar identity circle ring group sibling count index limit offset display">
+						<header>
+							<h2>Avatar</h2><span class="lab-contract">.ui-avatar / .ui-avatar-group</span>
+						</header>
+						<div class="lab-features" aria-label="avatar features">
+							<span class="ui-badge ui-subtle ui-pill">xs / sm / md / lg / xl</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-circle</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ring</span>
+							<span class="ui-badge ui-subtle ui-pill">mixed text + img</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-avatar-group</span>
+							<span class="ui-badge ui-subtle ui-pill">data-group-limit</span>
+							<span class="ui-badge ui-subtle ui-pill">bare limit = 1</span>
+							<span class="ui-badge ui-subtle ui-pill">data-avatar-offset</span>
+							<span class="ui-badge ui-subtle ui-pill">generated +N</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-interactive</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<div class="lab-row">
+								<span class="ui-avatar ui-xs lab-avatar">K</span>
+								<span class="ui-avatar ui-sm ui-circle lab-avatar">GT</span>
+								<span class="ui-avatar ui-md ui-circle ui-ring lab-avatar">UI</span>
+								<span class="ui-avatar ui-lg lab-avatar">A</span>
+								<span class="ui-avatar ui-xl ui-circle lab-avatar">GTF</span>
+							</div>
+
+							<div class="lab-avatar-groups">
+								<div>
+									<small>Mixed types + interactive hover/focus</small>
+									<div class="ui-avatar-group ui-interactive ui-sm" data-group-limit="3"
+										data-avatar-offset="1rem" role="group" aria-label="Seven-person review team">
+										<img class="ui-avatar ui-circle lab-avatar" src="icons/faces/face-1.jpeg"
+											alt="Face 1">
+										<span class="ui-avatar ui-circle lab-avatar">KA</span>
+										<img class="ui-avatar ui-circle lab-avatar" src="icons/faces/face-2.jpeg"
+											alt="Face 2">
+										<img class="ui-avatar ui-circle lab-avatar" src="icons/faces/face-3.jpeg"
+											alt="Face 3">
+										<span class="ui-avatar ui-circle lab-avatar">SA</span>
+									</div>
+								</div>
+
+								<div>
+									<small>Limit 3 + offset 1rem → 3 real avatars + generated +4</small>
+									<div class="ui-avatar-group ui-lg" data-group-limit="3" data-avatar-offset="1rem"
+										role="group" aria-label="Seven-person review team">
+										<span class="ui-avatar ui-circle lab-avatar">KA</span>
+										<span class="ui-avatar ui-circle lab-avatar">MH</span>
+										<span class="ui-avatar ui-circle lab-avatar">OS</span>
+										<span class="ui-avatar ui-circle lab-avatar">SA</span>
+										<span class="ui-avatar ui-circle lab-avatar">FA</span>
+										<span class="ui-avatar ui-circle lab-avatar">NA</span>
+										<span class="ui-avatar ui-circle lab-avatar">RA</span>
+									</div>
+								</div>
+
+								<div>
+									<small>Bare limit + offset 0.75rem → 1 real avatar + generated +6</small>
+									<div class="ui-avatar-group ui-lg" data-group-limit data-avatar-offset="0.75rem"
+										role="group" aria-label="Seven-person review team">
+										<span class="ui-avatar ui-circle lab-avatar">01</span>
+										<span class="ui-avatar ui-circle lab-avatar">02</span>
+										<span class="ui-avatar ui-circle lab-avatar">03</span>
+										<span class="ui-avatar ui-circle lab-avatar">04</span>
+										<span class="ui-avatar ui-circle lab-avatar">05</span>
+										<span class="ui-avatar ui-circle lab-avatar">06</span>
+										<span class="ui-avatar ui-circle lab-avatar">07</span>
+									</div>
+								</div>
+
+								<div>
+									<small>No limit + offset 1.5rem → show all</small>
+									<div class="ui-avatar-group ui-md" data-avatar-offset="1.5rem" role="group"
+										aria-label="Four-person team">
+										<span class="ui-avatar ui-circle lab-avatar">A</span>
+										<span class="ui-avatar ui-circle lab-avatar">B</span>
+										<span class="ui-avatar ui-circle lab-avatar">C</span>
+										<span class="ui-avatar ui-circle lab-avatar">D</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section id="badge" class="lab-component" data-playground-component
+						data-playground-search="badge status semantic pill dot subtle outline dashed ghost">
+						<header>
+							<h2>Badge</h2><span class="lab-contract">.ui-badge</span>
+						</header>
+						<div class="lab-features" aria-label="badge features">
+							<span class="ui-badge ui-subtle ui-pill">default</span>
+							<span class="ui-badge ui-subtle ui-pill">success / info / warning / error</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-outline</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ghost</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-subtle</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-pill</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dot</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<div class="lab-row">
+								<span class="ui-badge">Default</span>
+								<span class="ui-badge ui-success">Success</span>
+								<span class="ui-badge ui-info">Info</span>
+								<span class="ui-badge ui-warning">Warning</span>
+								<span class="ui-badge ui-error">Error</span>
+							</div>
+							<div class="lab-row">
+								<span class="ui-badge ui-outline">Outline</span>
+								<span class="ui-badge ui-dashed">Dashed</span>
+								<span class="ui-badge ui-ghost">Ghost</span>
+								<span class="ui-badge ui-subtle">Subtle</span>
+							</div>
+							<div class="lab-row">
+								<span class="ui-badge ui-success ui-outline">Success outline</span>
+								<span class="ui-badge ui-info ui-dashed">Info dashed</span>
+								<span class="ui-badge ui-warning ui-ghost">Warning ghost</span>
+								<span class="ui-badge ui-error ui-subtle">Error subtle</span>
+							</div>
+							<div class="lab-row">
+								<span class="ui-badge ui-success ui-pill">Pill</span>
+								<span class="ui-badge ui-info ui-subtle ui-pill ui-dot">Live</span>
+							</div>
+						</div>
+					</section>
+
+					<section id="breadcrumb" class="lab-component" data-playground-component
+						data-playground-search="breadcrumb navigation trail scope">
+						<header>
+							<h2>Breadcrumb</h2><span class="lab-contract">.ui-breadcrumb</span>
+						</header>
+						<div class="lab-features" aria-label="breadcrumb features">
+							<span class="ui-badge ui-subtle ui-pill">native links/text</span>
+							<span class="ui-badge ui-subtle ui-pill">logical separators</span>
+							<span class="ui-badge ui-subtle ui-pill">single-line crumbs</span>
+							<span class="ui-badge ui-subtle ui-pill">horizontal overflow</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview">
+							<nav class="ui-breadcrumb" aria-label="Breadcrumb">
+								<a href="#">Home</a><a href="#">Components</a><span>Breadcrumb</span>
+							</nav>
+						</div>
+					</section>
+
+					<section id="button" class="lab-component" data-playground-component
+						data-playground-search="button action semantic subtle outline ghost dashed states">
+						<header>
+							<h2>Button</h2><span class="lab-contract">button / .ui-btn</span>
+						</header>
+						<div class="lab-features" aria-label="button features">
+							<span class="ui-badge ui-subtle ui-pill">button + a.ui-btn</span>
+							<span class="ui-badge ui-subtle ui-pill">xs / sm / md / lg</span>
+							<span class="ui-badge ui-subtle ui-pill">start / center / end</span>
+							<span class="ui-badge ui-subtle ui-pill">success / info / warning / error</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-outline</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ghost</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-subtle</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-block</span>
+							<span class="ui-badge ui-subtle ui-pill">pressed / active priority</span>
+							<span class="ui-badge ui-subtle ui-pill">script-free disabled anchor</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">focus-visible</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<div class="lab-row">
+								<button type="button">Default</button>
+								<button type="button" class="ui-outline">Outline</button>
+								<button type="button" class="ui-dashed">Dashed</button>
+								<button type="button" class="ui-ghost">Ghost</button>
+								<button type="button" class="ui-subtle">Subtle</button>
+								<button type="button" aria-pressed="true">Pressed</button>
+								<button type="button" disabled>Disabled</button>
+								<a class="ui-btn" href="#button">Anchor button</a>
+								<a class="ui-btn ui-outline" href="#button">Anchor outline</a>
+								<a class="ui-btn" aria-disabled="true">Anchor disabled</a>
+							</div>
+							<div class="lab-row">
+								<button type="button" class="ui-success">Success</button>
+								<button type="button" class="ui-info">Info</button>
+								<button type="button" class="ui-warning">Warning</button>
+								<button type="button" class="ui-error">Error</button>
+							</div>
+							<div class="lab-row">
+								<button type="button" class="ui-success ui-subtle">Success subtle</button>
+								<button type="button" class="ui-info ui-subtle">Info subtle</button>
+								<button type="button" class="ui-warning ui-subtle">Warning subtle</button>
+								<button type="button" class="ui-error ui-subtle">Error subtle</button>
+							</div>
+						</div>
+					</section>
+
+					<section id="card" class="lab-component" data-playground-component
+						data-playground-search="card article scope layout">
+						<header>
+							<h2>Card</h2><span class="lab-contract">article</span>
+						</header>
+						<div class="lab-features" aria-label="card features">
+							<span class="ui-badge ui-subtle ui-pill">article/section.ui-card</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-rich</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-vertical</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-window</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">header</span>
+							<span class="ui-badge ui-subtle ui-pill">footer</span>
+							<span class="ui-badge ui-subtle ui-pill">long-content containment</span>
+						</div>
+						<div class="lab-preview lab-grid">
+							<article class="ui-card ui-rich ui-vertical">
+								<header>Account <span class="ui-badge ui-success">Active</span></header>
+								<p>Normal semantic article content.</p>
+								<footer><button type="button" class="ui-ghost">Cancel</button><button
+										type="button">Save</button></footer>
+							</article>
+							<article class="ui-card ui-rich ui-vertical ui-window">
+								<header>Window card</header>
+								<p>Scoped article internals stay inside this card.</p>
+							</article>
+						</div>
+					</section>
+
+					<section id="carousel" class="lab-component" data-playground-component
+						data-playground-search="carousel scope layout track">
+						<header>
+							<h2>Carousel</h2><span class="lab-contract">.ui-carousel</span>
+						</header>
+						<div class="lab-features" aria-label="carousel features">
+							<span class="ui-badge ui-subtle ui-pill">CSS-only track</span>
+							<span class="ui-badge ui-subtle ui-pill">data-duration</span>
+							<span class="ui-badge ui-subtle ui-pill">data-pause=hover</span>
+							<span class="ui-badge ui-subtle ui-pill">data-pause=focus</span>
+							<span class="ui-badge ui-subtle ui-pill">sibling-index/count</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview">
+							<div class="ui-carousel lab-carousel" data-duration="4000">
+								<article class="ui-card ui-vertical"><strong>One</strong><span>First item</span>
+								</article>
+								<article class="ui-card ui-vertical"><strong>Two</strong><span>Second item</span>
+								</article>
+								<article class="ui-card ui-vertical"><strong>Three</strong><span>Third item</span>
+								</article>
+								<article class="ui-card ui-vertical"><strong>Four</strong><span>Fourth item</span>
+								</article>
+							</div>
+						</div>
+					</section>
+
+					<section id="checkbox" class="lab-component" data-playground-component
+						data-playground-search="checkbox card checked disabled scope">
+						<header>
+							<h2>Checkbox</h2><span class="lab-contract">checkbox + label.ui-card</span>
+						</header>
+						<div class="lab-features" aria-label="checkbox features">
+							<span class="ui-badge ui-subtle ui-pill">native checkbox</span>
+							<span class="ui-badge ui-subtle ui-pill">data-label</span>
+							<span class="ui-badge ui-subtle ui-pill">checked</span>
+							<span class="ui-badge ui-subtle ui-pill">indeterminate</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">label.ui-card</span>
+							<span class="ui-badge ui-subtle ui-pill">focus-visible</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<div class="lab-row">
+								<input type="checkbox" data-label="Unchecked">
+								<input type="checkbox" data-label="Checked" checked>
+								<input type="checkbox" data-label="Disabled" disabled>
+							</div>
+							<div class="lab-grid">
+								<label class="ui-card">
+									<input type="checkbox" checked>
+									<span><strong>Automatic backups</strong><br><small>Keep a recoverable copy of
+											workspace data.</small></span>
+									<small>Recommended for production</small>
+								</label>
+								<label class="ui-card">
+									<input type="checkbox">
+									<span><strong>Analytics</strong><br><small>Collect aggregate usage
+											signals.</small></span>
+								</label>
+							</div>
+						</div>
+					</section>
+
+					<section id="code" class="lab-component" data-playground-component
+						data-playground-search="code inline technical display">
+						<header>
+							<h2>Code</h2><span class="lab-contract">code</span>
+						</header>
+						<div class="lab-features" aria-label="code features">
+							<span class="ui-badge ui-subtle ui-pill">native code</span>
+							<span class="ui-badge ui-subtle ui-pill">inline technical values</span>
+						</div>
+						<div class="lab-preview">
+							<p>Run <code>pnpm test</code> and inspect <code>--ui-radius</code>.</p>
+						</div>
+					</section>
+
+					<section id="color" class="lab-component" data-playground-component
+						data-playground-search="color input form">
+						<header>
+							<h2>Color</h2><span class="lab-contract">input[type=color]</span>
+						</header>
+						<div class="lab-features" aria-label="color features">
+							<span class="ui-badge ui-subtle ui-pill">native color input</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">focus-visible</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+						</div>
+						<div class="lab-preview lab-row"><input type="color" value="#c84548"><input type="color"
+								value="#0ea5e9" disabled></div>
+					</section>
+
+					<section id="datetime" class="lab-component" data-playground-component
+						data-playground-search="datetime date time outline dashed ghost subtle">
+						<header>
+							<h2>Datetime</h2><span class="lab-contract">input family</span>
+						</header>
+						<div class="lab-features" aria-label="datetime features">
+							<span class="ui-badge ui-subtle ui-pill">date</span>
+							<span class="ui-badge ui-subtle ui-pill">time</span>
+							<span class="ui-badge ui-subtle ui-pill">datetime-local</span>
+							<span class="ui-badge ui-subtle ui-pill">month</span>
+							<span class="ui-badge ui-subtle ui-pill">week</span>
+							<span class="ui-badge ui-subtle ui-pill">native picker</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+						</div>
+						<div class="lab-preview lab-row">
+							<input type="date">
+							<input type="time" class="ui-outline">
+							<input type="datetime-local" class="ui-dashed">
+							<input type="month" class="ui-ghost">
+							<input type="week" class="ui-subtle">
+						</div>
+					</section>
+
+					<section id="dialog" class="lab-component" data-playground-component
+						data-playground-search="dialog command scope modal">
+						<header>
+							<h2>Dialog</h2><span class="lab-contract">dialog + command API</span>
+						</header>
+						<div class="lab-features" aria-label="dialog features">
+							<span class="ui-badge ui-subtle ui-pill">native dialog</span>
+							<span class="ui-badge ui-subtle ui-pill">modal / non-modal</span>
+							<span class="ui-badge ui-subtle ui-pill">xs / sm / md / lg / xl / full</span>
+							<span class="ui-badge ui-subtle ui-pill">static header/footer</span>
+							<span class="ui-badge ui-subtle ui-pill">scrollable section</span>
+							<span class="ui-badge ui-subtle ui-pill">viewport offset</span>
+							<span class="ui-badge ui-subtle ui-pill">command API</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+						</div>
+						<div class="lab-preview">
+							<button type="button" commandfor="lab-dialog" command="show-modal">Open dialog</button>
+							<dialog id="lab-dialog" aria-labelledby="lab-dialog-title">
+								<header id="lab-dialog-title"><strong>Delete draft?</strong></header>
+								<section>This action cannot be undone.</section>
+								<footer>
+									<button type="button" class="ui-ghost" commandfor="lab-dialog"
+										command="close">Cancel</button>
+									<button type="button" class="ui-error" commandfor="lab-dialog"
+										command="close">Delete</button>
+								</footer>
+							</dialog>
+						</div>
+					</section>
+
+					<section id="divider" class="lab-component" data-playground-component
+						data-playground-search="divider separator dashed animated fade">
+						<header>
+							<h2>Divider</h2><span class="lab-contract">hr / .ui-divider</span>
+						</header>
+						<div class="lab-features" aria-label="divider features">
+							<span class="ui-badge ui-subtle ui-pill">hr + .ui-divider</span>
+							<span class="ui-badge ui-subtle ui-pill">horizontal</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-vertical</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-start / ui-center / ui-end</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-fade</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-animate</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<hr>
+							<div class="ui-divider ui-center ui-dashed">Dashed</div>
+							<div class="ui-divider ui-dashed ui-animate">Animated</div>
+							<div class="ui-divider ui-fade">Fade</div>
+						</div>
+					</section>
+
+					<section id="drawer" class="lab-component" data-playground-component
+						data-playground-search="drawer popover top right bottom left start end rtl ltr overlay light dismiss">
+						<header>
+							<h2>Drawer</h2><span class="lab-contract">.ui-drawer[popover]</span>
+						</header>
+						<div class="lab-features" aria-label="drawer features">
+							<span class="ui-badge ui-subtle ui-pill">native popover</span>
+							<span class="ui-badge ui-subtle ui-pill">physical + logical sides</span>
+							<span class="ui-badge ui-subtle ui-pill">light dismiss</span>
+							<span class="ui-badge ui-subtle ui-pill">Escape</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+						</div>
+						<div class="lab-preview lab-row">
+							<button popovertarget="lab-drawer-top">Top</button>
+							<button popovertarget="lab-drawer-right">Right</button>
+							<button popovertarget="lab-drawer-bottom">Bottom</button>
+							<button popovertarget="lab-drawer-left">Left</button>
+							<button popovertarget="lab-drawer-start">Start</button>
+							<button popovertarget="lab-drawer-end">End</button>
+						</div>
+
+						<aside id="lab-drawer-top" class="ui-drawer ui-top" popover>
+							<header><strong>Top drawer</strong><button class="ui-sm ui-ghost"
+								popovertarget="lab-drawer-top" popovertargetaction="hide"
+								aria-label="Close top drawer">×</button></header>
+							<section><p>Native popover content entering from the top edge.</p></section>
+						</aside>
+
+						<aside id="lab-drawer-right" class="ui-drawer ui-right" popover>
+							<header><strong>Right drawer</strong><button class="ui-sm ui-ghost"
+								popovertarget="lab-drawer-right" popovertargetaction="hide"
+								aria-label="Close right drawer">×</button></header>
+							<section><p>Native popover content entering from the right edge.</p></section>
+						</aside>
+
+						<aside id="lab-drawer-bottom" class="ui-drawer ui-bottom" popover>
+							<header><strong>Bottom drawer</strong><button class="ui-sm ui-ghost"
+								popovertarget="lab-drawer-bottom" popovertargetaction="hide"
+								aria-label="Close bottom drawer">×</button></header>
+							<section><p>Native popover content entering from the bottom edge.</p></section>
+						</aside>
+
+						<aside id="lab-drawer-left" class="ui-drawer ui-left" popover>
+							<header><strong>Left drawer</strong><button class="ui-sm ui-ghost"
+								popovertarget="lab-drawer-left" popovertargetaction="hide"
+								aria-label="Close left drawer">×</button></header>
+							<section><p>Native popover content entering from the left edge.</p></section>
+						</aside>
+
+						<aside id="lab-drawer-start" class="ui-drawer ui-start" popover>
+							<header><strong>Start drawer</strong><button class="ui-sm ui-ghost"
+								popovertarget="lab-drawer-start" popovertargetaction="hide"
+								aria-label="Close start drawer">×</button></header>
+							<section><p>Enters from inline-start: left in LTR and right in RTL.</p></section>
+						</aside>
+
+						<aside id="lab-drawer-end" class="ui-drawer ui-end" popover>
+							<header><strong>End drawer</strong><button class="ui-sm ui-ghost"
+								popovertarget="lab-drawer-end" popovertargetaction="hide"
+								aria-label="Close end drawer">×</button></header>
+							<section><p>Enters from inline-end: right in LTR and left in RTL.</p></section>
+						</aside>
+					</section>
+
+					<section id="dock" class="lab-component" data-playground-component
+						data-playground-search="dock scope navigation hover">
+						<header>
+							<h2>Dock</h2><span class="lab-contract">.ui-dock</span>
+						</header>
+						<div class="lab-features" aria-label="dock features">
+							<span class="ui-badge ui-subtle ui-pill">default bottom</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dock-top</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dock-start</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dock-end</span>
+							<span class="ui-badge ui-subtle ui-pill">separator</span>
+							<span class="ui-badge ui-subtle ui-pill">aria-current</span>
+							<span class="ui-badge ui-subtle ui-pill">hover/focus magnification</span>
+							<span class="ui-badge ui-subtle ui-pill">anchor positioning</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview lab-row">
+							<nav class="ui-dock" aria-label="Playground dock">
+								<img src="icons/macos/app-store.webp" alt="App Store" draggable="false">
+								<img src="icons/macos/contacts.webp" alt="Contacts" draggable="false">
+								<img src="icons/macos/finder.webp" alt="Finder" draggable="false">
+								<img src="icons/macos/photos.webp" alt="Photos" draggable="false">
+								<img src="icons/macos/textedit.webp" alt="Text Edit" draggable="false">
+								<img src="icons/macos/terminal.webp" alt="Terminal" draggable="false">
+								<hr data-dock-separator>
+								<img src="icons/macos/system-settings.webp" alt="System Settings" draggable="false">
+							</nav>
+						</div>
+					</section>
+
+					<section id="fieldset" class="lab-component" data-playground-component
+						data-playground-search="fieldset legend scope form">
+						<header>
+							<h2>Fieldset</h2><span class="lab-contract">fieldset / legend</span>
+						</header>
+						<div class="lab-features" aria-label="fieldset features">
+							<span class="ui-badge ui-subtle ui-pill">native fieldset/legend</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">form grouping</span>
+						</div>
+						<div class="lab-preview lab-grid">
+							<fieldset>
+								<legend>Profile</legend>
+								<div class="lab-stack"><input type="text" placeholder="Name"><input type="email"
+										placeholder="Email"></div>
+							</fieldset>
+							<fieldset disabled>
+								<legend>Disabled</legend><input type="text" value="Locked">
+							</fieldset>
+						</div>
+					</section>
+
+					<section id="file" class="lab-component" data-playground-component
+						data-playground-search="file upload">
+						<header>
+							<h2>File</h2><span class="lab-contract">input[type=file]</span>
+						</header>
+						<div class="lab-features" aria-label="file features">
+							<span class="ui-badge ui-subtle ui-pill">native file input</span>
+							<span class="ui-badge ui-subtle ui-pill">data-title</span>
+							<span class="ui-badge ui-subtle ui-pill">data-description</span>
+							<span class="ui-badge ui-subtle ui-pill">data-required-message</span>
+							<span class="ui-badge ui-subtle ui-pill">data-valid-message</span>
+							<span class="ui-badge ui-subtle ui-pill">data-disabled-message</span>
+							<span class="ui-badge ui-subtle ui-pill">required</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+						</div>
+						<div class="lab-preview lab-grid">
+							<input type="file" data-title="Choose a file" data-description="PDF, PNG or JPG">
+							<input type="file" disabled data-disabled-message="Upload disabled">
+						</div>
+					</section>
+
+					<section id="input" class="lab-component" data-playground-component
+						data-playground-search="input outline dashed ghost subtle">
+						<header>
+							<h2>Input</h2><span class="lab-contract">text-like inputs</span>
+						</header>
+						<div class="lab-features" aria-label="input features">
+							<span class="ui-badge ui-subtle ui-pill">text / email / password / search / tel / url</span>
+							<span class="ui-badge ui-subtle ui-pill">xs / sm / md / lg / xl</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-responsive</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-outline</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ghost</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-subtle</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">focus-visible</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<div class="lab-row"><input placeholder="Default"><input class="ui-outline"
+									placeholder="Outline"><input class="ui-dashed" placeholder="Dashed"><input
+									class="ui-ghost" placeholder="Ghost"><input class="ui-subtle" placeholder="Subtle">
+							</div>
+							<div class="lab-row"><input value="Disabled" disabled></div>
+							<div class="lab-row"><input type="email" placeholder="Email"><input type="password"
+									placeholder="Password"><input type="search" value="Search"></div>
+						</div>
+					</section>
+
+					<section id="keyboard" class="lab-component" data-playground-component
+						data-playground-search="keyboard kbd shortcut">
+						<header>
+							<h2>Keyboard</h2><span class="lab-contract">kbd</span>
+						</header>
+						<div class="lab-features" aria-label="keyboard features">
+							<span class="ui-badge ui-subtle ui-pill">native kbd</span>
+							<span class="ui-badge ui-subtle ui-pill">shortcut composition</span>
+						</div>
+						<div class="lab-preview lab-row">Save with <kbd>Ctrl</kbd> + <kbd>S</kbd> or search with
+							<kbd>Cmd</kbd> + <kbd>K</kbd>.
+						</div>
+					</section>
+
+					<section id="link" class="lab-component" data-playground-component
+						data-playground-search="link anchor navigation">
+						<header>
+							<h2>Link</h2><span class="lab-contract">a</span>
+						</header>
+						<div class="lab-features" aria-label="link features">
+							<span class="ui-badge ui-subtle ui-pill">native anchor</span>
+							<span class="ui-badge ui-subtle ui-pill">visited</span>
+							<span class="ui-badge ui-subtle ui-pill">hover</span>
+							<span class="ui-badge ui-subtle ui-pill">focus-visible</span>
+						</div>
+						<div class="lab-preview">
+							<p>Jump to <a href="#button">Button</a>, <a href="#select">Select</a>, or <a
+									href="#menu">Menu</a>.</p>
+						</div>
+					</section>
+
+					<section id="loader" class="lab-component" data-playground-component
+						data-playground-search="loader ring dual breath bar dots scope">
+						<header>
+							<h2>Loader</h2><span class="lab-contract">.ui-loader</span>
+						</header>
+						<div class="lab-features" aria-label="loader features">
+							<span class="ui-badge ui-subtle ui-pill">ui-ring</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dual</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-breath</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-bar</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dots</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+						</div>
+						<div class="lab-preview lab-row">
+							<span class="ui-loader ui-ring" role="status" aria-label="Loading"></span>
+							<span class="ui-loader ui-dual" role="status" aria-label="Loading"></span>
+							<i class="ui-loader ui-breath" role="status" aria-label="Loading"></i>
+							<span class="ui-loader ui-bar" role="status" aria-label="Loading"></span>
+							<span class="ui-loader ui-dots" role="status"
+								aria-label="Loading"><span></span><span></span><span></span></span>
+						</div>
+					</section>
+
+					<section id="menu" class="lab-component" data-playground-component
+						data-playground-search="menu popover divider bem scope">
+						<header>
+							<h2>Menu</h2><span class="lab-contract">menu[popover]</span>
+						</header>
+						<div class="lab-features" aria-label="menu features">
+							<span class="ui-badge ui-subtle ui-pill">native popover</span>
+							<span class="ui-badge ui-subtle ui-pill">nested menus</span>
+							<span class="ui-badge ui-subtle ui-pill">divider</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">success / info / warning / error</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled / aria-disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">viewport flip</span>
+							<span class="ui-badge ui-subtle ui-pill">scroll containment</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview">
+							<button type="button" popovertarget="lab-menu">Open menu</button>
+							<menu id="lab-menu" class="lab-menu" popover>
+								<li>Copy</li>
+								<li>Paste</li>
+								<li role="presentation">
+									<hr>
+								</li>
+								<li aria-disabled="true">Unavailable</li>
+								<li class="ui-error">Delete</li>
+							</menu>
+						</div>
+					</section>
+
+					<section id="number" class="lab-component" data-playground-component
+						data-playground-search="number variants">
+						<header>
+							<h2>Number</h2><span class="lab-contract">input[type=number]</span>
+						</header>
+						<div class="lab-features" aria-label="number features">
+							<span class="ui-badge ui-subtle ui-pill">native number input</span>
+							<span class="ui-badge ui-subtle ui-pill">spin controls</span>
+							<span class="ui-badge ui-subtle ui-pill">field variants</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">focus-visible</span>
+						</div>
+						<div class="lab-preview lab-row">
+							<input type="number" value="42">
+							<input type="number" class="ui-outline" value="7">
+							<input type="number" class="ui-subtle" value="8">
+						</div>
+					</section>
+
+					<section id="pattern" class="lab-component" data-playground-component
+						data-playground-search="pattern grid dot tile loom">
+						<header>
+							<h2>Pattern</h2><span class="lab-contract">.ui-pattern</span>
+						</header>
+						<div class="lab-features" aria-label="pattern features">
+							<span class="ui-badge ui-subtle ui-pill">ui-grid</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dot</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-tile</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-loom</span>
+							<span class="ui-badge ui-subtle ui-pill">size/width/color variables</span>
+						</div>
+						<div class="lab-preview lab-grid">
+							<div class="ui-pattern ui-grid lab-pattern"></div>
+							<div class="ui-pattern ui-dot lab-pattern"></div>
+							<div class="ui-pattern ui-tile lab-pattern"></div>
+							<div class="ui-pattern ui-loom lab-pattern"></div>
+						</div>
+					</section>
+
+					<section id="progress" class="lab-component" data-playground-component
+						data-playground-search="progress feedback">
+						<header>
+							<h2>Progress</h2><span class="lab-contract">progress</span>
+						</header>
+						<div class="lab-features" aria-label="progress features">
+							<span class="ui-badge ui-subtle ui-pill">native progress</span>
+							<span class="ui-badge ui-subtle ui-pill">xs / sm / md / lg</span>
+							<span class="ui-badge ui-subtle ui-pill">value/max</span>
+							<span class="ui-badge ui-subtle ui-pill">semantic theming</span>
+						</div>
+						<div class="lab-preview lab-stack"><progress value="35" max="100"></progress><progress
+								class="ui-xs" value="55" max="100"></progress><progress class="ui-sm" value="65"
+								max="100"></progress><progress class="ui-lg" value="80" max="100"></progress></div>
+					</section>
+
+					<section id="radio" class="lab-component" data-playground-component
+						data-playground-search="radio card checked disabled scope">
+						<header>
+							<h2>Radio</h2><span class="lab-contract">radio + label.ui-card</span>
+						</header>
+						<div class="lab-features" aria-label="radio features">
+							<span class="ui-badge ui-subtle ui-pill">native radio</span>
+							<span class="ui-badge ui-subtle ui-pill">data-label</span>
+							<span class="ui-badge ui-subtle ui-pill">checked</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">label.ui-card</span>
+							<span class="ui-badge ui-subtle ui-pill">keyboard</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<div class="lab-row"><input type="radio" name="plan" data-label="Starter"><input
+									type="radio" name="plan" data-label="Pro" checked><input type="radio" name="plan"
+									data-label="Disabled" disabled></div>
+							<div class="lab-grid">
+								<label class="ui-card">
+									<input type="radio" name="region" checked>
+									<span><strong>Middle East</strong><br><small>Low-latency regional
+											deployment.</small></span>
+									<small>Recommended for Saudi workloads</small>
+								</label>
+								<label class="ui-card">
+									<input type="radio" name="region">
+									<span><strong>Europe</strong><br><small>Alternative deployment
+											region.</small></span>
+								</label>
+							</div>
+						</div>
+					</section>
+
+					<section id="range" class="lab-component" data-playground-component
+						data-playground-search="range slider form">
+						<header>
+							<h2>Range</h2><span class="lab-contract">input[type=range]</span>
+						</header>
+						<div class="lab-features" aria-label="range features">
+							<span class="ui-badge ui-subtle ui-pill">native range</span>
+							<span class="ui-badge ui-subtle ui-pill">keyboard</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">focus-visible</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+						</div>
+						<div class="lab-preview lab-stack"><input class="lab-wide" type="range" value="35"><input
+								class="lab-wide" type="range" value="70" disabled></div>
+					</section>
+
+					<section id="ribbon" class="lab-component" data-playground-component
+						data-playground-search="ribbon display fold">
+						<header>
+							<h2>Ribbon</h2><span class="lab-contract">.ui-ribbon</span>
+						</header>
+						<div class="lab-features" aria-label="ribbon features">
+							<span class="ui-badge ui-subtle ui-pill">ui-ribbon</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ribbon-start</span>
+							<span class="ui-badge ui-subtle ui-pill">data-ribbon</span>
+							<span class="ui-badge ui-subtle ui-pill">data-ribbon-offset</span>
+							<span class="ui-badge ui-subtle ui-pill">data-ribbon-bg</span>
+							<span class="ui-badge ui-subtle ui-pill">data-ribbon-fg</span>
+							<span class="ui-badge ui-subtle ui-pill">data-ribbon-fold-size</span>
+							<span class="ui-badge ui-subtle ui-pill">data-ribbon-font-size</span>
+							<span class="ui-badge ui-subtle ui-pill">typed attr() enhancement</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview lab-grid">
+							<article class="ui-card ui-rich ui-ribbon ui-vertical" data-ribbon="New">
+								<header>Default</header>
+								<p>Ribbon on a semantic card.</p>
+							</article>
+							<article class="ui-card ui-rich ui-ribbon ui-ribbon-start ui-vertical" data-ribbon="Beta">
+								<header>Start</header>
+								<p>Logical start-side ribbon.</p>
+							</article>
+						</div>
+					</section>
+
+					<section id="scrollbar" class="lab-component" data-playground-component
+						data-playground-search="scrollbar overflow utility">
+						<header>
+							<h2>Scrollbar</h2><span class="lab-contract">global / .ui-scrollbar-hide</span>
+						</header>
+						<div class="lab-features" aria-label="scrollbar features">
+							<span class="ui-badge ui-subtle ui-pill">global scrollbar theme</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-scrollbar-hide</span>
+							<span class="ui-badge ui-subtle ui-pill">cross-browser</span>
+						</div>
+						<div class="lab-preview lab-grid">
+							<div class="lab-scroll-box">
+								<p>Visible scrollbar</p>
+								<p>Scroll</p>
+								<p>Scroll</p>
+								<p>Scroll</p>
+								<p>Scroll</p>
+							</div>
+							<div class="lab-scroll-box ui-scrollbar-hide">
+								<p>Hidden scrollbar</p>
+								<p>Scroll</p>
+								<p>Scroll</p>
+								<p>Scroll</p>
+								<p>Scroll</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="select" class="lab-component" data-playground-component
+						data-playground-search="select optgroup subtle outline dashed ghost">
+						<header>
+							<h2>Select</h2><span class="lab-contract">select</span>
+						</header>
+						<div class="lab-features" aria-label="select features">
+							<span class="ui-badge ui-subtle ui-pill">native select</span>
+							<span class="ui-badge ui-subtle ui-pill">single</span>
+							<span class="ui-badge ui-subtle ui-pill">multiple</span>
+							<span class="ui-badge ui-subtle ui-pill">size</span>
+							<span class="ui-badge ui-subtle ui-pill">optgroup</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-outline</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ghost</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-subtle</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">customizable-select enhancement</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<div class="lab-row"><select>
+									<option selected>Default</option>
+								</select><select class="ui-outline">
+									<option>Outline</option>
+								</select><select class="ui-dashed">
+									<option>Dashed</option>
+								</select><select class="ui-ghost">
+									<option>Ghost</option>
+								</select><select class="ui-subtle">
+									<option>Subtle</option>
+								</select></div>
+							<div class="lab-row">
+								<select>
+									<optgroup label="Stable">
+										<option>Production</option>
+									</optgroup>
+									<optgroup label="Testing">
+										<option selected>Staging</option>
+										<option>Development</option>
+									</optgroup>
+								</select>
+								<select disabled>
+									<option>Disabled</option>
+								</select>
+							</div>
+						</div>
+					</section>
+
+					<section id="sidebar" class="lab-component" data-playground-component
+						data-playground-search="sidebar checkbox label scope navigation collapse rail overlay dock responsive">
+						<header>
+							<h2>Sidebar</h2><span class="lab-contract">aside / .ui-sidebar</span>
+						</header>
+						<div class="lab-features" aria-label="sidebar features">
+							<span class="ui-badge ui-subtle ui-pill">live playground shell</span>
+							<span class="ui-badge ui-subtle ui-pill">grouped navigation</span>
+							<span class="ui-badge ui-subtle ui-pill">native checkbox state</span>
+							<span class="ui-badge ui-subtle ui-pill">checkbox owned by aside</span>
+							<span class="ui-badge ui-subtle ui-pill">hidden / rail / dock</span>
+							<span class="ui-badge ui-subtle ui-pill">overlay expansion</span>
+							<span class="ui-badge ui-subtle ui-pill">labels anywhere</span>
+							<span class="ui-badge ui-subtle ui-pill">state survives resize</span>
+							<span class="ui-badge ui-subtle ui-pill">hidden collapsed scrollbar</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-scrollable opt-in</span>
+							<span class="ui-badge ui-subtle ui-pill">adaptive square icons</span>
+							<span class="ui-badge ui-subtle ui-pill">container-query labels</span>
+							<span class="ui-badge ui-subtle ui-pill">keyboard focus</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview lab-sidebar-guide">
+							<span class="ui-badge ui-info ui-subtle">Live component</span>
+							<div>
+								<strong>The playground navigation is the Sidebar demo.</strong>
+								<p>
+									The <code>Components</code> label toggles the native checkbox inside the Sidebar.
+									The × label is consumer-owned and only appears while it can close an overlay. Resize below
+									<code>48rem</code> for hidden/overlay states, between <code>48rem</code> and
+									<code>64rem</code> for rail/overlay states, and above <code>64rem</code> for the
+									normal-flow dock. Switch LTR/RTL while checked to verify logical motion.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="table" class="lab-component" data-playground-component
+						data-playground-search="table scope data striped">
+						<header>
+							<h2>Table</h2><span class="lab-contract">table</span>
+						</header>
+						<div class="lab-features" aria-label="table features">
+							<span class="ui-badge ui-subtle ui-pill">native table</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-strip</span>
+							<span class="ui-badge ui-subtle ui-pill">row hover</span>
+							<span class="ui-badge ui-subtle ui-pill">data-align=center</span>
+							<span class="ui-badge ui-subtle ui-pill">data-align=end</span>
+							<span class="ui-badge ui-subtle ui-pill">data-no-data</span>
+							<span class="ui-badge ui-subtle ui-pill">caption/header/body</span>
+						</div>
+						<div class="lab-preview lab-table-wrap">
+							<table class="ui-strip">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Status</th>
+										<th>Updated</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Alpha</td>
+										<td><span class="ui-badge ui-success">Ready</span></td>
+										<td>Today</td>
+									</tr>
+									<tr>
+										<td>Bravo</td>
+										<td><span class="ui-badge ui-warning">Pending</span></td>
+										<td>Yesterday</td>
+									</tr>
+									<tr>
+										<td>Charlie</td>
+										<td><span class="ui-badge ui-info">Review</span></td>
+										<td>2 days ago</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+
+					<section id="text" class="lab-component" data-playground-component
+						data-playground-search="text shimmer wipe">
+						<header>
+							<h2>Text</h2><span class="lab-contract">.ui-text-*</span>
+						</header>
+						<div class="lab-features" aria-label="text features">
+							<span class="ui-badge ui-subtle ui-pill">ui-text-shimmer</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-text-wipe</span>
+							<span class="ui-badge ui-subtle ui-pill">speed/size variables</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced motion</span>
+							<span class="ui-badge ui-subtle ui-pill">reduced transparency</span>
+							<span class="ui-badge ui-subtle ui-pill">LTR/RTL</span>
+						</div>
+						<div class="lab-preview lab-stack"><strong class="ui-text-shimmer">Generating something
+								useful…</strong><strong class="ui-text-wipe">Processing the next step…</strong></div>
+					</section>
+
+					<section id="textarea" class="lab-component" data-playground-component
+						data-playground-search="textarea outline dashed ghost subtle">
+						<header>
+							<h2>Textarea</h2><span class="lab-contract">textarea</span>
+						</header>
+						<div class="lab-features" aria-label="textarea features">
+							<span class="ui-badge ui-subtle ui-pill">native textarea</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-responsive</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-vertical</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-horizontal</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-outline</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-dashed</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-ghost</span>
+							<span class="ui-badge ui-subtle ui-pill">ui-subtle</span>
+							<span class="ui-badge ui-subtle ui-pill">disabled</span>
+							<span class="ui-badge ui-subtle ui-pill">content sizing</span>
+						</div>
+						<div class="lab-preview lab-stack">
+							<textarea class="lab-wide" rows="2" placeholder="Default"></textarea>
+							<textarea class="lab-wide ui-outline" rows="2" placeholder="Outline"></textarea>
+							<textarea class="lab-wide ui-dashed" rows="2" placeholder="Dashed"></textarea>
+							<textarea class="lab-wide ui-ghost" rows="2" placeholder="Ghost"></textarea>
+							<textarea class="lab-wide ui-subtle" rows="2" placeholder="Subtle"></textarea>
+						</div>
+					</section>
+				</div>
+			</div>
+		</main>
+	</div>
+	<div id="lab-sidebar-tooltip" class="lab-sidebar-tooltip" popover="manual" role="tooltip"></div>
+</body>
+
+</html>

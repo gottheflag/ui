@@ -1,0 +1,6 @@
+@layer base {
+	:root {
+		--ui-number-arrow-size: 1rem;
+		--ui-number-arrow: var(--ui-input-fg, FieldText);
+	}
+}

@@ -1,0 +1,18 @@
+@layer base {
+	:root {
+		--ui-carousel-gap: 0.5rem;
+		--ui-carousel-padding: 0.5rem;
+
+		--ui-carousel-bg: transparent;
+		--ui-carousel-fg: var(--ui-fg, CanvasText);
+		--ui-carousel-border: transparent;
+		--ui-carousel-border-width: 0;
+		--ui-carousel-radius: 0;
+
+		--ui-carousel-viewport-shadow:
+			inset 1.5rem 0 1rem -1rem var(--ui-carousel-bg, Canvas),
+			inset -1.5rem 0 1rem -1rem var(--ui-carousel-bg, Canvas);
+
+		--ui-carousel-duration: 5s;
+	}
+}

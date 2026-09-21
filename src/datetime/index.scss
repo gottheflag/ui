@@ -1,0 +1,37 @@
+@use "properties";
+
+@use "../layers";
+@use "../input";
+@forward "variables";
+
+@layer components {
+    @supports selector(input::-webkit-calendar-picker-indicator) {
+        input[type="date" i],
+        input[type="time" i],
+        input[type="datetime-local" i],
+        input[type="month" i],
+        input[type="week" i] {
+            padding-inline-end: calc(var(--ui-datetime-arrow-size, 1rem) * 2);
+
+            &::-webkit-datetime-edit-text {
+                padding-inline: var(--ui-datetime-gap, 0);
+                color: var(--ui-datetime-separator, FieldText);
+            }
+
+            &::-webkit-calendar-picker-indicator {
+                position: absolute;
+                inset-inline-end: -0.25rem;
+
+                inline-size: calc(
+                    var(--ui-datetime-arrow-size, 1rem) * 2
+                );
+
+                background-color: var(--ui-datetime-arrow, FieldText);
+                -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M30.35,8.69c.91-.91,2.4-.91,3.31,0l11.7,11.7c.91.91.91,2.4,0,3.31s-2.4.91-3.31,0L32,13.65,21.95,23.69c-.91.91-2.4.91-3.31,0s-.91-2.4,0-3.31l11.7-11.7ZM30.35,55.31c.91.91,2.4.91,3.31,0l11.7-11.7c.91-.91.91-2.4,0-3.31s-2.4-.91-3.31,0L32,50.35,21.95,40.31c-.91-.91-2.4-.91-3.31,0s-.91,2.4,0,3.31l11.7,11.7Z'/%3E%3C/svg%3E");
+                -webkit-mask-position: center;
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-size: var(--ui-datetime-arrow-size, 1rem);
+            }
+        }
+    }
+}

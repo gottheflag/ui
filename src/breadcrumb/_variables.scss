@@ -1,0 +1,7 @@
+@layer base {
+	:root {
+		--ui-breadcrumb-gap: 0.5rem;
+		--ui-breadcrumb-separator-size: 0.625rem;
+		--ui-breadcrumb-separator: var(--ui-primary, CanvasText);
+	}
+}

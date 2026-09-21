@@ -1,0 +1,8 @@
+@layer base {
+	:root {
+		--ui-datetime-arrow-size: 1rem;
+		--ui-datetime-arrow: var(--ui-input-fg, FieldText);
+		--ui-datetime-gap: 0;
+		--ui-datetime-separator: var(--ui-input-fg, FieldText);
+	}
+}

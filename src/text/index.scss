@@ -1,0 +1,80 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+@forward "animations";
+
+@layer components {
+	.ui-text-shimmer,
+	.ui-text-wipe {
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
+	}
+
+	.ui-text-shimmer {
+		background-image: linear-gradient(
+			90deg,
+			var(--ui-text-secondary)
+				calc(50% - var(--ui-text-size, 2rem)),
+			var(--ui-text-primary, CanvasText),
+			var(--ui-text-secondary)
+				calc(50% + var(--ui-text-size, 2rem))
+		);
+		background-repeat: no-repeat;
+		background-size: 250% 100%;
+		animation: ui-text-shimmer var(--ui-text-speed, 1s) infinite ease;
+
+		&:dir(ltr) {
+			animation-direction: reverse;
+		}
+	}
+
+	.ui-text-wipe {
+		--ui-text-wipe-edge: transparent;
+
+		background-image: linear-gradient(
+			90deg,
+			var(--ui-text-wipe-edge) 0%,
+			var(--ui-text-primary, CanvasText) 50%,
+			var(--ui-text-wipe-edge) 100%
+		);
+		background-repeat: no-repeat;
+		background-size: 200% 100%;
+		animation: ui-text-wipe var(--ui-text-speed, 1s) infinite linear;
+
+		&:dir(rtl) {
+			animation-direction: reverse;
+		}
+	}
+
+	@include ui.reduced-motion {
+		.ui-text-shimmer {
+			animation-duration: calc(var(--ui-text-speed, 1s) * 1.15);
+		}
+
+		.ui-text-wipe {
+			animation-duration: calc(var(--ui-text-speed, 1s) * 1.2);
+		}
+	}
+
+	@include ui.reduced-transparency {
+		.ui-text-shimmer {
+			--ui-text-secondary: color-mix(
+				in oklch,
+				var(--ui-text-primary, CanvasText) 45%,
+				transparent
+			);
+		}
+
+		.ui-text-wipe {
+			--ui-text-wipe-edge: color-mix(
+				in oklch,
+				var(--ui-text-primary, CanvasText) 25%,
+				transparent
+			);
+		}
+	}
+}

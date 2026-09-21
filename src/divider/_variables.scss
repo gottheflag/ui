@@ -1,0 +1,17 @@
+@layer base {
+	:root {
+		--ui-divider-line: var(--ui-secondary, GrayText);
+		--ui-divider-width: var(--ui-border-width, 0.0625rem);
+
+		--ui-divider-label: var(--ui-fg, CanvasText);
+		--ui-divider-spacing: 0.125rem;
+		--ui-divider-gap: 0.5rem;
+		--ui-divider-dash-size: 0.25rem;
+		--ui-divider-label-min-size: 0.75rem;
+		--ui-divider-vertical-min-size: 3em;
+
+		--ui-divider-animation-speed: 1.2s;
+		--ui-divider-reduced-motion-distance: 0.25rem;
+		--ui-divider-reduced-motion-speed: 1.6s;
+	}
+}

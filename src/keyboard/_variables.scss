@@ -1,0 +1,14 @@
+@layer base {
+	:root {
+		--ui-keyboard-radius: max(0px,
+				calc(var(--ui-radius, 0.375rem) - 0.125rem));
+		--ui-keyboard-bg: var(--ui-input-bg, var(--ui-surface, Canvas));
+		--ui-keyboard-fg: var(--ui-fg, CanvasText);
+		--ui-keyboard-border: var(--ui-border, ButtonBorder);
+		--ui-keyboard-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-keyboard-gap: 0.25rem;
+		--ui-keyboard-padding: 0.25rem;
+		--ui-keyboard-block-size: 1.25rem;
+		--ui-keyboard-font-size: 0.75rem;
+	}
+}

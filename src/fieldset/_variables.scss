@@ -1,0 +1,15 @@
+@layer base {
+	:root {
+		--ui-fieldset-radius: var(--ui-radius, 0.375rem);
+		--ui-fieldset-gap: 0.625rem;
+		--ui-fieldset-padding: 0.875rem;
+		--ui-fieldset-bg: var(--ui-surface, Canvas);
+		--ui-fieldset-fg: var(--ui-fg, CanvasText);
+		--ui-fieldset-shadow: none;
+
+		--ui-fieldset-disabled-fg: var(--ui-disabled-fg, GrayText);
+
+		--ui-fieldset-border: var(--ui-border, ButtonBorder);
+		--ui-fieldset-border-width: var(--ui-border-width, 0.0625rem);
+	}
+}

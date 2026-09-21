@@ -1,0 +1,23 @@
+@layer base {
+	:root {
+		--ui-accordion-bg: var(--ui-surface, Canvas);
+		--ui-accordion-fg: var(--ui-fg, CanvasText);
+		--ui-accordion-icon-color: var(--ui-secondary, GrayText);
+		--ui-accordion-icon-open: var(--ui-fg, CanvasText);
+		--ui-accordion-icon-size: 1rem;
+
+		--ui-accordion-border: var(--ui-border, ButtonBorder);
+		--ui-accordion-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-accordion-radius: var(--ui-radius, 0.375rem);
+
+		--ui-accordion-padding: 1rem;
+		--ui-accordion-content-padding: var(--ui-accordion-padding);
+		--ui-accordion-gap: 0.75rem;
+
+		--ui-accordion-ring: var(--ui-ring, Highlight);
+		--ui-accordion-ring-width: var(--ui-ring-width, 0.125rem);
+		--ui-accordion-ring-offset: var(--ui-ring-offset, 0.0625rem);
+
+		--ui-accordion-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M30.35 8.69c.91-.91 2.4-.91 3.31 0l11.7 11.7c.91.91.91 2.4 0 3.31s-2.4.91-3.31 0L32 13.65 21.95 23.69c-.91.91-2.4.91-3.31 0s-.91-2.4 0-3.31l11.7-11.7zM30.35 55.31c.91.91 2.4.91 3.31 0l11.7-11.7c.91-.91.91-2.4 0-3.31s-2.4-.91-3.31 0L32 50.35l-10.05-10.04c-.91-.91-2.4-.91-3.31 0s-.91 2.4 0 3.31l11.7 11.7z'/%3E%3C/svg%3E");
+	}
+}

@@ -1,0 +1,29 @@
+@layer base {
+	:root {
+		--ui-textarea-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-textarea-border: var(--ui-border, ButtonBorder);
+		--ui-textarea-radius: var(--ui-radius, 0.375rem);
+		--ui-textarea-padding: 0.25rem 0.75rem;
+		--ui-textarea-bg: color-mix(in oklch,
+				Field 10%,
+				var(--ui-surface, Canvas));
+		--ui-textarea-fg: var(--ui-fg, FieldText);
+		--ui-textarea-placeholder: var(--ui-muted, GrayText);
+
+		--ui-textarea-ring: var(--ui-ring, Highlight);
+		--ui-textarea-ring-width: var(--ui-ring-width, 0.125rem);
+		--ui-textarea-ring-offset: var(--ui-ring-offset, 0.0625rem);
+
+		--ui-textarea-disabled-bg: var(--ui-disabled-bg, Canvas);
+		--ui-textarea-disabled-fg: var(--ui-disabled-fg, GrayText);
+		--ui-textarea-disabled-border: var(
+			--ui-disabled-border,
+			color-mix(
+				in oklch,
+				GrayText 35%,
+				var(--ui-bg, Canvas)
+			)
+		);
+		--ui-textarea-disabled-cursor: var(--ui-disabled-cursor, not-allowed);
+	}
+}

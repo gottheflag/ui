@@ -1,0 +1,126 @@
+@use "properties";
+@use "layers";
+
+@layer base {
+	:root {
+		--ui-bg: Canvas;
+		--ui-fg: CanvasText;
+		--ui-muted: GrayText;
+
+		--ui-success: oklch(64.014% 0.17506 146.763);
+		--ui-info: oklch(69.912% 0.15707 239.019);
+		--ui-warning: oklch(84.416% 0.17209 84.936);
+		--ui-error: oklch(59.153% 0.20203 21.222);
+
+		--ui-semantic-subtle-bg-strength: 16%;
+		--ui-semantic-subtle-border-strength: 38%;
+		--ui-semantic-subtle-hover-strength: 22%;
+		--ui-semantic-subtle-active-strength: 28%;
+		--ui-semantic-subtle-fg-strength: 85%;
+		--ui-semantic-subtle-contrast: CanvasText;
+
+		--ui-primary: color-mix(
+			in oklch,
+			var(--ui-bg, Canvas) 15%,
+			var(--ui-fg, CanvasText)
+		);
+		--ui-secondary: color-mix(
+			in oklch,
+			var(--ui-bg, Canvas) 75%,
+			var(--ui-fg, CanvasText)
+		);
+		--ui-surface: color-mix(
+			in oklch,
+			var(--ui-bg, Canvas) 98.5%,
+			var(--ui-fg, CanvasText)
+		);
+
+		--ui-accent: AccentColor;
+
+		--ui-border: color-mix(
+			in oklch,
+			var(--ui-secondary, ButtonBorder) 50%,
+			var(--ui-bg, Canvas)
+		);
+		--ui-border-width: 0.0625rem;
+		--ui-radius: 0.375rem;
+
+		--ui-shadow-color: GrayText;
+
+		--ui-shadow:
+			0 0.75rem 2rem -0.5rem color-mix(
+				in oklch,
+				var(--ui-shadow-color) 10%,
+				transparent
+			),
+			0 0.375rem 1rem -0.375rem color-mix(
+				in oklch,
+				var(--ui-shadow-color) 6%,
+				transparent
+			),
+			0 0.125rem 0.5rem -0.25rem color-mix(
+				in oklch,
+				var(--ui-shadow-color) 4%,
+				transparent
+			),
+			0 0 0 0.0625rem color-mix(
+				in oklch,
+				var(--ui-shadow-color) 5%,
+				transparent
+			);
+
+		--ui-ring: Highlight;
+		--ui-ring-width: 0.125rem;
+		--ui-ring-offset: 0.0625rem;
+
+		--ui-disabled-bg: color-mix(
+			in oklch,
+			GrayText 20%,
+			var(--ui-bg, Canvas)
+		);
+		--ui-disabled-fg: GrayText;
+		--ui-disabled-border: color-mix(
+			in oklch,
+			GrayText 35%,
+			var(--ui-bg, Canvas)
+		);
+		--ui-disabled-cursor: not-allowed;
+
+		--ui-selection-bg: Highlight;
+		--ui-selection-fg: HighlightText;
+
+		--ui-animation-speed: 150ms;
+		--ui-animation-easing: ease;
+	}
+
+	@supports (color: oklch(from white l c h)) {
+		:root {
+			--ui-shadow-color: oklch(
+				from var(--ui-bg, Canvas)
+				calc(l * 0.5)
+				calc(c * 0.5)
+				h
+			);
+		}
+	}
+
+	@media (prefers-contrast: more) {
+		:root {
+			--ui-border-width: 0.125rem;
+			--ui-border: currentColor;
+		}
+	}
+
+	@media (forced-colors: active) {
+		:root {
+			--ui-border: ButtonBorder;
+			--ui-ring: Highlight;
+			--ui-shadow: none;
+		}
+	}
+
+	::selection {
+		background-color: var(--ui-selection-bg, Highlight);
+		color: var(--ui-selection-fg, HighlightText);
+	}
+}

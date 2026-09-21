@@ -1,0 +1,75 @@
+// <angle>
+@property --ui-coverflow-rotation {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 0deg;
+}
+
+// <length-percentage>
+@property --ui-coverflow-depth {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-coverflow-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-coverflow-item-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-coverflow-overlap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-coverflow-perspective {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-coverflow-reflection-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-coverflow-reflection-space {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-coverflow-padding {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <number>
+@property --ui-coverflow-reflection-opacity {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --ui-coverflow-side-opacity {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --ui-coverflow-side-scale {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}

@@ -1,0 +1,33 @@
+@layer base {
+	:root {
+		--ui-file-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-file-border: var(--ui-border, ButtonBorder);
+		--ui-file-radius: var(--ui-radius, 0.375rem);
+		--ui-file-padding: 1rem;
+		--ui-file-fg: var(--ui-fg, FieldText);
+		--ui-file-bg: var(--ui-surface, Field);
+		--ui-file-cursor: pointer;
+
+		--ui-file-valid-message: var(--ui-success, CanvasText);
+		--ui-file-required-message: var(--ui-error, CanvasText);
+		--ui-file-disabled-message: var(--ui-muted, GrayText);
+		--ui-file-title: var(--ui-muted, GrayText);
+		--ui-file-description: var(--ui-muted, GrayText);
+
+		--ui-file-disabled-bg: var(--ui-disabled-bg, Canvas);
+		--ui-file-disabled-fg: var(--ui-disabled-fg, GrayText);
+		--ui-file-disabled-border: var(
+			--ui-disabled-border,
+			color-mix(
+				in oklch,
+				GrayText 35%,
+				var(--ui-bg, Canvas)
+			)
+		);
+		--ui-file-disabled-cursor: var(--ui-disabled-cursor, not-allowed);
+
+		--ui-file-ring: var(--ui-ring, Highlight);
+		--ui-file-ring-width: var(--ui-ring-width, 0.125rem);
+		--ui-file-ring-offset: var(--ui-ring-offset, 0.0625rem);
+	}
+}

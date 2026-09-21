@@ -1,0 +1,183 @@
+// *
+@property --ui-sidebar-motion-easing {
+	syntax: "*";
+	inherits: true;
+}
+
+@property --ui-sidebar-shadow {
+	syntax: "*";
+	inherits: true;
+}
+
+@property --ui-sidebar-overlay-shadow {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-sidebar-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-backdrop {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-group-label-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-item-current {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-item-current-indicator {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-item-hover {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-sidebar-z-index {
+	syntax: "<integer>";
+	inherits: true;
+	initial-value: 0;
+}
+
+// <length-percentage>
+@property --ui-sidebar-border-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-collapsed-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-group-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-group-label-font-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-icon-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-item-block-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-item-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-item-current-indicator-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-item-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-viewport-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <length-percentage>+
+@property --ui-sidebar-item-padding {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-sidebar-padding {
+	syntax: "<length-percentage>+";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <number>
+@property --ui-sidebar-item-disabled-opacity {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+// <time>
+@property --ui-sidebar-motion-speed {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}
+
+// normal | bold | <number>
+@property --ui-sidebar-group-label-font-weight {
+	syntax: "normal | bold | <number>";
+	inherits: true;
+	initial-value: 400;
+}

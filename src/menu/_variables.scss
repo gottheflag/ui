@@ -1,0 +1,34 @@
+@layer base {
+	:root {
+		--ui-menu-radius: var(--ui-radius, 0.375rem);
+		--ui-menu-padding: 0.5rem;
+		--ui-menu-item-radius: calc(var(--ui-radius, 0.375rem) / 1.5);
+		--ui-menu-gap: 0.5rem;
+		--ui-menu-divider-gap: 0.1875rem;
+		--ui-menu-item-gap: 0.5rem;
+		--ui-menu-spacing: 0.0625rem;
+		--ui-menu-item-padding: 0.75rem;
+		--ui-menu-item-block-size: 2rem;
+		--ui-menu-viewport-offset: 0.5rem;
+
+		--ui-menu-bg: var(--ui-surface, Canvas);
+		--ui-menu-fg: var(--ui-fg, CanvasText);
+		--ui-menu-item-fg: var(--ui-menu-fg);
+		--ui-menu-item-hover: color-mix(
+			in oklch,
+			var(--ui-menu-fg, CanvasText) 5%,
+			var(--ui-menu-bg, Canvas)
+		);
+
+		--ui-menu-border: var(--ui-border, ButtonBorder);
+		--ui-menu-border-width: var(--ui-border-width, 0.0625rem);
+
+		--ui-menu-disabled-fg: var(--ui-disabled-fg, GrayText);
+		--ui-menu-disabled-cursor: var(--ui-disabled-cursor, not-allowed);
+
+		--ui-menu-start-opacity: 0;
+		--ui-menu-speed: 100ms;
+		--ui-menu-easing: var(--ui-animation-easing, ease);
+		--ui-menu-shadow: var(--ui-shadow, none);
+	}
+}

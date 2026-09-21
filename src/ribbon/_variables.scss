@@ -1,0 +1,13 @@
+@layer base {
+	:root {
+		--ui-ribbon-fold-size: 0.375rem;
+
+		--ui-ribbon-padding-block: 0.3125rem;
+		--ui-ribbon-padding-inline: 2.1875rem;
+
+		--ui-ribbon-bg: var(--ui-secondary, Canvas);
+		--ui-ribbon-fg: var(--ui-fg, CanvasText);
+
+		--ui-ribbon-font-size: 1rem;
+	}
+}

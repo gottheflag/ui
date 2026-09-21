@@ -1,0 +1,17 @@
+@layer base {
+    :root {
+        --ui-code-bg: var(--ui-surface, Canvas);
+        --ui-code-fg: var(--ui-fg, CanvasText);
+        --ui-code-border: var(--ui-border, ButtonBorder);
+        --ui-code-border-width: var(--ui-border-width, 0.0625rem);
+        --ui-code-radius: max(
+            0px,
+            calc(var(--ui-radius, 0.375rem) - 0.125rem)
+        );
+        --ui-code-padding-block: 0.125rem;
+        --ui-code-padding-inline: 0.375rem;
+        --ui-code-font-size: 0.875em;
+        --ui-code-font-family:
+            ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    }
+}

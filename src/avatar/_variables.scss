@@ -1,0 +1,27 @@
+@layer base {
+	:root {
+		--ui-avatar-xs: 1rem;
+		--ui-avatar-sm: 2rem;
+		--ui-avatar-md: 2.25rem;
+		--ui-avatar-lg: 2.5rem;
+		--ui-avatar-xl: 4rem;
+
+		--ui-avatar-size: var(--ui-avatar-sm);
+		--ui-avatar-radius: var(--ui-radius, 0.375rem);
+		--ui-avatar-bg: color-mix(
+			in oklch,
+			var(--ui-fg, CanvasText) 5%,
+			var(--ui-bg, Canvas)
+		);
+
+		--ui-avatar-ring-width: 0.125rem;
+		--ui-avatar-ring-color: var(--ui-avatar-bg, Canvas);
+		--ui-avatar-ring-offset: var(--ui-ring-offset, 0.0625rem);
+
+		--ui-avatar-group-offset: calc(var(--ui-avatar-size, 2rem) - 0.5rem);
+		--ui-avatar-group-separator-width: 0.125rem;
+		--ui-avatar-group-separator-color: var(--ui-bg, Canvas);
+		--ui-avatar-group-more-bg: var(--ui-secondary, ButtonFace);
+		--ui-avatar-group-more-fg: var(--ui-fg, CanvasText);
+	}
+}

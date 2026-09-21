@@ -1,0 +1,145 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer reset {
+	@scope (details) {
+		:scope > summary {
+			list-style: none;
+		}
+
+		:scope > summary::-webkit-details-marker {
+			display: none;
+		}
+
+		:scope > summary::marker {
+			content: "";
+		}
+	}
+}
+
+@layer base {
+	@scope (details) {
+		:scope::details-content {
+			padding: var(--ui-accordion-content-padding, 1rem);
+		}
+
+		:scope:not([open])::details-content {
+			display: none;
+		}
+
+		:scope[open]::details-content {
+			display: block;
+			padding-block-start: 0;
+		}
+
+		:scope > summary {
+			display: flex;
+			align-items: center;
+			justify-content: start;
+			gap: var(--ui-accordion-gap, 0.75rem);
+			padding: var(--ui-accordion-padding, 1rem);
+
+			user-select: none;
+			cursor: pointer;
+
+			@include ui.focus-ring(
+				var(--ui-accordion-ring, Highlight),
+				var(--ui-accordion-ring-width, 0.125rem),
+				var(--ui-accordion-ring-offset, 0.0625rem)
+			);
+
+			&::before {
+				content: "";
+				display: inline-block;
+				flex: 0 0 auto;
+				inline-size: var(--ui-accordion-icon-size, 1rem);
+				block-size: var(--ui-accordion-icon-size, 1rem);
+			}
+		}
+
+		:scope[data-no-icon] > summary::before {
+			display: none;
+		}
+	}
+}
+
+@layer components {
+	@scope (details) {
+		:scope {
+			border: var(--ui-accordion-border-width, 0.0625rem) solid
+				var(--ui-accordion-border, ButtonBorder);
+			border-radius: var(--ui-accordion-radius, 0.375rem);
+			background-color: var(--ui-accordion-bg, Canvas);
+			color: var(--ui-accordion-fg, CanvasText);
+		}
+
+		:scope::details-content {
+			border-end-start-radius: var(
+				--ui-accordion-radius,
+				0.375rem
+			);
+			border-end-end-radius: var(
+				--ui-accordion-radius,
+				0.375rem
+			);
+		}
+
+		:scope > summary {
+			border-radius: var(--ui-accordion-radius, 0.375rem);
+
+			&::before {
+				background-color: var(
+					--ui-accordion-icon-color,
+					GrayText
+				);
+
+				mask-image: var(--ui-accordion-icon);
+				mask-position: center;
+				mask-repeat: no-repeat;
+				mask-size: var(--ui-accordion-icon-size, 1rem);
+
+				-webkit-mask-image: var(--ui-accordion-icon);
+				-webkit-mask-repeat: no-repeat;
+				-webkit-mask-position: center;
+				-webkit-mask-size: var(--ui-accordion-icon-size, 1rem);
+			}
+		}
+
+		:scope[open] > summary {
+			border-end-start-radius: 0;
+			border-end-end-radius: 0;
+
+			&::before {
+				background-color: var(
+					--ui-accordion-icon-open,
+					CanvasText
+				);
+			}
+		}
+
+		:scope.ui-ghost {
+			border-color: transparent;
+			background-color: transparent;
+		}
+
+		:scope.ui-ghost[open] {
+			background-color: var(--ui-accordion-bg, Canvas);
+		}
+
+		@include ui.hover {
+			:scope.ui-ghost {
+				background-color: var(--ui-accordion-bg, Canvas);
+			}
+		}
+
+		:scope.ui-outline {
+			border-block-start-color: transparent;
+			border-inline-color: transparent;
+			border-radius: 0;
+			background-color: transparent;
+		}
+	}
+}

@@ -1,0 +1,88 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer base {
+	input[type="file" i] {
+		box-sizing: border-box;
+		max-inline-size: 100%;
+		padding: var(--ui-file-padding, 1rem);
+
+		font-family: inherit;
+		border-radius: var(--ui-file-radius, 0.375rem);
+		cursor: var(--ui-file-cursor, pointer);
+
+		&::before,
+		&::after {
+			display: block;
+			overflow: hidden;
+			max-inline-size: 100%;
+
+			font-size: 0.75rem;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		@include ui.focus-ring(
+			var(--ui-file-ring, Highlight),
+			var(--ui-file-ring-width, 0.125rem),
+			var(--ui-file-ring-offset, 0.0625rem)
+		);
+
+		&::file-selector-button {
+			display: none;
+		}
+
+		&::-webkit-file-upload-button {
+			display: none;
+		}
+	}
+}
+
+@layer components {
+	input[type="file" i] {
+		border: var(--ui-file-border-width, 0.0625rem) dashed
+			var(--ui-file-border, ButtonBorder);
+		background-color: var(--ui-file-bg, Field);
+		color: var(--ui-file-fg, FieldText);
+
+		&::before {
+			content: attr(data-title, "Choose a file");
+			color: var(--ui-file-title, GrayText);
+		}
+
+		&::after {
+			content: attr(data-description);
+			color: var(--ui-file-description, GrayText);
+		}
+
+		&:required::before {
+			content: attr(data-required-message);
+			color: var(--ui-file-required-message, CanvasText);
+		}
+
+		&:required:valid::before {
+			content: attr(data-valid-message, "Choose a file");
+			color: var(--ui-file-valid-message, CanvasText);
+		}
+
+
+		&:disabled {
+			border-color: var(--ui-file-disabled-border, GrayText);
+			background-color: var(--ui-file-disabled-bg, Canvas);
+			color: var(--ui-file-disabled-fg, GrayText);
+			cursor: var(--ui-file-disabled-cursor, not-allowed);
+
+			&::before {
+				display: none;
+			}
+
+			&::after {
+				content: attr(data-disabled-message);
+				color: var(--ui-file-disabled-message, GrayText);
+			}
+		}
+	}
+}

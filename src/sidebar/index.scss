@@ -1,0 +1,444 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+$rail-breakpoint: 48rem;
+$dock-breakpoint: 64rem;
+
+@layer base {
+	@scope (.ui-sidebar) {
+		:scope {
+			box-sizing: border-box;
+			position: relative;
+			z-index: var(--ui-sidebar-z-index, 1000);
+			display: flex;
+			flex: 0 0 auto;
+			flex-direction: column;
+
+			inline-size: var(--ui-sidebar-width, 16rem);
+			min-inline-size: var(--ui-sidebar-collapsed-width, 4.25rem);
+			max-inline-size: 100%;
+
+			font-size: 1rem;
+			container: ui-sidebar / inline-size;
+		}
+
+		:scope.ui-collapsed {
+			inline-size: var(--ui-sidebar-collapsed-width, 4.25rem);
+		}
+
+		:scope > :is(header, nav, footer) {
+			box-sizing: border-box;
+			min-inline-size: 0;
+			padding: var(--ui-sidebar-padding, 0.75rem);
+		}
+
+		:scope > :is(header, footer) {
+			display: flex;
+			flex: 0 0 auto;
+			align-items: center;
+			gap: var(--ui-sidebar-item-gap, 0.625rem);
+		}
+
+		:scope > header {
+			border-block-end: var(--ui-sidebar-border-width, 0.0625rem)
+				solid var(--ui-sidebar-border, ButtonBorder);
+		}
+
+		:scope > footer {
+			border-block-start: var(--ui-sidebar-border-width, 0.0625rem)
+				solid var(--ui-sidebar-border, ButtonBorder);
+		}
+
+		:scope > :is(header, footer) > * {
+			min-inline-size: 0;
+			max-inline-size: 100%;
+		}
+
+		:scope > header > :is(strong, span),
+		:scope > footer > :is(strong, span) {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		:scope > nav {
+			display: flex;
+			flex: 1 1 auto;
+			flex-direction: column;
+			gap: var(--ui-sidebar-gap, 0.25rem);
+
+			overflow-y: auto;
+			overflow-x: hidden;
+			overscroll-behavior: contain;
+			scrollbar-width: thin;
+		}
+
+		:scope > nav > * {
+			flex-shrink: 0;
+		}
+
+		.ui-sidebar__group {
+			display: grid;
+			gap: var(--ui-sidebar-gap, 0.25rem);
+		}
+
+		.ui-sidebar__group + .ui-sidebar__group {
+			margin-block-start: var(--ui-sidebar-group-gap, 1rem);
+		}
+
+		.ui-sidebar__group-label {
+			padding-inline: var(--ui-sidebar-item-padding, 0.75rem);
+			color: var(--ui-sidebar-group-label-fg, GrayText);
+			font-size: var(--ui-sidebar-group-label-font-size, 0.6875rem);
+			font-weight: var(--ui-sidebar-group-label-font-weight, 650);
+			letter-spacing: 0.08em;
+			line-height: 1.4;
+			text-transform: uppercase;
+		}
+
+		:scope > nav > :is(a, button),
+		:scope > nav .ui-sidebar__item {
+			box-sizing: border-box;
+			position: relative;
+			display: flex;
+			align-items: center;
+			gap: var(--ui-sidebar-item-gap, 0.625rem);
+
+			inline-size: 100%;
+			min-inline-size: 0;
+			min-block-size: var(--ui-sidebar-item-block-size, 2.5rem);
+			padding-block: 0;
+			padding-inline: var(--ui-sidebar-item-padding, 0.75rem);
+
+			font: inherit;
+			text-align: start;
+			text-decoration: none;
+			white-space: nowrap;
+
+			appearance: none;
+			border: 0;
+			border-radius: var(--ui-sidebar-item-radius, 0.375rem);
+			background: transparent;
+			color: inherit;
+			cursor: pointer;
+		}
+
+		:scope > nav > :is(a, button) > :is(svg, img, .ui-sidebar__icon),
+		:scope > nav .ui-sidebar__item > :is(svg, img, .ui-sidebar__icon) {
+			display: inline-grid;
+			flex: 0 0 auto;
+			place-items: center;
+			overflow: hidden;
+
+			inline-size: var(--ui-sidebar-icon-size, 1.125rem);
+			block-size: var(--ui-sidebar-icon-size, 1.125rem);
+			aspect-ratio: 1;
+
+			object-fit: contain;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			box-shadow: none;
+		}
+
+		:scope > nav > :is(a, button) > img,
+		:scope > nav .ui-sidebar__item > img {
+			object-fit: cover;
+		}
+
+		:scope > nav svg,
+		:scope > nav .ui-sidebar__icon {
+			color: currentColor;
+		}
+
+		:scope .ui-sidebar__label {
+			min-inline-size: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+	}
+
+	@scope (.ui-sidebar) {
+		:scope > .ui-sidebar__toggle {
+			position: fixed;
+			inline-size: 1px;
+			block-size: 1px;
+			min-block-size: 0;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			opacity: 0;
+			overflow: hidden;
+			clip-path: inset(50%);
+			white-space: nowrap;
+		}
+
+		:scope.ui-responsive {
+			position: fixed;
+			inset-block: 0;
+			inset-inline: 0 auto;
+
+			inline-size: var(--ui-sidebar-width, 16rem);
+			min-inline-size: 0;
+			max-inline-size: calc(
+				100dvi - var(--ui-sidebar-viewport-offset, 1rem)
+			);
+			block-size: 100dvb;
+			max-block-size: none;
+
+			opacity: 0;
+			translate: -100% 0;
+			visibility: hidden;
+			pointer-events: none;
+		}
+
+		:scope.ui-responsive:dir(rtl) {
+			translate: 100% 0;
+		}
+
+		:scope.ui-responsive:has(> .ui-sidebar__toggle:checked) {
+			opacity: 1;
+			translate: 0 0;
+			visibility: visible;
+			pointer-events: auto;
+		}
+	}
+
+	.ui-sidebar.ui-responsive + .ui-sidebar__backdrop {
+		position: fixed;
+		z-index: calc(var(--ui-sidebar-z-index, 1000) - 1);
+		inset: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+
+	.ui-sidebar.ui-responsive:has(> .ui-sidebar__toggle:checked)
+		+ .ui-sidebar__backdrop {
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	@media (width >= #{$rail-breakpoint}) and (width < #{$dock-breakpoint}) {
+		@scope (.ui-sidebar) {
+			:scope.ui-responsive {
+				position: relative;
+				inset: auto;
+				inline-size: var(--ui-sidebar-collapsed-width, 4.25rem);
+				min-inline-size: var(--ui-sidebar-collapsed-width, 4.25rem);
+				max-inline-size: 100%;
+				block-size: auto;
+				opacity: 1;
+				translate: 0 0;
+				visibility: visible;
+				pointer-events: auto;
+			}
+
+			:scope.ui-responsive:has(> .ui-sidebar__toggle:checked) {
+				position: fixed;
+				inset-block: 0;
+				inset-inline: 0 auto;
+				inline-size: var(--ui-sidebar-width, 16rem);
+				min-inline-size: 0;
+				max-inline-size: calc(
+					100dvi - var(--ui-sidebar-viewport-offset, 1rem)
+				);
+				block-size: 100dvb;
+				max-block-size: none;
+			}
+		}
+	}
+
+	@media (width >= #{$dock-breakpoint}) {
+		@scope (.ui-sidebar) {
+			:scope.ui-responsive,
+			:scope.ui-responsive:has(> .ui-sidebar__toggle:checked) {
+				position: relative;
+				inset: auto;
+				inline-size: var(--ui-sidebar-width, 16rem);
+				min-inline-size: var(--ui-sidebar-collapsed-width, 4.25rem);
+				max-inline-size: 100%;
+				block-size: auto;
+				opacity: 1;
+				translate: 0 0;
+				visibility: visible;
+				pointer-events: auto;
+			}
+		}
+
+		.ui-sidebar.ui-responsive + .ui-sidebar__backdrop,
+		.ui-sidebar.ui-responsive:has(> .ui-sidebar__toggle:checked)
+			+ .ui-sidebar__backdrop {
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+		}
+	}
+}
+
+@layer components {
+	@scope (.ui-sidebar) {
+		:scope {
+			border-inline-end: var(--ui-sidebar-border-width, 0.0625rem)
+				solid var(--ui-sidebar-border, ButtonBorder);
+			background: var(--ui-sidebar-bg, Canvas);
+			color: var(--ui-sidebar-fg, CanvasText);
+			box-shadow: var(--ui-sidebar-shadow, none);
+		}
+
+		:scope > nav > :is(a, button),
+		:scope > nav .ui-sidebar__item {
+			&:not(:disabled):not([aria-disabled="true"]):not(:active):not([aria-pressed="true"]) {
+				@include ui.hover {
+					background: var(
+						--ui-sidebar-item-hover,
+						var(--ui-sidebar-bg, Canvas)
+					);
+				}
+			}
+
+			&:focus-visible {
+				outline: var(--ui-ring-width, 0.125rem) solid
+					var(--ui-ring, Highlight);
+				outline-offset: calc(
+					var(--ui-ring-offset, 0.0625rem) * -1
+				);
+			}
+
+			&[aria-current]:not([aria-current="false"]) {
+				background: var(
+					--ui-sidebar-item-current,
+					var(--ui-sidebar-item-hover)
+				);
+				font-weight: 600;
+			}
+
+			&[aria-current]:not([aria-current="false"])::before {
+				content: "";
+				position: absolute;
+				inset-block: 0.5rem;
+				inset-inline-start: 0;
+				inline-size: var(
+					--ui-sidebar-item-current-indicator-width,
+					0.125rem
+				);
+				border-radius: 999px;
+				background: var(
+					--ui-sidebar-item-current-indicator,
+					var(--ui-accent, Highlight)
+				);
+			}
+
+			&:disabled,
+			&[aria-disabled="true"] {
+				color: var(--ui-disabled-fg, GrayText);
+				opacity: var(--ui-sidebar-item-disabled-opacity, 0.55);
+				cursor: var(--ui-disabled-cursor, not-allowed);
+			}
+		}
+
+	}
+
+	.ui-sidebar.ui-responsive {
+		box-shadow: var(--ui-sidebar-overlay-shadow, none);
+	}
+
+	.ui-sidebar.ui-responsive + .ui-sidebar__backdrop {
+		background: var(--ui-sidebar-backdrop, rgb(0 0 0 / 40%));
+		opacity: 0;
+
+		// cursor: pointer;
+		// well, we can't automatically assume the user wants a pointer cursor
+		// therefore, we'll leave it up to the user to style it.
+	}
+
+	.ui-sidebar.ui-responsive:has(> .ui-sidebar__toggle:checked)
+		+ .ui-sidebar__backdrop {
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		@scope (.ui-sidebar) {
+			:scope {
+				transition: inline-size var(--ui-sidebar-motion-speed, 150ms)
+					var(--ui-sidebar-motion-easing, ease);
+			}
+
+			:scope > nav > :is(a, button),
+			:scope > nav .ui-sidebar__item {
+				transition:
+					background-color var(--ui-sidebar-motion-speed, 150ms)
+						var(--ui-sidebar-motion-easing, ease),
+					color var(--ui-sidebar-motion-speed, 150ms)
+						var(--ui-sidebar-motion-easing, ease),
+					opacity var(--ui-sidebar-motion-speed, 150ms)
+						var(--ui-sidebar-motion-easing, ease);
+			}
+
+		}
+
+		.ui-sidebar.ui-responsive,
+		.ui-sidebar.ui-responsive + .ui-sidebar__backdrop {
+			transition:
+				opacity var(--ui-sidebar-motion-speed, 150ms)
+					var(--ui-sidebar-motion-easing, ease),
+				translate var(--ui-sidebar-motion-speed, 150ms)
+					var(--ui-sidebar-motion-easing, ease),
+				visibility var(--ui-sidebar-motion-speed, 150ms)
+					allow-discrete;
+		}
+
+		// Keep every unchecked state transitionless. This prevents a rail
+		// from briefly expanding into a full drawer while crossing into the
+		// hidden breakpoint. The checked state still animates on entry.
+		.ui-sidebar.ui-responsive:not(:has(> .ui-sidebar__toggle:checked)) {
+			transition: none;
+		}
+
+		@media (width >= #{$dock-breakpoint}) {
+			.ui-sidebar.ui-responsive,
+			.ui-sidebar.ui-responsive + .ui-sidebar__backdrop {
+				transition: none;
+			}
+		}
+	}
+
+	@container ui-sidebar (inline-size <= 5rem) {
+		.ui-sidebar > :is(header, footer) {
+			justify-content: center;
+		}
+
+		.ui-sidebar > nav > :is(a, button),
+		.ui-sidebar > nav .ui-sidebar__item {
+			justify-content: center;
+			padding-inline: 0.5rem;
+		}
+
+		.ui-sidebar:not(.ui-scrollable) > nav:not(.ui-scrollable) {
+			scrollbar-width: none;
+		}
+
+		.ui-sidebar:not(.ui-scrollable) > nav:not(.ui-scrollable)::-webkit-scrollbar {
+			display: none;
+		}
+
+		.ui-sidebar .ui-sidebar__group-label,
+		.ui-sidebar .ui-sidebar__label {
+			display: none;
+		}
+	}
+
+	@include ui.reduced-transparency {
+		.ui-sidebar.ui-responsive + .ui-sidebar__backdrop {
+			background: color-mix(
+				in oklch,
+				var(--ui-sidebar-backdrop, CanvasText) 70%,
+				Canvas
+			);
+		}
+	}
+}

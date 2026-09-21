@@ -1,0 +1,59 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer reset {
+	@scope (fieldset) {
+		:scope {
+			min-inline-size: 0;
+		}
+	}
+}
+
+@layer base {
+	@scope (fieldset) {
+		:scope {
+			display: block;
+			box-sizing: border-box;
+			margin: 0;
+			padding: var(--ui-fieldset-padding, 0.875rem);
+			border-radius: var(--ui-fieldset-radius, 0.375rem);
+		}
+
+		:scope > legend {
+			display: table;
+			max-inline-size: 100%;
+			margin-block: 0;
+			margin-inline: -0.5rem 0;
+			padding-block: 0;
+			padding-inline: var(--ui-fieldset-gap, 0.625rem);
+
+			font-size: 0.85em;
+			font-weight: 600;
+			user-select: none;
+		}
+	}
+}
+
+@layer components {
+	@scope (fieldset) {
+		:scope {
+			border: var(--ui-fieldset-border-width, 0.0625rem) solid
+				var(--ui-fieldset-border, ButtonBorder);
+			background: var(--ui-fieldset-bg, Canvas);
+			color: var(--ui-fieldset-fg, CanvasText);
+			box-shadow: var(--ui-fieldset-shadow, none);
+		}
+
+		:scope:disabled,
+		:scope[disabled] {
+			color: var(--ui-fieldset-disabled-fg, GrayText);
+		}
+
+		:scope:disabled > legend,
+		:scope[disabled] > legend {
+			color: var(--ui-fieldset-disabled-fg, GrayText);
+		}
+	}
+}

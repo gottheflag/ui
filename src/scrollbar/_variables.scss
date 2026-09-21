@@ -1,0 +1,6 @@
+@layer base {
+	:root {
+		--ui-scrollbar-track: var(--ui-surface, Canvas);
+		--ui-scrollbar-thumb: var(--ui-accent, AccentColor);
+	}
+}

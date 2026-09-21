@@ -1,0 +1,105 @@
+// *
+@property --ui-loader-size {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-loader-dots-color {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-loader-primary {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-loader-secondary {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <length-percentage>
+@property --ui-loader-bar-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-loader-dots-gap {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-loader-dots-jump {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-loader-dots-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-loader-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-loader-ring-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-loader-shape-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-loader-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <number>
+@property --ui-loader-breath-opacity {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0.5;
+}
+
+@property --ui-loader-breath-scale {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0.85;
+}
+
+@property --ui-loader-dots-opacity {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0.3;
+}
+
+// <time>
+@property --ui-loader-dots-delay {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}
+
+@property --ui-loader-speed {
+	syntax: "<time>";
+	inherits: true;
+	initial-value: 0s;
+}

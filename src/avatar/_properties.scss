@@ -1,0 +1,159 @@
+// *
+@property --_ui-avatar-group-requested-limit {
+	syntax: "*";
+	inherits: true;
+}
+
+// <color>
+@property --ui-avatar-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-avatar-group-more-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-avatar-group-more-fg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-avatar-group-separator-color {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --ui-avatar-ring-color {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: transparent;
+}
+
+// <integer>
+@property --_ui-avatar-group-index {
+	syntax: "<integer>";
+	inherits: true;
+	initial-value: 0;
+}
+
+// <length-percentage>
+@property --_ui-avatar-group-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-group-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-group-separator-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-lg {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-md {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-radius {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-ring-offset {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-ring-width {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-size {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-sm {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-xl {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+@property --ui-avatar-xs {
+	syntax: "<length-percentage>";
+	inherits: true;
+	initial-value: 0px;
+}
+
+// <number>
+@property --_ui-avatar-group-count {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --_ui-avatar-group-has-overflow {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --_ui-avatar-group-is-overflow-avatar {
+	syntax: "<number>";
+	inherits: false;
+	initial-value: 0;
+}
+
+@property --_ui-avatar-group-limit {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --_ui-avatar-group-overflow {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --_ui-avatar-group-rendered {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --_ui-avatar-group-visible {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}

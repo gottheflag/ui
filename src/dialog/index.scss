@@ -1,0 +1,216 @@
+@use "properties";
+
+@use "../layers";
+@use "sass:map";
+@use "../mixins" as ui;
+@forward "variables";
+
+$sizes: (
+	xs: 20rem,
+	sm: 28rem,
+	md: 36rem,
+	lg: 48rem,
+	xl: 64rem,
+	full: 100dvi
+);
+
+$default-size: sm;
+
+@layer reset {
+	@scope (dialog) {
+		:scope {
+			margin: 0;
+		}
+	}
+}
+
+@layer base {
+	@scope (dialog) {
+		:scope {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+
+			box-sizing: border-box;
+			display: none;
+			flex-direction: column;
+			gap: var(--ui-dialog-gap, 0.875rem);
+
+			inline-size: map.get($sizes, $default-size);
+			max-inline-size: calc(
+				100dvi -
+					var(--ui-dialog-viewport-offset, 1rem) -
+					var(--ui-dialog-viewport-offset, 1rem)
+			);
+			max-block-size: calc(
+				100dvh -
+					var(--ui-dialog-viewport-offset, 1rem) -
+					var(--ui-dialog-viewport-offset, 1rem)
+			);
+			padding: var(--ui-dialog-padding, 1.5rem);
+
+			overflow: hidden;
+			overscroll-behavior: contain;
+		}
+
+		:scope[open] {
+			display: flex;
+		}
+
+		:scope > header {
+			display: flex;
+			flex: 0 0 auto;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: var(--ui-dialog-footer-gap, 0.3125rem);
+			min-inline-size: 0;
+			padding: var(--ui-dialog-header-padding, 0);
+		}
+
+		:scope > section {
+			flex: 1 1 auto;
+			min-inline-size: 0;
+			min-block-size: 0;
+			overflow-y: auto;
+			overscroll-behavior: contain;
+			padding: var(--ui-dialog-content-padding, 0);
+		}
+
+		:scope > footer {
+			display: flex;
+			flex: 0 0 auto;
+			align-items: center;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+			gap: var(--ui-dialog-footer-gap, 0.3125rem);
+			min-inline-size: 0;
+			padding: var(--ui-dialog-footer-padding, 0);
+		}
+	}
+}
+
+@layer components {
+	@scope (dialog) {
+		:scope {
+			border: var(--ui-dialog-border-width, 0.0625rem) solid
+				var(--ui-dialog-border, ButtonBorder);
+			border-radius: var(--ui-dialog-radius, 0.375rem);
+			background: var(--ui-dialog-bg, Canvas);
+			color: var(--ui-dialog-fg, CanvasText);
+			box-shadow: var(--ui-dialog-shadow, none);
+
+			opacity: 0;
+			scale: 0.95;
+
+			transition:
+				opacity var(--ui-dialog-speed, 150ms)
+					var(--ui-dialog-easing, ease),
+				scale var(--ui-dialog-speed, 150ms)
+					var(--ui-dialog-easing, ease),
+				overlay var(--ui-dialog-speed, 150ms)
+					var(--ui-dialog-easing, ease) allow-discrete,
+				display var(--ui-dialog-speed, 150ms)
+					var(--ui-dialog-easing, ease) allow-discrete;
+		}
+
+		:scope[open] {
+			opacity: 1;
+			scale: 1;
+		}
+
+		:scope::backdrop {
+			background-color: transparent;
+			backdrop-filter: blur(var(--ui-dialog-blur, 0.125rem));
+			-webkit-backdrop-filter: blur(var(--ui-dialog-blur, 0.125rem));
+
+			transition:
+				background-color var(--ui-dialog-speed, 150ms)
+					var(--ui-dialog-easing, ease),
+				overlay var(--ui-dialog-speed, 150ms)
+					var(--ui-dialog-easing, ease) allow-discrete,
+				display var(--ui-dialog-speed, 150ms)
+					var(--ui-dialog-easing, ease) allow-discrete;
+		}
+
+		:scope[open]::backdrop {
+			background-color: color-mix(
+				in oklch,
+				var(--ui-dialog-backdrop, Canvas)
+					var(--ui-dialog-backdrop-opacity, 40%),
+				transparent
+			);
+		}
+
+		:scope > header {
+			font-size: 1.25rem;
+			font-weight: 600;
+		}
+
+		:scope > section {
+			color: var(--ui-dialog-content, GrayText);
+			font-size: 0.875rem;
+		}
+
+		@each $size, $inline-size in $sizes {
+			:scope.ui-#{$size} {
+				inline-size: $inline-size;
+			}
+		}
+	}
+
+	@starting-style {
+		dialog[open] {
+			opacity: 0;
+			scale: 0.95;
+		}
+
+		dialog[open]::backdrop {
+			background-color: transparent;
+		}
+	}
+
+	@include ui.reduced-transparency {
+		@scope (dialog) {
+			:scope {
+				--ui-dialog-backdrop-opacity: 85%;
+			}
+
+			:scope::backdrop {
+				backdrop-filter: none;
+				-webkit-backdrop-filter: none;
+			}
+		}
+
+		@starting-style {
+			dialog[open]::backdrop {
+				background-color: color-mix(
+					in oklch,
+					var(--ui-dialog-backdrop, Canvas) 65%,
+					transparent
+				);
+			}
+		}
+	}
+
+	@include ui.reduced-motion {
+		@scope (dialog) {
+			:scope {
+				--ui-dialog-speed: 165ms;
+				--ui-dialog-easing: ease-out;
+				scale: 0.99;
+			}
+
+			:scope[open] {
+				scale: 1;
+			}
+		}
+
+		@starting-style {
+			dialog[open] {
+				scale: 0.99;
+			}
+		}
+	}
+}

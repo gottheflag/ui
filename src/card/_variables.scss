@@ -1,0 +1,15 @@
+@layer base {
+	:root {
+		--ui-card-gap: 1rem;
+		--ui-card-padding: 1rem;
+		--ui-card-radius: var(--ui-radius, 0.375rem);
+
+		--ui-card-bg: var(--ui-surface, Canvas);
+		--ui-card-fg: var(--ui-fg, CanvasText);
+		--ui-card-border: var(--ui-border, ButtonBorder);
+		--ui-card-border-width: var(--ui-border-width, 0.0625rem);
+
+		--ui-card-header-gap: 0.5rem;
+		--ui-card-footer-gap: 0.5rem;
+	}
+}

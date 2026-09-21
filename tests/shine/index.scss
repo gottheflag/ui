@@ -1,0 +1,102 @@
+@use "properties";
+
+@use "../layers";
+@use "../mixins" as ui;
+@forward "variables";
+
+@layer base {
+	.ui-shine {
+		--ui-shine-from: -100%;
+		--ui-shine-to: 100%;
+
+		position: relative;
+
+		overflow: clip;
+
+		&::after {
+			content: "";
+
+			position: absolute;
+			inset: -50% 0;
+
+			pointer-events: none;
+
+			translate: var(--ui-shine-from) 0;
+
+			transition:
+				translate
+					var(--ui-shine-speed)
+					var(--ui-shine-easing)
+					var(--ui-shine-delay);
+		}
+
+		&.ui-shine-reverse {
+			--ui-shine-from: 100%;
+			--ui-shine-to: -100%;
+		}
+
+		@media (hover: hover) and (pointer: fine) {
+			&:hover::after {
+				translate: var(--ui-shine-to) 0;
+			}
+		}
+
+		&:focus-visible::after,
+		&:focus-within::after {
+			translate: var(--ui-shine-to) 0;
+		}
+
+		&.ui-shine-auto::after {
+			animation:
+				ui-shine-auto
+				var(--ui-shine-auto-duration)
+				var(--ui-shine-easing)
+				var(--ui-shine-delay)
+				infinite;
+
+			transition: none;
+		}
+	}
+
+	@keyframes ui-shine-auto {
+		0%,
+		70% {
+			translate: var(--ui-shine-from) 0;
+		}
+
+		100% {
+			translate: var(--ui-shine-to) 0;
+		}
+	}
+
+	@include ui.reduced-motion {
+		.ui-shine::after {
+			display: none;
+
+			animation: none;
+			transition: none;
+		}
+	}
+}
+
+@layer components {
+	.ui-shine::after {
+		background:
+			linear-gradient(
+				105deg,
+				transparent 35%,
+				color-mix(
+					in oklch,
+					var(--ui-shine-color) 35%,
+					transparent
+				) 45%,
+				var(--ui-shine-color) 50%,
+				color-mix(
+					in oklch,
+					var(--ui-shine-color) 35%,
+					transparent
+				) 55%,
+				transparent 65%
+			);
+	}
+}

@@ -1,0 +1,10 @@
+@layer base {
+	:root {
+		--ui-text-size: 2rem;
+		--ui-text-primary: var(--ui-fg, CanvasText);
+		--ui-text-secondary: color-mix(in oklch,
+				var(--ui-fg, CanvasText) 35%,
+				transparent);
+		--ui-text-speed: 1s;
+	}
+}

@@ -1,0 +1,97 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer base {
+	@scope (:is(article, section).ui-card) {
+		:scope {
+			box-sizing: border-box;
+			display: flex;
+			gap: var(--ui-card-gap);
+			min-inline-size: 0;
+			max-inline-size: 100%;
+			padding: var(--ui-card-padding);
+			height: fit-content;
+			overflow-wrap: anywhere;
+		}
+
+		:scope > * {
+			min-inline-size: 0;
+			max-inline-size: 100%;
+		}
+
+		:scope :is(img, video, canvas) {
+			max-inline-size: 100%;
+		}
+
+		:scope pre {
+			max-inline-size: 100%;
+			overflow-x: auto;
+		}
+
+		:scope.ui-rich > header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: var(--ui-card-header-gap);
+			min-inline-size: 0;
+			font-weight: 600;
+		}
+
+		:scope.ui-rich > header > * {
+			min-inline-size: 0;
+			max-inline-size: 100%;
+		}
+
+		:scope.ui-rich > footer {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+			flex-shrink: 0;
+			gap: var(--ui-card-footer-gap, 0.5rem);
+			min-inline-size: 0;
+		}
+
+		:scope.ui-window {
+			padding: 0;
+			gap: 0;
+		}
+
+		:scope.ui-rich.ui-window > :is(header, footer) {
+			padding: var(--ui-card-padding);
+		}
+	}
+}
+
+@layer components {
+	@scope (:is(article, section).ui-card) {
+		:scope {
+			border: var(--ui-card-border-width) solid var(--ui-card-border);
+			border-radius: var(--ui-card-radius);
+			background: var(--ui-card-bg);
+			color: var(--ui-card-fg);
+		}
+
+		:scope.ui-dashed {
+			border-style: dashed;
+		}
+
+		:scope.ui-vertical {
+			flex-direction: column;
+		}
+
+		:scope.ui-window {
+			background: transparent;
+		}
+
+		:scope.ui-rich.ui-window > header {
+			background: var(--ui-card-bg);
+			border-start-start-radius: var(--ui-card-radius);
+			border-start-end-radius: var(--ui-card-radius);
+			border-bottom: var(--ui-card-border-width) solid var(--ui-card-border);
+		}
+	}
+}

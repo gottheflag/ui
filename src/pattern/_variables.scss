@@ -1,0 +1,13 @@
+@layer base {
+	:root {
+		--ui-pattern-xs: 0.0625rem;
+		--ui-pattern-sm: 2px;
+		--ui-pattern-md: 3px;
+		--ui-pattern-lg: 4px;
+		--ui-pattern-xl: 5px;
+
+		--ui-pattern-size: 1.25rem;
+		--ui-pattern-color: currentColor;
+		--ui-pattern-width: var(--ui-pattern-xs, 0.0625rem);
+	}
+}

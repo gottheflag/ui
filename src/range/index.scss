@@ -1,0 +1,107 @@
+@use "properties";
+
+@use "../layers";
+@forward "variables";
+
+@layer reset {
+	input[type="range" i] {
+		appearance: none;
+		outline: none;
+	}
+}
+
+@layer base {
+	input[type="range" i] {
+		margin-block: var(--ui-range-track-size);
+		margin-inline: 0;
+		background: transparent;
+
+		&::-webkit-slider-runnable-track {
+			block-size: var(--ui-range-track-size);
+			cursor: pointer;
+		}
+
+		&::-moz-range-track {
+			block-size: var(--ui-range-track-size);
+			cursor: pointer;
+		}
+
+		&::-webkit-slider-thumb {
+			appearance: none;
+			box-sizing: border-box;
+
+			inline-size: var(--ui-range-thumb-width);
+			block-size: var(--ui-range-thumb-height);
+			margin-block-start: calc(
+				(
+						var(--ui-range-track-size) -
+							var(--ui-range-thumb-height)
+					) /
+					2
+			);
+
+			cursor: pointer;
+		}
+
+		&::-moz-range-thumb {
+			box-sizing: border-box;
+			inline-size: var(--ui-range-thumb-width);
+			block-size: var(--ui-range-thumb-height);
+			cursor: pointer;
+		}
+
+		&:disabled {
+			opacity: var(--ui-range-disabled-opacity, 0.35);
+		}
+
+		&:disabled::-webkit-slider-runnable-track,
+		&:disabled::-webkit-slider-thumb {
+			cursor: var(--ui-range-disabled-cursor, not-allowed);
+		}
+
+		&:disabled::-moz-range-track,
+		&:disabled::-moz-range-thumb {
+			cursor: var(--ui-range-disabled-cursor, not-allowed);
+		}
+	}
+}
+
+@layer components {
+	input[type="range" i] {
+		&::-webkit-slider-runnable-track {
+			border-radius: var(--ui-range-track-radius, 0.375rem);
+			background: var(--ui-range-track, GrayText);
+		}
+
+		&::-moz-range-track {
+			border-radius: var(--ui-range-track-radius, 0.375rem);
+			background: var(--ui-range-track, GrayText);
+		}
+
+		&::-webkit-slider-thumb {
+			border: var(--ui-range-thumb-border-width, 0.0625rem) solid
+				var(--ui-range-thumb-border, ButtonBorder);
+			border-radius: var(--ui-range-thumb-radius, 0.375rem);
+			background: var(--ui-range-thumb, Canvas);
+		}
+
+		&::-moz-range-thumb {
+			border: var(--ui-range-thumb-border-width, 0.0625rem) solid
+				var(--ui-range-thumb-border, ButtonBorder);
+			border-radius: var(--ui-range-thumb-radius, 0.375rem);
+			background: var(--ui-range-thumb, Canvas);
+		}
+
+		&:focus-visible::-webkit-slider-thumb {
+			outline: var(--ui-range-ring-width, 0.125rem) solid
+				var(--ui-range-ring, Highlight);
+			outline-offset: var(--ui-range-ring-offset, 0.0625rem);
+		}
+
+		&:focus-visible::-moz-range-thumb {
+			outline: var(--ui-range-ring-width, 0.125rem) solid
+				var(--ui-range-ring, Highlight);
+			outline-offset: var(--ui-range-ring-offset, 0.0625rem);
+		}
+	}
+}

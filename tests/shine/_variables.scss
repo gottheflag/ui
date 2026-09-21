@@ -1,0 +1,10 @@
+:root {
+	--ui-shine-color: rgb(255 255 255 / 0.5);
+
+	--ui-shine-speed: 450ms;
+	--ui-shine-delay: 100ms;
+	--ui-shine-easing:
+		cubic-bezier(0.4, 0, 0.2, 1);
+
+	--ui-shine-auto-duration: 3s;
+}

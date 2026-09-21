@@ -1,0 +1,26 @@
+@layer base {
+	:root {
+		--ui-dialog-padding: 1.5rem;
+		--ui-dialog-border: var(--ui-border, ButtonBorder);
+		--ui-dialog-border-width: var(--ui-border-width, 0.0625rem);
+		--ui-dialog-radius: var(--ui-radius, 0.375rem);
+		--ui-dialog-bg: var(--ui-surface, Canvas);
+		--ui-dialog-fg: var(--ui-fg, CanvasText);
+		--ui-dialog-shadow: none;
+		--ui-dialog-gap: 0.875rem;
+		--ui-dialog-speed: var(--ui-animation-speed, 150ms);
+		--ui-dialog-easing: var(--ui-animation-easing, ease);
+
+		--ui-dialog-viewport-offset: 1rem;
+
+		--ui-dialog-backdrop: var(--ui-bg, Canvas);
+		--ui-dialog-backdrop-opacity: 40%;
+		--ui-dialog-blur: 0.125rem;
+
+		--ui-dialog-header-padding: 0;
+		--ui-dialog-content-padding: 0;
+		--ui-dialog-content: var(--ui-muted, GrayText);
+		--ui-dialog-footer-padding: 0;
+		--ui-dialog-footer-gap: 0.3125rem;
+	}
+}
